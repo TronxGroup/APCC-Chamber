@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html, body { @apply bg-neutral-950 text-neutral-100 antialiased; }
+.container { @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8; }
+.btn { @apply inline-flex items-center justify-center px-4 py-2 rounded-2xl text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-apcc-red-700/50; }
+.btn-primary { @apply bg-apcc-red-700 hover:bg-apcc-red-600 text-white; }
+.btn-secondary { @apply bg-transparent border border-apcc-red-700/40 text-neutral-100 hover:bg-apcc-red-700/10; }
