@@ -18,7 +18,7 @@ type Person = {
 
 const PRESIDENTS: Person[] = [
   {
-    name: 'Presidencia APCC (actual)',
+    name: 'Álvaro Echeverría',
     role: 'Presidente/a',
     period: '2022 — presente',
     photo: '/team/presidencia-actual.jpg',
@@ -51,10 +51,10 @@ const FORMER_PRESIDENTS: Person[] = [
 ];
 
 const BOARD_SAMPLE: Person[] = [
-  { name: 'Miembro Directorio 1', role: 'Director/a', photo: '/team/board-1.jpg' },
-  { name: 'Miembro Directorio 2', role: 'Director/a', photo: '/team/board-2.jpg' },
-  { name: 'Miembro Directorio 3', role: 'Director/a', photo: '/team/board-3.jpg' },
-  { name: 'Miembro Directorio 4', role: 'Director/a', photo: '/team/board-4.jpg' },
+  { name: 'Jorge Carey', role: 'Director', photo: '/team/board-1.jpg' },
+  { name: 'Álvaro Echeverría', role: 'Director', photo: '/team/board-2.jpg' },
+  { name: 'Charles Kimber', role: 'Director', photo: '/team/board-3.jpg' },
+  { name: 'Alberto Salas', role: 'Director', photo: '/team/board-4.jpg' },
 ];
 
 export default function Page() {
