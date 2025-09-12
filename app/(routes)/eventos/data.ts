@@ -153,4 +153,87 @@ export const EVENTS: EventItem[] = [
     date: '09 Abr 2026',
     time: '09:30–12:00 (GMT-3)',
     mode: 'Seminario',
-    lo
+    location: 'Centro de Conferencias, Santiago',
+    poster: '/events/posters/2026-04-legal-contratos.jpg',
+    summary:
+      'Acuerdos de compra, NDA, tooling/moldes y protección de marca/diseño. Cláusulas críticas y resolución de disputas.',
+    guests: ['Estudio Legal HK', 'OMPI LatAm'],
+    sponsors: [{ name: 'Pacific Bank', logo: '/sponsors/pacificbank.png' }],
+    membersOnly: true,
+    agenda: [
+      { time: '09:30', topic: 'Contratos: estructura esencial' },
+      { time: '10:00', topic: 'Propiedad Intelectual en Asia' },
+      { time: '10:40', topic: 'Disputas: prevención y salida' },
+      { time: '11:20', topic: 'Casos & Q&A' },
+    ],
+  },
+  {
+    slug: 'may-2026-webinar-sourcing-plataformas-b2b',
+    title: 'Webinar: Sourcing Inteligente y Plataformas B2B (más allá de Alibaba)',
+    date: '13 May 2026',
+    time: '09:00–10:30 (GMT-3)',
+    mode: 'Webinar',
+    location: 'Online (Zoom)',
+    poster: '/events/posters/2026-05-sourcing-b2b.jpg',
+    summary:
+      'Encontrar y validar proveedores: catálogos, ferias virtuales, auditorías y herramientas OSINT para due diligence.',
+    guests: ['HKLABA', 'Consultor Sourcing CN'],
+    sponsors: [{ name: 'HK Trade Hub', logo: '/sponsors/hktradehub.png' }],
+    membersOnly: true,
+    agenda: [
+      { time: '09:00', topic: 'Mapa de plataformas B2B' },
+      { time: '09:20', topic: 'Validación y due diligence (OSINT)' },
+      { time: '09:45', topic: 'Auditorías y quality gate' },
+      { time: '10:10', topic: 'Q&A' },
+    ],
+  },
+  {
+    slug: 'jun-2026-rueda-industrial-insumos',
+    title: 'Rueda de Negocios: Insumos Industriales y Packaging',
+    date: '11 Jun 2026',
+    time: '15:00–18:00 (GMT-3)',
+    mode: 'Rueda de Negocios',
+    location: 'APCC, Santiago / Híbrido',
+    poster: '/events/posters/2026-06-rueda-industrial.jpg',
+    summary:
+      'Conecta con fabricantes de insumos, componentes y packaging. Reuniones 1:1 y pipeline de cotizaciones.',
+    guests: ['Cluster Industrial GZ', 'PackLab'],
+    sponsors: [{ name: 'Andes Logistics', logo: '/sponsors/andeslogistics.png' }],
+    membersOnly: true,
+    agenda: [
+      { time: '15:00', topic: 'Bienvenida & pitches' },
+      { time: '15:30', topic: 'Rondas 1:1 (bloque 1)' },
+      { time: '16:30', topic: 'Rondas 1:1 (bloque 2)' },
+      { time: '17:30', topic: 'Cierre y seguimiento' },
+    ],
+  },
+  {
+    slug: 'jul-2026-mision-deal-making-hk-gz',
+    title: 'Misión Comercial Corta: Deal-Making en Hong Kong & Guangzhou',
+    date: '08–12 Jul 2026',
+    time: 'Agenda curada (5 días)',
+    mode: 'Misión',
+    location: 'Hong Kong / Guangzhou',
+    poster: '/events/posters/2026-07-mision-dealmaking.jpg',
+    summary:
+      'Visitas a hubs, reuniones ejecutivas y rondas de negociación con soporte local. Cupos limitados (prioridad socios).',
+    guests: ['Cámara HKLABA', 'Oficinas de Promoción Regional'],
+    sponsors: [{ name: 'AirAsia Cargo', logo: '/sponsors/airasiacargo.png' }],
+    membersOnly: true,
+    agenda: [
+      { time: 'Día 1', topic: 'Briefing + visitas a hubs logísticos' },
+      { time: 'Día 2', topic: 'Reuniones ejecutivas (HK)' },
+      { time: 'Día 3', topic: 'Traslado a GZ + plantas seleccionadas' },
+      { time: 'Día 4', topic: 'Rondas de negociación' },
+      { time: 'Día 5', topic: 'Cierre de acuerdos + follow-up' },
+    ],
+  },
+];
+
+export function getEventBySlug(slug: string) {
+  return EVENTS.find((e) => e.slug === slug);
+}
+
+export function getAllSlugs() {
+  return EVENTS.map((e) => e.slug);
+}
