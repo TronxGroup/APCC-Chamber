@@ -104,6 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <a
                   href="https://www.linkedin.com/company/asiapacific-chamber/"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-white"
                 >
                   LinkedIn
@@ -111,6 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <a
                   href="https://www.instagram.com/apcc.chamber/"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-white"
                 >
                   Instagram
@@ -118,16 +120,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <a
                   href="https://web.facebook.com/apcc.chamber"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-white"
                 >
                   Facebook
                 </a>
                 <a
-                  href="href="https://www.youtube.com/@apcc.chamber"
+                  href="https://www.youtube.com/@apcc.chamber"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-white"
                 >
-                  X
+                  YouTube
                 </a>
               </div>
             </div>
