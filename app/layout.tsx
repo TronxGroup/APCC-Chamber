@@ -123,7 +123,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   Facebook
                 </a>
                 <a
-                  href="https://x.com/apcc_chamber"
+                  href="href="https://www.youtube.com/@apcc.chamber"
                   target="_blank"
                   className="hover:text-white"
                 >
