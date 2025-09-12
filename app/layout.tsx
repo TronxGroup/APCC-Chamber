@@ -48,30 +48,39 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
 
         {/* FOOTER */}
-        <footer className="border-t border-neutral-800">
-          <div className="container py-10 text-sm text-neutral-400 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div className="space-y-1">
-              <div className="font-medium text-neutral-300">
-                Cámara de Comercio Asia Pacífico – APCC
-              </div>
-              <div>Santiago, Chile · Alianzas en LatAm y Asia</div>
-              <div>info@asiapacific-chamber.com · +56 9 2008 0031</div>
-            </div>
+<footer className="border-t border-neutral-800">
+  <div className="container py-10 text-sm text-neutral-400 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <div className="space-y-1">
+      <div className="font-medium text-neutral-300">
+        Cámara de Comercio Asia Pacífico – APCC
+      </div>
+      <div>Santiago, Chile · Alianzas en LatAm y Asia</div>
+      <div>
+        <a href="mailto:info@asiapacific-chamber.com" className="hover:text-neutral-200">
+          info@asiapacific-chamber.com
+        </a> · +56 9 2008 0031
+      </div>
+    </div>
 
-            {/* Links secundarios */}
-            <div className="flex flex-wrap gap-4 text-xs">
-              <NavLink href="/servicios">Servicios</NavLink>
-              <NavLink href="/recursos">Recursos</NavLink>
-              <NavLink href="/directorio">Directorio</NavLink>
-              <NavLink href="/hklaba">HKLABA</NavLink>
-            </div>
+    {/* Links secundarios */}
+    <div className="flex flex-wrap gap-4 text-xs">
+      <NavLink href="/servicios">Servicios</NavLink>
+      <NavLink href="/recursos">Recursos</NavLink>
+      <NavLink href="/directorio">Directorio</NavLink>
+      <NavLink href="/hklaba">HKLABA</NavLink>
+    </div>
 
-            <div className="text-xs">
-              © {new Date().getFullYear()} APCC. Todos los derechos reservados.
-            </div>
-          </div>
-        </footer>
-      </body>
-    </html>
-  );
-}
+    <div className="text-xs text-neutral-500 max-w-xs">
+      © {new Date().getFullYear()} APCC. Todos los derechos reservados. <br />
+      Tratamos tus datos conforme a nuestra{' '}
+      <Link href="/terminos-y-condiciones" className="underline underline-offset-4 hover:text-neutral-300">
+        Política de Privacidad
+      </Link>. Puedes ejercer tus derechos escribiendo a{' '}
+      <a href="mailto:info@asiapacific-chamber.com" className="underline hover:text-neutral-300">
+        info@asiapacific-chamber.com
+      </a>.
+    </div>
+  </div>
+</footer>
+</body>
+</html>
