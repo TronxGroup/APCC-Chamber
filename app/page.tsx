@@ -1,5 +1,7 @@
+// app/(routes)/page.tsx (o donde corresponda)
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata: Metadata = { title: 'Inicio' };
 
@@ -43,45 +45,43 @@ export default function Page() {
   return (
     <>
       {/* HERO */}
-import Image from "next/image";
-import Link from "next/link";
+      <section id="inicio" className="relative overflow-hidden">
+        {/* Fondo con imagen optimizada */}
+        <div className="absolute inset-0">
+          <Image
+            src="/bg_image_apcc_home.png"
+            alt="Fondo APCC"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+          {/* Overlay para dar contraste al texto */}
+          <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(153,27,27,0.25),rgba(0,0,0,0)_70%)]" />
+        </div>
 
-<section id="inicio" className="relative overflow-hidden">
-  {/* Fondo con imagen optimizada */}
-  <div className="absolute inset-0">
-    <Image
-      src="/bg_image_apcc_home.png"
-      alt="Fondo APCC"
-      fill
-      priority
-      className="object-cover"
-    />
-    {/* Overlay para dar contraste al texto */}
-    <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(153,27,27,0.25),rgba(0,0,0,0)_70%)]" />
-  </div>
-
-  {/* Contenido sobre el fondo */}
-  <div className="relative container py-24 lg:py-28 z-10">
-    <div className="max-w-3xl">
-      <p className="text-xs tracking-widest uppercase text-neutral-300">Plan 2026–2030</p>
-      <h1 className="mt-2 text-4xl md:text-6xl font-bold leading-tight">
-        El puente confiable entre Chile/LatAm y Asia Pacífico
-      </h1>
-      <p className="mt-4 text-neutral-200 max-w-2xl">
-        La cámara de comercio más enfocada en <strong>resultados</strong> para empresas de Chile y LatAm:
-        inteligencia comercial, networking y acceso directo a mercados.
-      </p>
-      <div className="mt-7 flex flex-wrap gap-3">
-        <Link href="/membresias" className="btn btn-primary">Comparar planes</Link>
-        <a href="#beneficios" className="btn btn-secondary">Ver beneficios</a>
-        <Link href="/contacto" className="btn btn-secondary">Habla con nosotros</Link>
-      </div>
-      <div className="mt-8 text-sm text-neutral-300">
-        2 misiones comerciales/año · Webinars mensuales · Networking trimestral
-      </div>
-    </div>
-  </div>
-</section>
+        {/* Contenido sobre el fondo */}
+        <div className="relative container py-24 lg:py-28 z-10">
+          <div className="max-w-3xl">
+            <p className="text-xs tracking-widest uppercase text-neutral-300">Plan 2026–2030</p>
+            <h1 className="mt-2 text-4xl md:text-6xl font-bold leading-tight">
+              El puente confiable entre Chile/LatAm y Asia Pacífico
+            </h1>
+            <p className="mt-4 text-neutral-200 max-w-2xl">
+              La cámara de comercio más enfocada en <strong>resultados</strong> para empresas de Chile y LatAm:
+              inteligencia comercial, networking y acceso directo a mercados.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link href="/membresias" className="btn btn-primary">Comparar planes</Link>
+              <a href="#beneficios" className="btn btn-secondary">Ver beneficios</a>
+              <Link href="/contacto" className="btn btn-secondary">Habla con nosotros</Link>
+            </div>
+            <div className="mt-8 text-sm text-neutral-300">
+              2 misiones comerciales/año · Webinars mensuales · Networking trimestral
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* PROOF STRIP */}
       <section className="border-y border-neutral-800 bg-neutral-950/40">
@@ -297,4 +297,3 @@ import Link from "next/link";
     </>
   );
 }
-
