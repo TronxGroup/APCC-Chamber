@@ -61,7 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <NavLink href="/eventos">Eventos</NavLink>
               <NavLink href="/noticias">Noticias</NavLink>
               <NavLink href="/contacto">Contacto</NavLink>
-              <Link href="https://join.asiapacific-chamber.com" className="btn btn-primary">
+              <Link href="https:/join" className="btn btn-primary">
                 Hazte socio
               </Link>
             </div>
