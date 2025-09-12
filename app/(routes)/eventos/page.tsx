@@ -19,51 +19,51 @@ type EventItem = {
   summary: string;
   guests: string[];      // invitados/ponentes
   sponsors?: Sponsor[];
-  membersOnly?: boolean; // marcar si es solo socios (default true abajo)
+  membersOnly?: boolean; // marcar si es solo socios
 };
 
 const UPCOMING: EventItem[] = [
   {
-    slug: 'webinar-logistica-asia-2025',
-    title: 'Webinar: Logística y Aduanas para Importar desde Asia 2026',
+    slug: 'oct-2025-webinar-negociacion-compra-china',
+    title: 'Webinar: Negociación Efectiva con Fábricas Chinas (INCOTERMS + QC)',
     date: '15 Oct 2025',
     time: '09:00–10:30 (GMT-3)',
     mode: 'Webinar',
     location: 'Online (Zoom)',
-    poster: '/events/posters/webinar-logistica.jpg',
+    poster: '/events/posters/2025-10-negociacion-fabricas.jpg',
     summary:
-      'Buenas prácticas para costos, tiempos y riesgos en importación desde China y Hong Kong. Casos reales y checklist.',
-    guests: ['María Chen (Forwarder HK)', 'Juan Pérez (Agente Aduana CL)'],
+      'Cómo lograr precios sostenibles, calidades estables y entregas a tiempo: tácticas de negociación, INCOTERMS correctos y controles de calidad.',
+    guests: ['María Chen (Sourcing HK)', 'Carlos Silva (QA Export)'],
     sponsors: [
       { name: 'HK Trade Hub', logo: '/sponsors/hktradehub.png' },
-      { name: 'Andes Logistics', logo: '/sponsors/andeslogistics.png' },
+      { name: 'SeguroTrade', logo: '/sponsors/segurotrade.png' },
     ],
     membersOnly: true,
   },
   {
-    slug: 'rueda-negocios-electronica',
-    title: 'Rueda de Negocios: Electrónica de Consumo 2026',
-    date: '28 Oct 2025',
+    slug: 'nov-2025-rueda-proveedores-electronica',
+    title: 'Rueda de Negocios: Electrónica de Consumo & Accesorios',
+    date: '12 Nov 2025',
     time: '15:00–18:00 (GMT-3)',
     mode: 'Rueda de Negocios',
     location: 'APCC, Santiago / Híbrido',
-    poster: '/events/posters/rueda-electronica.jpg',
+    poster: '/events/posters/2025-11-rueda-electronica.jpg',
     summary:
-      'Conecta con proveedores verificados de Shenzhen y Hong Kong. Mesas por categoría y reuniones 1:1 curadas.',
+      'Matchmaking con proveedores verificados de Shenzhen y Hong Kong. Mesas por categoría, reuniones 1:1 y seguimiento con cotizaciones.',
     guests: ['Delegación Shenzhen Tech', 'Retailers LatAm'],
     sponsors: [{ name: 'Pacific Bank', logo: '/sponsors/pacificbank.png' }],
     membersOnly: true,
   },
   {
-    slug: 'seminario-financiamiento-exportador',
-    title: 'Seminario: Financiamiento para Exportadores a Asia',
-    date: '12 Nov 2025',
+    slug: 'dic-2025-seminario-financiacion-carta-credito',
+    title: 'Seminario: Financiamiento, Carta de Crédito y Coberturas de Riesgo',
+    date: '10 Dic 2025',
     time: '09:30–12:00 (GMT-3)',
     mode: 'Seminario',
     location: 'Centro de Conferencias, Santiago',
-    poster: '/events/posters/seminario-financiamiento.jpg',
+    poster: '/events/posters/2025-12-financiamiento.jpg',
     summary:
-      'Instrumentos de cobertura, factoring internacional y cartas de crédito: cómo estructurar operaciones seguras.',
+      'Estructuras seguras de pago (LC, DP, DA), factoring internacional y seguros de crédito para importadores y exportadores.',
     guests: ['Banco de Desarrollo', 'ASEX Export Finance'],
     sponsors: [
       { name: 'ASEX', logo: '/sponsors/asex.png' },
@@ -72,21 +72,109 @@ const UPCOMING: EventItem[] = [
     membersOnly: true,
   },
   {
-    slug: 'mision-asia-enero-2026',
-    title: 'Misión Comercial a Asia: Hubs en Hong Kong y Guangzhou',
-    date: 'Ene 2026',
-    time: 'Agenda curada (10 días)',
+    slug: 'ene-2026-webinar-logistica-lunar-nuevo-ano',
+    title: 'Webinar: Logística Pre Año Nuevo Chino (capacidad, tarifas y timing)',
+    date: '14 Ene 2026',
+    time: '09:00–10:30 (GMT-3)',
+    mode: 'Webinar',
+    location: 'Online (Zoom)',
+    poster: '/events/posters/2026-01-logistica-anc.jpg',
+    summary:
+      'Cómo planificar inventarios y embarques frente a cierres de fábricas y peak de tarifas; checklist operativo.',
+    guests: ['Forwarder HK', 'Operador Portuario CL'],
+    sponsors: [
+      { name: 'Andes Logistics', logo: '/sponsors/andeslogistics.png' },
+      { name: 'PackLab', logo: '/sponsors/packlab.png' },
+    ],
+    membersOnly: true,
+  },
+  {
+    slug: 'feb-2026-webinar-cumplimiento-normativo-asia',
+    title: 'Webinar: Cumplimiento Normativo para Exportar a Asia (etiquetado y estándares)',
+    date: '18 Feb 2026',
+    time: '09:00–10:30 (GMT-3)',
+    mode: 'Webinar',
+    location: 'Online (Zoom)',
+    poster: '/events/posters/2026-02-normativas-asia.jpg',
+    summary:
+      'Requisitos clave por mercado (China, HK, SG): etiquetado, certificaciones, fitosanitario y homologaciones.',
+    guests: ['HK Standards Unit', 'SAG/ProChile'],
+    sponsors: [{ name: 'PackLab', logo: '/sponsors/packlab.png' }],
+    membersOnly: true,
+  },
+  {
+    slug: 'mar-2026-rueda-alimentos-bebidas',
+    title: 'Rueda de Negocios: Alimentos & Bebidas (retail y horeca)',
+    date: '12 Mar 2026',
+    time: '15:00–18:00 (GMT-3)',
+    mode: 'Rueda de Negocios',
+    location: 'APCC, Santiago / Híbrido',
+    poster: '/events/posters/2026-03-rueda-food.jpg',
+    summary:
+      'Productores LatAm conectan con distribuidores y compradores asiáticos. Curaduría por categoría y agenda 1:1.',
+    guests: ['Consorcio Food LatAm', 'Compradores Horeca'],
+    sponsors: [{ name: 'ColdChain CL', logo: '/sponsors/coldchain.png' }],
+    membersOnly: true,
+  },
+  {
+    slug: 'abr-2026-seminario-contratos-asia-legal',
+    title: 'Seminario: Contratos Internacionales y Propiedad Intelectual en Asia',
+    date: '09 Abr 2026',
+    time: '09:30–12:00 (GMT-3)',
+    mode: 'Seminario',
+    location: 'Centro de Conferencias, Santiago',
+    poster: '/events/posters/2026-04-legal-contratos.jpg',
+    summary:
+      'Acuerdos de compra, NDA, tooling, moldes y protección de marca/diseño. Cláusulas críticas y resolución de disputas.',
+    guests: ['Estudio Legal HK', 'OMPI LatAm'],
+    sponsors: [{ name: 'Pacific Bank', logo: '/sponsors/pacificbank.png' }],
+    membersOnly: true,
+  },
+  {
+    slug: 'may-2026-webinar-sourcing-plataformas-b2b',
+    title: 'Webinar: Sourcing Inteligente y Plataformas B2B (más allá de Alibaba)',
+    date: '13 May 2026',
+    time: '09:00–10:30 (GMT-3)',
+    mode: 'Webinar',
+    location: 'Online (Zoom)',
+    poster: '/events/posters/2026-05-sourcing-b2b.jpg',
+    summary:
+      'Encontrar y validar proveedores: catálogos, ferias virtuales, auditorías y herramientas OSINT para due diligence.',
+    guests: ['HKLABA', 'Consultor Sourcing CN'],
+    sponsors: [{ name: 'HK Trade Hub', logo: '/sponsors/hktradehub.png' }],
+    membersOnly: true,
+  },
+  {
+    slug: 'jun-2026-rueda-industrial-insumos',
+    title: 'Rueda de Negocios: Insumos Industriales y Packaging',
+    date: '11 Jun 2026',
+    time: '15:00–18:00 (GMT-3)',
+    mode: 'Rueda de Negocios',
+    location: 'APCC, Santiago / Híbrido',
+    poster: '/events/posters/2026-06-rueda-industrial.jpg',
+    summary:
+      'Conecta con fabricantes de insumos, componentes y packaging. Reuniones 1:1 y pipeline de cotizaciones.',
+    guests: ['Cluster Industrial GZ', 'PackLab'],
+    sponsors: [{ name: 'Andes Logistics', logo: '/sponsors/andeslogistics.png' }],
+    membersOnly: true,
+  },
+  {
+    slug: 'jul-2026-mision-deal-making-hk-gz',
+    title: 'Misión Comercial Corta: Deal-Making en Hong Kong & Guangzhou',
+    date: '08–12 Jul 2026',
+    time: 'Agenda curada (5 días)',
     mode: 'Misión',
     location: 'Hong Kong / Guangzhou',
-    poster: '/events/posters/mision-asia.jpg',
+    poster: '/events/posters/2026-07-mision-dealmaking.jpg',
     summary:
-      'Visitas a ferias, plantas y centros logísticos + reuniones ejecutivas. Cupos limitados y preferencia socios.',
+      'Visitas a hubs, reuniones ejecutivas y rondas de negociación con soporte local. Cupos limitados (prioridad socios).',
     guests: ['Cámara HKLABA', 'Oficinas de Promoción Regional'],
     sponsors: [{ name: 'AirAsia Cargo', logo: '/sponsors/airasiacargo.png' }],
     membersOnly: true,
   },
 ];
 
+// Pasados (puedes mantener los tuyos)
 const PAST: EventItem[] = [
   {
     slug: 'webinar-embalajes-2025',
@@ -134,8 +222,7 @@ export default function Page() {
         <div className="mt-4 flex flex-wrap items-center gap-3">
           <Badge>Exclusivo para socios</Badge>
           <span className="text-sm text-neutral-500">
-            ¿Aún no eres socio?
-            {' '}
+            ¿Aún no eres socio?{' '}
             <Link href="/membresias" className="underline underline-offset-4 hover:text-neutral-200">Revisa los planes</Link>
             {' '}o{' '}
             <Link href="https://join.asiapacific-chamber.com" target="_blank" className="underline underline-offset-4 hover:text-neutral-200">
@@ -155,11 +242,12 @@ export default function Page() {
         <div className="mt-6 grid md:grid-cols-2 xl:grid-cols-4 gap-4">
           {UPCOMING.map((ev) => (
             <article key={ev.slug} className="group rounded-2xl border border-neutral-800 bg-neutral-900 overflow-hidden flex flex-col">
-              <div className="relative h-44 bg-neutral-800">
+              {/* Afiche vertical (subí la altura) */}
+              <div className="relative h-80 bg-neutral-800">
                 <img
                   src={ev.poster}
                   alt={`Afiche ${ev.title}`}
-                  className="h-44 w-full object-cover transition-transform group-hover:scale-105"
+                  className="h-80 w-full object-cover transition-transform group-hover:scale-105"
                   loading="lazy"
                 />
                 <div className="absolute left-3 top-3 flex gap-2">
