@@ -34,7 +34,7 @@ const PLANS: Plan[] = [
       'Acceso a biblioteca digital de guías y reportes',
       'Acceso a grupos segmentados (WhatsApp/Slack)',
     ],
-    ctaHref: 'https://join.asiapacific-chamber.com',
+    ctaHref: '/join?plan=Essential',
     ctaLabel: 'Unirme a Essential',
     note: 'Ideal para iniciar y validar oportunidades con Asia.',
   },
@@ -54,7 +54,7 @@ const PLANS: Plan[] = [
       'Derecho preferente a exponer en seminarios de la cámara',
       'Cobertura comunicacional en medios de la cámara',
     ],
-    ctaHref: 'https://join.asiapacific-chamber.com',
+    ctaHref: '/join?plan=Business',
     ctaLabel: 'Elegir Business',
     note: 'La opción recomendada para PYMEs con flujo estable.',
   },
@@ -73,7 +73,7 @@ const PLANS: Plan[] = [
       'Invitación VIP a foros internacionales (p.ej., Hong Kong Forum)',
       'Copatrocinio de seminarios/webinars con visibilidad de marca',
     ],
-    ctaHref: 'https://join.asiapacific-chamber.com',
+    ctaHref: '/join?plan=Corporate',
     ctaLabel: 'Hablar con APCC',
     note: 'Hecha para impacto regional y equipos comerciales.',
   },
@@ -104,7 +104,7 @@ export default function Page() {
           sectorial, business matching y acceso a misiones y ferias en Asia.
         </p>
         <div className="mt-6 text-sm text-neutral-400">
-          ¿Dudas? <Link href="/contacto" className="underline underline-offset-4 hover:text-neutral-200">Agenda una llamada</Link>.
+          ¿Dudas? <Link href="/join" className="underline underline-offset-4 hover:text-neutral-200">Agenda una llamada</Link>.
         </div>
       </header>
 
@@ -138,7 +138,6 @@ export default function Page() {
               <Link
                 href={p.ctaHref}
                 className={`btn ${p.best ? 'btn-primary' : 'btn-secondary'}`}
-                target="_blank"
               >
                 {p.ctaLabel}
               </Link>
@@ -236,10 +235,10 @@ export default function Page() {
             </p>
           </div>
           <div className="flex gap-3">
-            <Link href="https://join.asiapacific-chamber.com" className="btn btn-primary" target="_blank">
+            <Link href="/join" className="btn btn-primary">
               Unirme ahora
             </Link>
-            <Link href="/contacto" className="btn btn-secondary">
+            <Link href="/join" className="btn btn-secondary">
               Hablar con APCC
             </Link>
           </div>
