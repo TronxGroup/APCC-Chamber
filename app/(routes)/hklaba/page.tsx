@@ -39,7 +39,7 @@ export default function Page() {
           <Link href="/membresias" className="btn btn-primary">
             Acceder vía membresía APCC
           </Link>
-          <Link href="https://hklaba.com/" target="_blank" className="btn btn-secondary">
+          <Link href="https://hklaba.vercel.app/" target="_blank" className="btn btn-secondary">
             Sitio oficial HKLABA
           </Link>
         </div>
