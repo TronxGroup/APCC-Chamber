@@ -23,7 +23,7 @@ const PLANS: Plan[] = [
   {
     id: 'essential',
     name: 'Essential',
-    price: '$250.000 CLP / año',
+    price: '$200.000 CLP / año',
     blurb: 'Pensada para PYMEs y nuevos importadores que comienzan con Asia.',
     features: [
       'Certificado oficial de socio',
@@ -41,7 +41,7 @@ const PLANS: Plan[] = [
   {
     id: 'business',
     name: 'Business',
-    price: '$600.000 CLP / año',
+    price: '$500.000 CLP / año',
     blurb:
       'Para empresas consolidadas en importación/exportación que buscan networking y prioridad en agenda.',
     best: true,
@@ -61,7 +61,7 @@ const PLANS: Plan[] = [
   {
     id: 'corporate',
     name: 'Corporate',
-    price: '$1.200.000 CLP / año',
+    price: '$1.000.000 CLP / año',
     blurb:
       'Para corporativos y grupos empresariales que requieren posicionamiento internacional y agenda a medida.',
     features: [
