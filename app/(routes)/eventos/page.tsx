@@ -11,15 +11,15 @@ type Sponsor = { name: string; logo: string }; // ruta en /public/sponsors/*
 type EventItem = {
   slug: string;
   title: string;
-  date: string;          // ISO o legible (ej: "12 Nov 2025")
-  time?: string;         // "09:00–11:00 (GMT-3)"
+  date: string;
+  time?: string;
   mode: 'Webinar' | 'Seminario' | 'Rueda de Negocios' | 'Misión';
-  location: string;      // "Online" o dirección
-  poster: string;        // /public/events/posters/*
+  location: string;
+  poster: string;
   summary: string;
-  guests: string[];      // invitados/ponentes
+  guests: string[];
   sponsors?: Sponsor[];
-  membersOnly?: boolean; // marcar si es solo socios
+  membersOnly?: boolean;
 };
 
 const UPCOMING: EventItem[] = [
@@ -174,7 +174,6 @@ const UPCOMING: EventItem[] = [
   },
 ];
 
-// Pasados (puedes mantener los tuyos)
 const PAST: EventItem[] = [
   {
     slug: 'webinar-embalajes-2025',
@@ -183,7 +182,8 @@ const PAST: EventItem[] = [
     mode: 'Webinar',
     location: 'Online',
     poster: '/events/posters/webinar-embalajes.jpg',
-    summary: 'Requisitos técnicos, etiquetado y estándares por mercado. Q&A con especialistas.',
+    summary:
+      'Requisitos técnicos, etiquetado y estándares por mercado. Q&A con especialistas.',
     guests: ['Lucía Wong (HK Standards)', 'Carlos Silva (QA Export)'],
     sponsors: [{ name: 'PackLab', logo: '/sponsors/packlab.png' }],
     membersOnly: true,
@@ -195,7 +195,8 @@ const PAST: EventItem[] = [
     mode: 'Rueda de Negocios',
     location: 'APCC, Santiago',
     poster: '/events/posters/networking-food.jpg',
-    summary: 'Ruedas temáticas y pitches de proveedores verificados. Conexiones rápidas y seguimiento.',
+    summary:
+      'Ruedas temáticas y pitches de proveedores verificados. Conexiones rápidas y seguimiento.',
     guests: ['Consorcio Food LatAm', 'Compradores Horeca'],
     sponsors: [{ name: 'ColdChain CL', logo: '/sponsors/coldchain.png' }],
     membersOnly: true,
@@ -223,9 +224,15 @@ export default function Page() {
           <Badge>Exclusivo para socios</Badge>
           <span className="text-sm text-neutral-500">
             ¿Aún no eres socio?{' '}
-            <Link href="/membresias" className="underline underline-offset-4 hover:text-neutral-200">Revisa los planes</Link>
-            {' '}o{' '}
-            <Link href="https://join.asiapacific-chamber.com" target="_blank" className="underline underline-offset-4 hover:text-neutral-200">
+            <Link href="/membresias" className="underline underline-offset-4 hover:text-neutral-200">
+              Revisa los planes
+            </Link>{' '}
+            o{' '}
+            <Link
+              href="https://join.asiapacific-chamber.com"
+              target="_blank"
+              className="underline underline-offset-4 hover:text-neutral-200"
+            >
               súmate ahora
             </Link>.
           </span>
@@ -241,8 +248,17 @@ export default function Page() {
 
         <div className="mt-6 grid md:grid-cols-2 xl:grid-cols-4 gap-4">
           {UPCOMING.map((ev) => (
-            <article key={ev.slug} className="group rounded-2xl border border-neutral-800 bg-neutral-900 overflow-hidden flex flex-col">
-              {/* Afiche vertical (subí la altura) */}
+            <article
+              key={ev.slug}
+              className="group relative rounded-2xl border border-neutral-800 bg-neutral-900 overflow-hidden flex flex-col"
+            >
+              {/* LINK overlay para toda la tarjeta */}
+              <Link
+                href={`/eventos/${ev.slug}`}
+                className="absolute inset-0 z-[1]"
+                aria-label={`Ver detalle: ${ev.title}`}
+              />
+
               <div className="relative h-80 bg-neutral-800">
                 <img
                   src={ev.poster}
@@ -256,17 +272,20 @@ export default function Page() {
                 </div>
               </div>
 
-              <div className="p-5 flex-1 flex flex-col">
+              <div className="p-5 flex-1 flex flex-col relative z-[2]">
                 <h3 className="text-base font-semibold leading-snug">{ev.title}</h3>
                 <div className="mt-1 text-xs text-neutral-400">
-                  {ev.date}{ev.time ? ` · ${ev.time}` : ''} · {ev.location}
+                  {ev.date}
+                  {ev.time ? ` · ${ev.time}` : ''} · {ev.location}
                 </div>
                 <p className="mt-3 text-sm text-neutral-300 flex-1">{ev.summary}</p>
 
                 <div className="mt-4">
                   <div className="text-xs uppercase tracking-wider text-neutral-500">Invitados</div>
                   <ul className="mt-1 text-sm text-neutral-300 list-disc pl-5 space-y-1">
-                    {ev.guests.map((g) => <li key={g}>{g}</li>)}
+                    {ev.guests.map((g) => (
+                      <li key={g}>{g}</li>
+                    ))}
                   </ul>
                 </div>
 
@@ -275,7 +294,10 @@ export default function Page() {
                     <div className="text-xs uppercase tracking-wider text-neutral-500">Auspiciadores</div>
                     <div className="mt-2 flex flex-wrap items-center gap-3">
                       {ev.sponsors.map((s) => (
-                        <div key={s.name} className="h-8 px-3 rounded-xl border border-neutral-800 bg-neutral-950 grid place-items-center">
+                        <div
+                          key={s.name}
+                          className="h-8 px-3 rounded-xl border border-neutral-800 bg-neutral-950 grid place-items-center"
+                        >
                           <img src={s.logo} alt={s.name} className="max-h-6 object-contain opacity-80" />
                         </div>
                       ))}
@@ -284,11 +306,11 @@ export default function Page() {
                 )}
 
                 <div className="mt-5 flex gap-3">
+                  <Link href={`/eventos/${ev.slug}`} className="btn btn-secondary">
+                    Ver detalle
+                  </Link>
                   <Link href="https://join.asiapacific-chamber.com" target="_blank" className="btn btn-primary">
                     Inscribirme (socio)
-                  </Link>
-                  <Link href="/membresias" className="btn btn-secondary">
-                    Quiero ser socio
                   </Link>
                 </div>
               </div>
@@ -306,7 +328,17 @@ export default function Page() {
 
         <div className="mt-6 grid md:grid-cols-2 xl:grid-cols-3 gap-4">
           {PAST.map((ev) => (
-            <article key={ev.slug} className="rounded-2xl border border-neutral-800 bg-neutral-900 overflow-hidden">
+            <article
+              key={ev.slug}
+              className="group relative rounded-2xl border border-neutral-800 bg-neutral-900 overflow-hidden"
+            >
+              {/* LINK overlay a detalle (si tiene slug) */}
+              <Link
+                href={`/eventos/${ev.slug}`}
+                className="absolute inset-0 z-[1]"
+                aria-label={`Ver detalle: ${ev.title}`}
+              />
+
               <div className="h-40 bg-neutral-800 overflow-hidden">
                 <img
                   src={ev.poster}
@@ -315,10 +347,12 @@ export default function Page() {
                   loading="lazy"
                 />
               </div>
-              <div className="p-5">
+              <div className="p-5 relative z-[2]">
                 <div className="flex items-center gap-2">
                   <Badge>{ev.mode}</Badge>
-                  <span className="text-xs text-neutral-500">{ev.date} · {ev.location}</span>
+                  <span className="text-xs text-neutral-500">
+                    {ev.date} · {ev.location}
+                  </span>
                 </div>
                 <h3 className="mt-2 text-base font-semibold">{ev.title}</h3>
                 <p className="mt-2 text-sm text-neutral-400">{ev.summary}</p>
@@ -328,13 +362,22 @@ export default function Page() {
                     <div className="text-xs uppercase tracking-wider text-neutral-500">Auspiciadores</div>
                     <div className="mt-2 flex flex-wrap items-center gap-3">
                       {ev.sponsors.map((s) => (
-                        <div key={s.name} className="h-7 px-3 rounded-xl border border-neutral-800 bg-neutral-950 grid place-items-center">
+                        <div
+                          key={s.name}
+                          className="h-7 px-3 rounded-xl border border-neutral-800 bg-neutral-950 grid place-items-center"
+                        >
                           <img src={s.logo} alt={s.name} className="max-h-5 object-contain opacity-80" />
                         </div>
                       ))}
                     </div>
                   </div>
                 )}
+
+                <div className="mt-4">
+                  <Link href={`/eventos/${ev.slug}`} className="btn btn-secondary">
+                    Ver detalle
+                  </Link>
+                </div>
               </div>
             </article>
           ))}
@@ -349,8 +392,16 @@ export default function Page() {
             </p>
           </div>
           <div className="flex gap-3">
-            <Link href="/membresias" className="btn btn-secondary">Ver membresías</Link>
-            <Link href="https://join.asiapacific-chamber.com" target="_blank" className="btn btn-primary">Hazte socio</Link>
+            <Link href="/membresias" className="btn btn-secondary">
+              Ver membresías
+            </Link>
+            <Link
+              href="https://join.asiapacific-chamber.com"
+              target="_blank"
+              className="btn btn-primary"
+            >
+              Hazte socio
+            </Link>
           </div>
         </div>
       </section>
