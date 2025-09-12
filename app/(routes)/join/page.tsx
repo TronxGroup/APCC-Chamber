@@ -1,15 +1,16 @@
 // app/(routes)/join/page.tsx
 // Landing "Join" de Membresías APCC 2026–2030
-// ✅ Solución de compatibilidad: elimina useFormState/useFormStatus (React/Next variantes)
-//    y usa Server Action con redirect + lectura de searchParams.
-// ✅ Sin dependencias externas de íconos (SVG inline)
-// ✅ Listo para QR/ferias, campañas y botón "Inscribirme" del sitio.
-// ⚙️ Envía a Zoho CRM (Leads) y HubSpot (Forms v3) si hay credenciales. Si no, DRY RUN.
+// ✅ Sin useFormState/useFormStatus: Server Action + redirect (?ok=1|0)
+// ✅ Íconos inline (sin librerías)
+// ✅ HERO con imagen de fondo optimizada (next/image) -> /public/bg_image_apcc_join.png
+// ⚙️ Envía a Zoho CRM y HubSpot si hay credenciales; si no, DRY RUN.
 
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
+import type { SVGProps } from 'react';
 
 export const metadata: Metadata = {
   title: 'Únete a la Cámara | APCC',
@@ -20,14 +21,13 @@ export const metadata: Metadata = {
 };
 
 // =====================
-// Íconos inline (sin librerías)
+// Íconos inline
 // =====================
-import type { SVGProps } from 'react';
 const baseIcon = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round' } as const;
-const Check = (p: SVGProps<SVGSVGElement>) => (<svg {...baseIcon} {...p}><path d="M20 6L9 17l-5-5"/></svg>);
-const Shield = (p: SVGProps<SVGSVGElement>) => (<svg {...baseIcon} {...p}><path d="M12 3l8 4v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/></svg>);
-const Calendar = (p: SVGProps<SVGSVGElement>) => (<svg {...baseIcon} {...p}><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M16 3v3M8 3v3M3 10h18"/></svg>);
-const Rocket = (p: SVGProps<SVGSVGElement>) => (<svg {...baseIcon} {...p}><path d="M12 2c3 0 6 3 6 6 0 5-6 10-6 10S6 13 6 8c0-3 3-6 6-6z"/><circle cx="12" cy="8" r="2"/></svg>);
+const Check   = (p: SVGProps<SVGSVGElement>) => (<svg {...baseIcon} {...p}><path d="M20 6L9 17l-5-5" /></svg>);
+const Shield  = (p: SVGProps<SVGSVGElement>) => (<svg {...baseIcon} {...p}><path d="M12 3l8 4v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" /></svg>);
+const Calendar= (p: SVGProps<SVGSVGElement>) => (<svg {...baseIcon} {...p}><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M16 3v3M8 3v3M3 10h18"/></svg>);
+const Rocket  = (p: SVGProps<SVGSVGElement>) => (<svg {...baseIcon} {...p}><path d="M12 2c3 0 6 3 6 6 0 5-6 10-6 10S6 13 6 8c0-3 3-6 6-6z"/><circle cx="12" cy="8" r="2"/></svg>);
 
 // =====================
 // Datos de planes
@@ -62,31 +62,32 @@ const PLANS = [
 type JoinSearch = { searchParams?: Record<string, string | string[] | undefined> };
 
 // =====================
-// Server Action: envía a Zoho & HubSpot y luego redirige con ?ok=1|0
+// Server Action: Zoho & HubSpot -> redirect ?ok=1|0
 // =====================
 async function submitToCrms(payload: Record<string, any>) {
   'use server';
   const hsPortal = process.env.HUBSPOT_PORTAL_ID;
-  const hsForm = process.env.HUBSPOT_FORM_GUID;
-  const zohoToken = process.env.ZOHO_ACCESS_TOKEN;
-  const debug = process.env.CRM_DEBUG === '1';
+  const hsForm   = process.env.HUBSPOT_FORM_GUID;
+  const zohoToken= process.env.ZOHO_ACCESS_TOKEN;
+  const debug    = process.env.CRM_DEBUG === '1';
 
   const results: { hubspot?: any; zoho?: any } = {};
 
-  // HubSpot
   if (hsPortal && hsForm) {
     try {
-      const hsRes = await fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${hsPortal}/${hsForm}` as string, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
+      const hsRes = await fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${hsPortal}/${hsForm}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           fields: [
-            { name: 'email', value: payload.email },
+            { name: 'email',     value: payload.email },
             { name: 'firstname', value: payload.firstName },
-            { name: 'lastname', value: payload.lastName },
-            { name: 'company', value: payload.company },
-            { name: 'phone', value: payload.phone },
-            { name: 'country', value: payload.country },
-            { name: 'plan', value: payload.plan },
-            { name: 'message', value: payload.message || '' },
+            { name: 'lastname',  value: payload.lastName },
+            { name: 'company',   value: payload.company },
+            { name: 'phone',     value: payload.phone },
+            { name: 'country',   value: payload.country },
+            { name: 'plan',      value: payload.plan },
+            { name: 'message',   value: payload.message || '' },
           ],
           context: {
             pageUri: payload.pageUri,
@@ -95,21 +96,35 @@ async function submitToCrms(payload: Record<string, any>) {
             ipAddress: headers().get('x-forwarded-for') || undefined,
           },
           legalConsentOptions: { consent: { consentToProcess: true, text: 'Acepto ser contactado por APCC.', communications: [{ value: true, subscriptionTypeId: 999, text: 'Email' }] } },
-        }) });
+        }),
+      });
       results.hubspot = { ok: hsRes.ok, status: hsRes.status };
     } catch (e) { results.hubspot = { ok: false, error: String(e) }; }
   }
 
-  // Zoho
   if (zohoToken) {
     try {
       const zRes = await fetch('https://www.zohoapis.com/crm/v2/Leads', {
-        method: 'POST', headers: { Authorization: `Zoho-oauthtoken ${zohoToken}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ data: [{
-          Last_Name: payload.lastName || payload.firstName || '—', First_Name: payload.firstName || '', Email: payload.email,
-          Company: payload.company, Phone: payload.phone || '', Lead_Source: 'APCC Join Landing', Description: payload.message || '', Country: payload.country || '',
-          Membership_Plan__c: payload.plan, UTM_Source__c: payload.utm_source || '', UTM_Medium__c: payload.utm_medium || '', UTM_Campaign__c: payload.utm_campaign || '',
-        }], trigger: ['workflow'] }) });
+        method: 'POST',
+        headers: { Authorization: `Zoho-oauthtoken ${zohoToken}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          data: [{
+            Last_Name: payload.lastName || payload.firstName || '—',
+            First_Name: payload.firstName || '',
+            Email: payload.email,
+            Company: payload.company,
+            Phone: payload.phone || '',
+            Lead_Source: 'APCC Join Landing',
+            Description: payload.message || '',
+            Country: payload.country || '',
+            Membership_Plan__c: payload.plan,
+            UTM_Source__c:  payload.utm_source || '',
+            UTM_Medium__c:  payload.utm_medium || '',
+            UTM_Campaign__c:payload.utm_campaign || '',
+          }],
+          trigger: ['workflow'],
+        }),
+      });
       results.zoho = { ok: zRes.ok, status: zRes.status };
     } catch (e) { results.zoho = { ok: false, error: String(e) }; }
   }
@@ -124,7 +139,7 @@ async function submitToCrms(payload: Record<string, any>) {
 
 export default function JoinPage({ searchParams }: JoinSearch) {
   const planParam = (searchParams?.plan as string) || 'Business';
-  const ok = searchParams?.ok === '1';
+  const ok  = searchParams?.ok === '1';
   const err = searchParams?.ok === '0';
 
   async function submit(formData: FormData) {
@@ -134,8 +149,8 @@ export default function JoinPage({ searchParams }: JoinSearch) {
     const lastName = rest.join(' ');
 
     const utm = {
-      utm_source: String(formData.get('utm_source') || ''),
-      utm_medium: String(formData.get('utm_medium') || ''),
+      utm_source:   String(formData.get('utm_source') || ''),
+      utm_medium:   String(formData.get('utm_medium') || ''),
       utm_campaign: String(formData.get('utm_campaign') || ''),
     };
 
@@ -152,59 +167,72 @@ export default function JoinPage({ searchParams }: JoinSearch) {
     };
 
     const res = await submitToCrms(payload);
-    // Redirige para evitar re-envíos y mostrar feedback compatible con todos los entornos
     redirect(`/join?ok=${res.ok ? '1' : '0'}&plan=${encodeURIComponent(payload.plan)}`);
   }
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 text-neutral-100">
-      {/* HERO */}
-      <div className="container pt-14 pb-10">
-        {ok && (
-          <div className="mb-4 rounded-xl border border-green-800 bg-green-900/20 text-green-300 px-4 py-3 text-sm">
-            ¡Gracias! Te contactaremos en breve para completar tu membresía.
-          </div>
-        )}
-        {err && (
-          <div className="mb-4 rounded-xl border border-red-800 bg-red-900/20 text-red-300 px-4 py-3 text-sm">
-            Tuvimos un problema al registrar tu solicitud. Intenta nuevamente.
-          </div>
-        )}
-        <div className="grid lg:grid-cols-2 gap-8 items-end">
-          <div>
-            <span className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-neutral-400">
-              <Shield className="w-4 h-4"/> Membresías APCC 2026–2030
-            </span>
-            <h1 className="mt-2 text-3xl md:text-5xl font-semibold leading-tight">
-              Valor real para importar, exportar y <span className="text-red-300">cerrar negocios</span> con Asia
-            </h1>
-            <p className="mt-4 text-neutral-300 max-w-2xl">
-              Inteligencia comercial, networking sectorial, business matching y acceso a misiones y ferias en Asia.
-              ¿Dudas? <Link href="#agenda-call" className="underline underline-offset-4 hover:text-neutral-100">Agenda una llamada</Link>.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a href="#form" className="btn btn-primary">Unirme ahora</a>
-              <a href="#planes" className="btn btn-secondary">Ver planes</a>
-            </div>
-            <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm text-neutral-300">
-              <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-3 flex items-center gap-2"><Calendar className="h-4 w-4"/>1 webinar/mes</div>
-              <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-3 flex items-center gap-2"><Check className="h-4 w-4"/>Mesas sectoriales</div>
-              <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-3 flex items-center gap-2"><Rocket className="h-4 w-4"/>Misiones a Asia</div>
-              <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-3 flex items-center gap-2"><Shield className="h-4 w-4"/>Partners verificados</div>
-            </div>
-          </div>
+    <section className="min-h-screen bg-neutral-950 text-neutral-100">
+      {/* HERO con imagen de fondo */}
+      <div className="relative">
+        <Image
+          src="/bg_image_apcc_join.png"
+          alt="Fondo Join APCC"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        {/* Overlay para contraste */}
+        <div className="absolute inset-0 bg-black/60" />
 
-          {/* Tarjeta sticky con resumen y CTA */}
-          <div className="lg:justify-self-end w-full lg:max-w-md">
-            <div className="sticky top-6 rounded-2xl border border-neutral-800 bg-neutral-900 p-6">
-              <h2 className="text-lg font-semibold">Resumen rápido</h2>
-              <ul className="mt-3 text-sm text-neutral-300 space-y-2">
-                <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5"/> Inteligencia y reportes por industria</li>
-                <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5"/> Networking & rondas de negocio</li>
-                <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5"/> Acceso a misiones y ferias en Asia</li>
-              </ul>
-              <a href="#form" className="mt-5 btn btn-primary w-full text-center">Comenzar inscripción</a>
-              <p className="mt-3 text-xs text-neutral-500">Tiempo estimado: 2 minutos</p>
+        <div className="relative container pt-14 pb-10 z-10">
+          {ok && (
+            <div className="mb-4 rounded-xl border border-green-800 bg-green-900/20 text-green-300 px-4 py-3 text-sm">
+              ¡Gracias! Te contactaremos en breve para completar tu membresía.
+            </div>
+          )}
+          {err && (
+            <div className="mb-4 rounded-xl border border-red-800 bg-red-900/20 text-red-300 px-4 py-3 text-sm">
+              Tuvimos un problema al registrar tu solicitud. Intenta nuevamente.
+            </div>
+          )}
+
+          <div className="grid lg:grid-cols-2 gap-8 items-end">
+            <div>
+              <span className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-neutral-300">
+                <Shield className="w-4 h-4" /> Membresías APCC 2026–2030
+              </span>
+              <h1 className="mt-2 text-3xl md:text-5xl font-semibold leading-tight">
+                Valor real para importar, exportar y <span className="text-red-300">cerrar negocios</span> con Asia
+              </h1>
+              <p className="mt-4 text-neutral-200 max-w-2xl">
+                Inteligencia comercial, networking sectorial, business matching y acceso a misiones y ferias en Asia.
+                ¿Dudas? <Link href="#agenda-call" className="underline underline-offset-4 hover:text-neutral-100">Agenda una llamada</Link>.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a href="#form" className="btn btn-primary">Unirme ahora</a>
+                <a href="#planes" className="btn btn-secondary">Ver planes</a>
+              </div>
+              <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm text-neutral-200">
+                <div className="rounded-xl border border-neutral-800 bg-neutral-900/70 p-3 flex items-center gap-2"><Calendar className="h-4 w-4"/>1 webinar/mes</div>
+                <div className="rounded-xl border border-neutral-800 bg-neutral-900/70 p-3 flex items-center gap-2"><Check className="h-4 w-4"/>Mesas sectoriales</div>
+                <div className="rounded-xl border border-neutral-800 bg-neutral-900/70 p-3 flex items-center gap-2"><Rocket className="h-4 w-4"/>Misiones a Asia</div>
+                <div className="rounded-xl border border-neutral-800 bg-neutral-900/70 p-3 flex items-center gap-2"><Shield className="h-4 w-4"/>Partners verificados</div>
+              </div>
+            </div>
+
+            {/* Tarjeta sticky con resumen y CTA */}
+            <div className="lg:justify-self-end w-full lg:max-w-md">
+              <div className="sticky top-6 rounded-2xl border border-neutral-800 bg-neutral-900/80 backdrop-blur p-6">
+                <h2 className="text-lg font-semibold">Resumen rápido</h2>
+                <ul className="mt-3 text-sm text-neutral-200 space-y-2">
+                  <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5"/> Inteligencia y reportes por industria</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5"/> Networking & rondas de negocio</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5"/> Acceso a misiones y ferias en Asia</li>
+                </ul>
+                <a href="#form" className="mt-5 btn btn-primary w-full text-center">Comenzar inscripción</a>
+                <p className="mt-3 text-xs text-neutral-400">Tiempo estimado: 2 minutos</p>
+              </div>
             </div>
           </div>
         </div>
@@ -229,7 +257,6 @@ export default function JoinPage({ searchParams }: JoinSearch) {
                 ))}
               </ul>
               <div className="mt-5">
-                {/* Link con plan en query para prefijar el select del form */}
                 <Link href={`/join?plan=${p.id}#form`} className={`btn ${p.id==='Business' ? 'btn-primary' : 'btn-secondary'} w-full`}>Elegir {p.name}</Link>
               </div>
               <div className="mt-3 text-xs text-neutral-500">{p.foot}</div>
@@ -266,7 +293,7 @@ export default function JoinPage({ searchParams }: JoinSearch) {
     </section>
   );
 
-  // Sub-componente server (form) con Server Action y sin hooks cliente
+  // Sub-componente (Server) del formulario
   function FormSection({ defaultPlan }: { defaultPlan: string }) {
     const utmDefaults = { utm_source: '', utm_medium: '', utm_campaign: '' };
     async function action(formData: FormData) { 'use server'; return submit(formData); }
@@ -297,9 +324,9 @@ export default function JoinPage({ searchParams }: JoinSearch) {
                 <textarea name="message" rows={4} placeholder="Cuéntanos qué productos/mercados te interesan, dudas o urgencias logísticas…" className="mt-1 w-full rounded-xl bg-neutral-950 border border-neutral-800 px-3 py-2" />
               </div>
 
-              {/* UTM hidden (si llegaste desde campañas/QR con ?plan=...) */}
-              <input type="hidden" name="utm_source" value={utmDefaults.utm_source} />
-              <input type="hidden" name="utm_medium" value={utmDefaults.utm_medium} />
+              {/* UTM hidden */}
+              <input type="hidden" name="utm_source"   value={utmDefaults.utm_source} />
+              <input type="hidden" name="utm_medium"   value={utmDefaults.utm_medium} />
               <input type="hidden" name="utm_campaign" value={utmDefaults.utm_campaign} />
 
               <button type="submit" className="btn btn-primary w-full">Enviar solicitud</button>
@@ -325,7 +352,9 @@ export default function JoinPage({ searchParams }: JoinSearch) {
               <h3 className="text-lg font-semibold">Comparativa rápida</h3>
               <div className="mt-3 overflow-x-auto">
                 <table className="min-w-full text-left align-top">
-                  <thead className="text-xs text-neutral-500"><tr><th className="pr-4 pb-2">Característica</th><th className="pr-4 pb-2">Essential</th><th className="pr-4 pb-2">Business</th><th className="pr-4 pb-2">Corporate</th></tr></thead>
+                  <thead className="text-xs text-neutral-500">
+                    <tr><th className="pr-4 pb-2">Característica</th><th className="pr-4 pb-2">Essential</th><th className="pr-4 pb-2">Business</th><th className="pr-4 pb-2">Corporate</th></tr>
+                  </thead>
                   <tbody className="text-xs">
                     {[
                       ['Certificado de socio', 'Sí', 'Sí', 'Sí'],
