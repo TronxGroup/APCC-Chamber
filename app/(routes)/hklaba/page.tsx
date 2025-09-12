@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'HKLABA',
+  title: 'HKLABA | APCC',
   description:
-    'Nuestra alianza con la Hong Kong – Latin America Business Association. Beneficios, acceso y cómo participar a través de APCC.',
+    'Alianza estratégica entre APCC y la Hong Kong – Latin America Business Association (HKLABA). Beneficios, acceso y cómo integrarse a la Federation of Hong Kong Business Associations Worldwide.',
 };
 
 function Badge({ children }: { children: React.ReactNode }) {
@@ -24,64 +24,83 @@ export default function Page() {
           <Badge>Alianza estratégica</Badge>
           <Badge>Hong Kong</Badge>
         </div>
-        <h1 className="mt-3 text-3xl md:text-4xl font-semibold">HKLABA: Nuestra Alianza con Hong Kong</h1>
+        <h1 className="mt-3 text-3xl md:text-4xl font-semibold">
+          HKLABA: Puente oficial de América Latina con Hong Kong
+        </h1>
         <p className="mt-3 text-neutral-300">
-          Desde 2019, la Cámara de Comercio Asia Pacífico (APCC) integra oficialmente a la{' '}
-          <strong>Hong Kong – Latin America Business Association (HKLABA)</strong> dentro de su ecosistema institucional.
-          HKLABA es la única asociación gremial en América Latina que representa a la región dentro de la{' '}
-          <em>Federation of Hong Kong Business Associations Worldwide</em>, una red global con presencia en{' '}
-          <strong>38 países</strong> y más de <strong>11.000 miembros</strong>.
+          Desde 2019, la <strong>Cámara de Comercio Asia Pacífico (APCC)</strong> integra a la{' '}
+          <strong>Hong Kong – Latin America Business Association (HKLABA)</strong>, consolidando una
+          alianza única que conecta a nuestra región con la{' '}
+          <em>Federation of Hong Kong Business Associations Worldwide</em>. Esta red global reúne a{' '}
+          <strong>38 países</strong> y más de <strong>11.000 miembros</strong>, articulando negocios,
+          innovación y cooperación internacional.
         </p>
         <div className="mt-4 flex flex-wrap gap-3">
-          <Link href="/membresias" className="btn btn-primary">Acceder vía membresía APCC</Link>
-          <Link href="https://hklaba.com/" target="_blank" className="btn btn-secondary">Sitio oficial HKLABA</Link>
+          <Link href="/membresias" className="btn btn-primary">
+            Acceder vía membresía APCC
+          </Link>
+          <Link href="https://hklaba.com/" target="_blank" className="btn btn-secondary">
+            Sitio oficial HKLABA
+          </Link>
         </div>
       </header>
 
       {/* BENEFICIOS */}
-      <section className="mt-10">
-        <h2 className="text-2xl md:text-3xl font-semibold">Beneficios para socios APCC</h2>
+      <section className="mt-12">
+        <h2 className="text-2xl md:text-3xl font-semibold">Beneficios exclusivos para socios APCC</h2>
+        <p className="mt-2 text-neutral-400 max-w-3xl">
+          Al integrarte a APCC obtienes automáticamente acceso a HKLABA y, con ello, a la Federation
+          y sus beneficios globales:
+        </p>
         <div className="mt-6 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
             {
               t: 'Hong Kong Forum',
-              d: 'Participación en el evento empresarial más importante del ecosistema Hong Kong a nivel mundial.',
+              d: 'Participación en el evento insignia de la Federation, con líderes y ejecutivos de todo el mundo.',
             },
             {
-              t: 'Descuentos & perks',
-              d: 'Beneficios en hoteles, restaurantes y ferias en países de Asia vinculados a la red.',
+              t: 'e-Membership Card',
+              d: 'Acceso a descuentos y beneficios en hoteles, restaurantes, compras y ferias en Asia y otros países miembros.',
             },
             {
-              t: 'Red de contactos',
-              d: 'Acceso a empresas, cámaras y organismos de Hong Kong y su ecosistema de negocios.',
+              t: 'Ferias HKTDC',
+              d: 'Ingreso gratuito a las ferias internacionales de Hong Kong Trade Development Council.',
             },
             {
-              t: 'Inteligencia de primera fuente',
-              d: 'Información sobre tendencias, innovación y oportunidades en Asia directamente desde Hong Kong.',
+              t: 'Red global de contactos',
+              d: 'Empresas, cámaras y organismos de 38 países conectados en un ecosistema único.',
+            },
+            {
+              t: 'Design Gallery & Sourcing',
+              d: 'Acceso directo a la HKTDC Design Gallery y a la plataforma hktdc.com Sourcing.',
             },
             {
               t: 'Visibilidad y confianza',
-              d: 'Pertenecer a una red reconocida facilita reuniones y validación ante contrapartes asiáticas.',
-            },
-            {
-              t: 'Puerta de entrada LatAm → HK',
-              d: 'HKLABA es el canal oficial para conectar América Latina con Hong Kong a través de APCC.',
+              d: 'Ser parte de una red reconocida abre puertas y valida tu empresa ante contrapartes internacionales.',
             },
           ].map(({ t, d }) => (
-            <article key={t} className="rounded-2xl border border-neutral-800 bg-neutral-900 p-6">
+            <article
+              key={t}
+              className="rounded-2xl border border-neutral-800 bg-neutral-900 p-6"
+            >
               <div className="text-lg font-semibold">{t}</div>
               <p className="mt-2 text-sm text-neutral-400">{d}</p>
             </article>
           ))}
         </div>
+        <p className="mt-4 text-xs text-neutral-500">
+          *Todos los beneficios están sujetos a términos y condiciones de la Federation y sus
+          partners internacionales.
+        </p>
       </section>
 
-      {/* BANNER / IMAGEN (opcional) */}
+      {/* BANNER */}
       <section className="mt-12 rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-950">
-        {/* Reemplaza la imagen cuando la tengas en /public/hklaba/banner.jpg */}
         <div className="aspect-[16/6] w-full bg-neutral-900 grid place-items-center">
           <div className="text-center p-6">
-            <div className="text-sm text-neutral-400">Federation of Hong Kong Business Associations Worldwide</div>
+            <div className="text-sm text-neutral-400">
+              Federation of Hong Kong Business Associations Worldwide
+            </div>
             <div className="mt-1 text-neutral-300">38 países · 11.000+ miembros</div>
           </div>
         </div>
@@ -89,25 +108,36 @@ export default function Page() {
 
       {/* CÓMO ACCEDER */}
       <section className="mt-12">
-        <h2 className="text-2xl md:text-3xl font-semibold">¿Cómo acceder a HKLABA a través de APCC?</h2>
+        <h2 className="text-2xl md:text-3xl font-semibold">¿Cómo integrarse a HKLABA vía APCC?</h2>
         <ol className="mt-6 grid md:grid-cols-4 gap-4 text-sm">
           {[
-            ['Membresía APCC', 'Elige un plan de membresía vigente.'],
-            ['Validación', 'Confirmamos tu inscripción y datos de empresa.'],
-            ['Onboarding', 'Te integramos a la comunidad HKLABA y sus canales.'],
-            ['Activación', 'Te guiamos para aprovechar eventos, perks y networking.'],
+            ['Membresía APCC', 'Elige el plan de membresía más adecuado para tu empresa.'],
+            ['Validación', 'Confirmamos tu inscripción y los datos de tu organización.'],
+            ['Onboarding', 'Te integramos a la comunidad HKLABA y a la Federation.'],
+            [
+              'Activación',
+              'Accedes a perks, foros y networking en Asia y Latinoamérica con acompañamiento APCC.',
+            ],
           ].map(([title, desc], idx) => (
-            <li key={title} className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5">
-              <div className="text-xs uppercase tracking-wider text-neutral-500">Paso {idx + 1}</div>
+            <li
+              key={title}
+              className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5"
+            >
+              <div className="text-xs uppercase tracking-wider text-neutral-500">
+                Paso {idx + 1}
+              </div>
               <div className="mt-1 font-semibold">{title}</div>
               <p className="mt-1 text-neutral-400">{desc}</p>
             </li>
           ))}
         </ol>
-
         <div className="mt-6 flex flex-wrap gap-3">
-          <Link href="/membresias" className="btn btn-primary">Ver planes APCC</Link>
-          <Link href="/contacto" className="btn btn-secondary">Hablar con un asesor</Link>
+          <Link href="/membresias" className="btn btn-primary">
+            Ver planes APCC
+          </Link>
+          <Link href="/contacto" className="btn btn-secondary">
+            Hablar con un asesor
+          </Link>
         </div>
       </section>
 
@@ -115,34 +145,48 @@ export default function Page() {
       <section className="mt-12">
         <div className="rounded-2xl border border-neutral-800 bg-neutral-900 p-6 md:p-8">
           <p className="text-neutral-300">
-            Gracias a esta integración, <strong>HKLABA</strong> representa la puerta de entrada oficial de América Latina a Hong Kong,
-            fortaleciendo el trabajo de la APCC en su misión de impulsar la internacionalización, las exportaciones y el comercio colaborativo entre regiones.
+            Gracias a esta integración, <strong>HKLABA</strong> es la única voz oficial de América
+            Latina dentro de la Federation. Esto fortalece la misión de la APCC de impulsar la
+            internacionalización, facilitar exportaciones e incrementar la presencia de nuestros
+            socios en Hong Kong y Asia–Pacífico.
           </p>
           <p className="mt-3 text-neutral-300">
-            <strong>Una sola comunidad. Un solo objetivo:</strong> conectar América Latina con Asia.
+            <strong>Un solo ecosistema. Una visión compartida:</strong> conectar América Latina con
+            Asia mediante una red empresarial global.
           </p>
         </div>
       </section>
 
-      {/* FAQ RÁPIDO */}
+      {/* FAQ */}
       <section className="mt-12">
         <h2 className="text-2xl md:text-3xl font-semibold">Preguntas frecuentes</h2>
         <div className="mt-6 space-y-3">
           {[
             [
-              '¿Necesito ser socio APCC para acceder a HKLABA?',
-              'Sí. La participación en HKLABA se gestiona a través de APCC y está asociada a la membresía vigente.',
+              '¿Debo ser socio APCC para acceder a HKLABA?',
+              'Sí. El acceso a HKLABA y la Federation se gestiona a través de una membresía activa de APCC.',
             ],
             [
-              '¿La APCC gestiona inscripción a eventos como el Hong Kong Forum?',
-              'Coordinamos la postulación, orientamos en logística y, si corresponde, articulamos agenda de reuniones.',
+              '¿APCC coordina la inscripción al Hong Kong Forum?',
+              'Sí. Te guiamos en la postulación, logística de viaje y, si corresponde, articulamos agendas de reuniones.',
             ],
             [
-              '¿Los beneficios (descuentos/perks) son automáticos?',
-              'Algunos requieren códigos o validación previa. Te entregamos las instrucciones durante el onboarding.',
+              '¿Los beneficios como descuentos son automáticos?',
+              'Algunos requieren códigos o validación previa. La APCC te entrega instrucciones durante tu onboarding.',
+            ],
+            [
+              '¿La membresía tiene costo adicional?',
+              'No. Los beneficios de HKLABA y Federation están incluidos en tu plan APCC vigente.',
+            ],
+            [
+              '¿En qué idioma funcionan los eventos?',
+              'Mayormente en inglés, con materiales de apoyo y acompañamiento APCC para facilitar la participación.',
             ],
           ].map(([q, a]) => (
-            <details key={q} className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5">
+            <details
+              key={q}
+              className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5"
+            >
               <summary className="font-medium cursor-pointer">{q}</summary>
               <p className="mt-2 text-sm text-neutral-400">{a}</p>
             </details>
@@ -154,18 +198,25 @@ export default function Page() {
       <section className="mt-12">
         <div className="rounded-2xl border border-neutral-800 bg-neutral-900 p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
-            <h3 className="text-xl md:text-2xl font-semibold">Integra tu empresa a HKLABA con APCC</h3>
+            <h3 className="text-xl md:text-2xl font-semibold">
+              Integra tu empresa al ecosistema HKLABA con APCC
+            </h3>
             <p className="mt-2 text-neutral-400 max-w-2xl">
-              Te ayudamos a activar beneficios, preparar tu participación en Hong Kong Forum y conectar con la red correcta.
+              Conviértete en parte de la red empresarial que conecta a América Latina con Hong Kong
+              y 38 países alrededor del mundo. Te acompañamos en cada paso para aprovechar tus
+              beneficios, participar en el Hong Kong Forum y consolidar tu expansión internacional.
             </p>
           </div>
           <div className="flex gap-3">
-            <Link href="/membresias" className="btn btn-primary">Hacerse socio</Link>
-            <Link href="https://hklaba.com/" target="_blank" className="btn btn-secondary">Conocer HKLABA</Link>
+            <Link href="/membresias" className="btn btn-primary">
+              Hacerse socio
+            </Link>
+            <Link href="https://hklaba.com/" target="_blank" className="btn btn-secondary">
+              Conocer HKLABA
+            </Link>
           </div>
         </div>
       </section>
     </section>
   );
 }
-
