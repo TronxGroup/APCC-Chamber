@@ -1,7 +1,7 @@
-// app/eventos/page.tsx
+// app/(routes)/eventos/page.tsx
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { EVENTS, type EventItem } from '../(routes)/eventos/data'; // ← única fuente
+import { EVENTS, type EventItem } from './data'; // ✅ ruta correcta
 
 export const metadata: Metadata = {
   title: 'Eventos',
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 // Usa la misma data del detalle
 const UPCOMING: EventItem[] = EVENTS; // respeta el orden del array
-const PAST: EventItem[] = []; // si quieres, filtra aquí por fecha más adelante
+const PAST: EventItem[] = []; // si quieres, filtra aquí por fecha
 
 function Badge({ children }: { children: React.ReactNode }) {
   return <span className="badge badge--accent">{children}</span>;
