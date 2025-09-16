@@ -11,7 +11,10 @@ export const metadata: Metadata = {
 
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <Link href={href} className="text-sm text-neutral-300 hover:text-white">
+    <Link
+      href={href}
+      className="text-sm text-[#333] hover:text-[#be2d2a] transition-colors"
+    >
       {children}
     </Link>
   );
@@ -44,9 +47,9 @@ const YouTubeIcon = () => (
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className="bg-neutral-950 text-neutral-100">
+      <body className="bg-[#edeff2] text-black">
         {/* HEADER */}
-        <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/70 border-b border-neutral-800">
+        <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 border-b border-neutral-300">
           <nav className="container h-16 flex items-center justify-between">
             <Link href="/" className="flex items-center">
               <img
@@ -61,7 +64,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <NavLink href="/eventos">Eventos</NavLink>
               <NavLink href="/noticias">Noticias</NavLink>
               <NavLink href="/contacto">Contacto</NavLink>
-              <Link href="https:/join" className="btn btn-primary">
+              <Link
+                href="/join"
+                className="inline-flex items-center rounded-md bg-[#be2d2a] px-3 py-1.5 text-white hover:opacity-90 transition"
+              >
                 Hazte socio
               </Link>
             </div>
@@ -72,15 +78,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
 
         {/* FOOTER */}
-        <footer className="border-t border-neutral-800">
-          <div className="container py-10 text-sm text-neutral-400 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <footer className="border-t border-neutral-300">
+          <div className="container py-10 text-sm text-[#555] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="space-y-1">
-              <div className="font-medium text-neutral-300">
+              <div className="font-medium text-black">
                 Cámara de Comercio Asia Pacífico – APCC
               </div>
               <div>Santiago, Chile · Alianzas en LatAm y Asia</div>
               <div>
-                <a href="mailto:info@asiapacific-chamber.com" className="hover:text-neutral-200">
+                <a
+                  href="mailto:info@asiapacific-chamber.com"
+                  className="hover:text-[#be2d2a] underline underline-offset-4"
+                >
                   info@asiapacific-chamber.com
                 </a>{' '}
                 · +56 9 2008 0031
@@ -97,30 +106,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <NavLink href="/terminos-y-condiciones">Términos</NavLink>
             </div>
 
-            {/* Aviso privacidad breve + RRSS */}
-            <div className="text-xs text-neutral-500 max-w-xs space-y-2">
-              <div>
-                © {new Date().getFullYear()} APCC. Todos los derechos reservados.
-              </div>
+            {/* Aviso + RRSS */}
+            <div className="text-xs text-neutral-600 max-w-xs space-y-2">
+              <div>© {new Date().getFullYear()} APCC. Todos los derechos reservados.</div>
               <div>
                 Tratamos tus datos conforme a nuestra{' '}
                 <Link
                   href="/terminos-y-condiciones"
-                  className="underline underline-offset-4 hover:text-neutral-300"
+                  className="underline underline-offset-4 hover:text-[#be2d2a]"
                 >
                   Política de Privacidad
                 </Link>
                 . Puedes ejercer tus derechos escribiendo a{' '}
-                <a href="mailto:info@asiapacific-chamber.com" className="underline hover:text-neutral-300">
+                <a
+                  href="mailto:info@asiapacific-chamber.com"
+                  className="underline hover:text-[#be2d2a]"
+                >
                   info@asiapacific-chamber.com
                 </a>.
               </div>
-              <div className="flex gap-4 pt-2 text-neutral-400">
+              <div className="flex gap-4 pt-2 text-[#555]">
                 <a
                   href="https://www.linkedin.com/company/asiapacific-chamber/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white"
+                  className="hover:text-[#be2d2a]"
                 >
                   <LinkedInIcon />
                 </a>
@@ -128,7 +138,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   href="https://www.instagram.com/apcc.chamber/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white"
+                  className="hover:text-[#be2d2a]"
                 >
                   <InstagramIcon />
                 </a>
@@ -136,7 +146,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   href="https://web.facebook.com/apcc.chamber"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white"
+                  className="hover:text-[#be2d2a]"
                 >
                   <FacebookIcon />
                 </a>
@@ -144,7 +154,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   href="https://www.youtube.com/@apcc.chamber"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white"
+                  className="hover:text-[#be2d2a]"
                 >
                   <YouTubeIcon />
                 </a>
