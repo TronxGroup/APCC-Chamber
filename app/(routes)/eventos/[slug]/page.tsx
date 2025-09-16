@@ -1,8 +1,9 @@
-// app/eventos/[slug]/page.tsx
+// app/(routes)/eventos/[slug]/page.tsx
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getEventBySlug } from '../data';
+import EventSignupForm from '@/components/EventSignupForm'; // ← form reutilizable
 
 function Badge({ children }: { children: React.ReactNode }) {
   return <span className="badge badge--accent">{children}</span>;
@@ -109,7 +110,7 @@ export default function EventDetailPage({ params }: PageProps) {
           <p className="mt-4 text-[var(--apcc-text-2)]">{ev.summary}</p>
 
           <div className="mt-5 flex flex-wrap gap-3">
-            <Link href={joinUrl} target="_blank" className="btn btn-primary">Inscribirme</Link>
+            <Link href="#inscripcion" className="btn btn-primary">Inscribirme</Link>
             <Link href="/membresias" className="btn btn-outline">Quiero ser socio</Link>
           </div>
 
@@ -157,6 +158,18 @@ export default function EventDetailPage({ params }: PageProps) {
         </section>
       )}
 
+      {/* FORMULARIO DE INSCRIPCIÓN */}
+      <div id="inscripcion" className="scroll-mt-24">
+        <EventSignupForm
+          event={{
+            slug: ev.slug,
+            title: ev.title,
+            date: ev.date,
+            membersOnly: ev.membersOnly,
+          }}
+        />
+      </div>
+
       {/* CTA inferior */}
       <section className="mt-10 card p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
@@ -165,7 +178,7 @@ export default function EventDetailPage({ params }: PageProps) {
         </div>
         <div className="flex gap-3">
           <Link href="/membresias" className="btn btn-outline">Ver membresías</Link>
-          <Link href={joinUrl} target="_blank" className="btn btn-primary">Inscribirme</Link>
+          <Link href="#inscripcion" className="btn btn-primary">Inscribirme</Link>
         </div>
       </section>
     </section>
