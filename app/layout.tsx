@@ -41,8 +41,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </nav>
         </header>
 
-        {/* MAIN */}
-        <main className="container">{children}</main>
+        {/* MAIN: sin container para permitir secciones full-bleed (p. ej. HERO con imagen a 100vw) */}
+        <main>{children}</main>
 
         {/* FOOTER */}
         <footer className="border-t border-[var(--apcc-border)]">
