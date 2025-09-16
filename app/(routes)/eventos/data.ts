@@ -1,5 +1,6 @@
-// app/eventos/data.ts
+// app/(routes)/eventos/data.ts
 export type Sponsor = { name: string; logo: string };
+
 export type EventItem = {
   slug: string;
   title: string;
@@ -65,4 +66,44 @@ export const EVENTS: EventItem[] = [
     agenda: [
       { time: '09:30', topic: 'Acreditación y bienvenida' },
       { time: '09:40', topic: 'Hong Kong & China: oportunidades 2025–2026', speaker: 'HKTDC' },
-      { time: '10:10', top
+      { time: '10:10', topic: 'Financiamiento y banca para comercio exterior', speaker: 'Scotiabank' },
+      { time: '10:40', topic: 'Casos APCC y herramientas para entrar a APAC', speaker: 'APCC' },
+      { time: '11:15', topic: 'Q&A' },
+      { time: '11:30', topic: 'Networking' },
+    ],
+  },
+
+  // 3) 26º Hong Kong Forum (HKLABA · Federation)
+  {
+    slug: '2025-12-hong-kong-forum-26',
+    title: '26º Hong Kong Forum (HKLABA · Federation)',
+    date: '02–03 Dic 2025',
+    time: 'Programa de 2 días',
+    mode: 'Foro',
+    location: 'HKCEC – Hong Kong Convention and Exhibition Centre',
+    poster: '/events/posters/2025-12-hk-forum-26.jpg',
+    summary:
+      'Evento anual insignia de la Federation of Hong Kong Business Associations Worldwide (49 asociaciones, 38 países). Keynotes, paneles, networking y programa de visitas con ejecutivos de Hong Kong y China.',
+    guests: [
+      'HKTDC',
+      'Federation of HK Business Associations Worldwide',
+      'HKLABA',
+    ],
+    sponsors: [{ name: 'HKTDC', logo: '/sponsors/hktdc.png' }],
+    membersOnly: true,
+    agenda: [
+      { time: 'Día 1', topic: 'Keynotes y paneles de industria' },
+      { time: 'Día 1 (PM)', topic: 'Sesiones de networking y reuniones 1:1' },
+      { time: 'Día 2', topic: 'Paneles temáticos y casos de éxito' },
+      { time: 'Día 2 (PM)', topic: 'Programa de visitas: infraestructura & ecosistema' },
+    ],
+  },
+];
+
+export function getEventBySlug(slug: string) {
+  return EVENTS.find((e) => e.slug === slug);
+}
+
+export function getAllSlugs() {
+  return EVENTS.map((e) => e.slug);
+}
