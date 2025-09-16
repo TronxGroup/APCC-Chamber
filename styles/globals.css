@@ -132,3 +132,18 @@ p, li, small { color: var(--apcc-text-2); }
   color: var(--apcc-text) !important;
   border: 1px solid var(--apcc-border) !important;
 }
+
+/* ===== HERO overrides (siempre legible sobre foto oscura) ===== */
+.apcc-hero .kicker { color: rgba(255,255,255,.85) !important; letter-spacing: .14em; }
+.apcc-hero h1 { color: #fff !important; }
+.apcc-hero .hero-desc { color: rgba(255,255,255,.9) !important; }
+.apcc-hero .hero-meta { color: rgba(255,255,255,.8) !important; }
+
+/* Botones outline en hero (blancos) */
+.apcc-hero .hero-outline {
+  color: #fff !important;
+  border-color: rgba(255,255,255,.7) !important;
+}
+.apcc-hero .hero-outline:hover {
+  border-color: #fff !important;
+}
