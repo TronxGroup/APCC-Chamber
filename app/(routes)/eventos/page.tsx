@@ -1,6 +1,7 @@
 // app/eventos/page.tsx
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { EVENTS, type EventItem } from '../(routes)/eventos/data'; // ← única fuente
 
 export const metadata: Metadata = {
   title: 'Eventos',
@@ -8,82 +9,9 @@ export const metadata: Metadata = {
     'Calendario de eventos APCC: Webinars, seminarios, ruedas de negocios y misiones a Asia.',
 };
 
-type Sponsor = { name: string; logo: string }; // ruta en /public/sponsors/*
-type Mode = 'Webinar' | 'Seminario' | 'Rueda de Negocios' | 'Misión' | 'Foro';
-type EventItem = {
-  slug: string;
-  title: string;
-  date: string;
-  time?: string;
-  mode: Mode;
-  location: string;
-  poster: string;
-  summary: string;
-  guests: string[];
-  sponsors?: Sponsor[];
-  membersOnly?: boolean;
-};
-
-const UPCOMING: EventItem[] = [
-  {
-    slug: '2025-10-webinar-ferias-hktdc-toys-baby-stationery',
-    title:
-      'Webinar Informativo HKTDC: Toys & Games · Baby Products · Stationery & School Supplies',
-    date: '07 Oct 2025',
-    time: '17:30–18:30 (CLST)',
-    mode: 'Webinar',
-    location: 'Online (Zoom)',
-    poster: '/events/posters/2025-10-webinar-hktdc-toys.jpg',
-    summary:
-      'Oportunidades y logística para la misión a Hong Kong y Shenzhen (12–15 Ene 2026). Detalles de ferias, categorías y cómo prepararse para maximizar reuniones y compras.',
-    guests: ['HKTDC', 'APCC', 'ITT Travel Boutique'],
-    sponsors: [
-      { name: 'Global66', logo: '/sponsors/global66.png' },
-      { name: 'HKLABA', logo: '/sponsors/hklaba.png' },
-      { name: 'Empresas SURA', logo: '/sponsors/sura.png' },
-      { name: 'Huawei', logo: '/sponsors/huawei.png' },
-    ],
-  },
-  {
-    slug: '2025-11-seminario-oportunidades-desafios-asia',
-    title:
-      'Seminario Gratuito: Oportunidades y desafíos para Chile en Hong Kong, China y Asia',
-    date: '07 Nov 2025',
-    time: '09:30–12:00',
-    mode: 'Seminario',
-    location:
-      'Auditorio, Costanera Sur 2710, Las Condes, Región Metropolitana, Chile',
-    poster: '/events/posters/2025-11-seminario-hk-asia.jpg',
-    summary:
-      'Tendencias, financiamiento y acceso a mercados en Hong Kong/China/APAC. Casos y herramientas para empresas chilenas.',
-    guests: ['HKTDC', 'APCC', 'Scotiabank'],
-    sponsors: [
-      { name: 'CPC', logo: '/sponsors/cpc.png' },
-      { name: 'HKLABA', logo: '/sponsors/hklaba.png' },
-      { name: 'Arauco', logo: '/sponsors/arauco.png' },
-    ],
-  },
-  {
-    slug: '2025-12-hong-kong-forum-26',
-    title: '26º Hong Kong Forum (HKLABA · Federation)',
-    date: '2–3 Dic 2025',
-    time: 'Programa de 2 días',
-    mode: 'Foro',
-    location: 'HKCEC – Hong Kong Convention and Exhibition Centre',
-    poster: '/events/posters/2025-12-hk-forum.jpg',
-    summary:
-      'Evento anual insignia de la Federation of Hong Kong Business Associations Worldwide. Keynotes, paneles, networking y visitas para conocer las últimas novedades de Hong Kong y China continental.',
-    guests: [
-      'HKTDC',
-      'Federation of HK Business Associations Worldwide',
-      'HKLABA',
-    ],
-    sponsors: [{ name: 'HKTDC', logo: '/sponsors/hktdc.png' }],
-  },
-];
-
-// si quieres, puedes dejar eventos pasados aquí
-const PAST: EventItem[] = [];
+// Usa la misma data del detalle
+const UPCOMING: EventItem[] = EVENTS; // respeta el orden del array
+const PAST: EventItem[] = []; // si quieres, filtra aquí por fecha más adelante
 
 function Badge({ children }: { children: React.ReactNode }) {
   return <span className="badge badge--accent">{children}</span>;
