@@ -151,6 +151,7 @@ export default function Page() {
                 />
                 <div className="absolute left-3 top-3 flex gap-2">
                   <Badge>{ev.mode}</Badge>
+                  {ev.membersOnly && <Badge>Socios APCC</Badge>}
                 </div>
               </div>
 
@@ -204,8 +205,7 @@ export default function Page() {
                     Ver detalle
                   </Link>
                   <Link
-                    href="https://join.asiapacific-chamber.com"
-                    target="_blank"
+                    href={`/eventos/${ev.slug}#inscripcion`}
                     className="btn btn-primary"
                   >
                     Inscribirme
