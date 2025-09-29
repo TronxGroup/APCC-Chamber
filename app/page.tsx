@@ -51,7 +51,9 @@ const NEW_PARTNERS: NewPartner[] = [
     name: 'Empresas Sura',
     logo: '/partners/corporate_sura.png',
     website: 'https://www.sura.com/',
-    x: 'https://x.com/grupobeta',
+    x: 'https://x.com/gruposura',
+    linkedin: 'https://www.linkedin.com/company/grupo-sura/',
+    youtube: 'https://www.youtube.com/user/GRUPOSURA',
     blurb: 'Referente regional en seguros y gestión de riesgos, con foco en sostenibilidad y certificaciones.',
   },
   {
