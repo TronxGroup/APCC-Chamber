@@ -310,9 +310,9 @@ export default function Page() {
         <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             { src: '/history/workshop.jpg', alt: 'Workshop Asia Pacífico' },
-            { src: '/history/mision.jpg', alt: 'Misión comercial a China' },
-            { src: '/history/formacion.jpg', alt: 'Cursos de comercio internacional UC' },
-            { src: '/history/hklaba.jpg', alt: 'Alianza APCC con HKLABA' },
+            { src: '/history/ministro.jpg', alt: 'Misión comercial a China' },
+            { src: '/history/hklaba.jpg', alt: 'Cursos de comercio internacional UC' },
+            { src: '/history/alianza.jpg', alt: 'Alianza APCC con HKLABA' },
           ].map((img) => (
             <figure
               key={img.src}
