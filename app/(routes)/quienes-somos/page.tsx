@@ -39,14 +39,14 @@ const FORMER_PRESIDENTS: Person[] = [
     name: 'Francisco Garcés (Q.E.P.D.)',
     role: 'Presidente APCC',
     period: '2010 — 2018',
-    photo: '/team/francisco_garces.jpg',
+    photo: '/team/presidente_francisco_garces.jpg',
     bio: 'Economista y ejecutivo. Impulsó la expansión institucional y el posicionamiento internacional de la Cámara.',
   },
   {
     name: 'Octavio Errázuriz',
     role: 'Presidente APCC',
     period: '2002 — 2010',
-    photo: '/team/presidente_octacio_errazuriz.jpg',
+    photo: '/team/presidente_octavio_errazuriz.jpg',
     bio: 'Abogado y diplomático. Sentó las bases institucionales y de relacionamiento con Asia en los primeros años.',
   },
 ];
