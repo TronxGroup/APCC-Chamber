@@ -75,54 +75,61 @@ export default function Page() {
   return (
     <>
       {/* HERO */}
-      <section
-        id="inicio"
-        className="apcc-hero relative overflow-hidden w-full min-h-[68vh] md:min-h-[76vh]"
-      >
-        {/* Fondo con imagen full-bleed */}
-        <div className="absolute inset-0">
-          <Image
-            src="/bg_image_apcc_home.png"
-            alt="Fondo APCC"
-            fill
-            priority
-            quality={90}
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-          {/* Overlay gradiente: contraste sin tapar la foto */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-transparent pointer-events-none" />
+<section
+  id="inicio"
+  className="apcc-hero relative overflow-hidden w-full min-h-[68vh] md:min-h-[76vh]"
+>
+  {/* Fondo con imagen full-bleed */}
+  <div className="absolute inset-0">
+    <Image
+      src="/bg_image_apcc_home.png"
+      alt="Fondo APCC"
+      fill
+      priority
+      quality={90}
+      className="object-cover object-center"
+      sizes="100vw"
+    />
+    {/* Overlay gradiente: más claro + acento rojo */}
+    <div
+      className="
+        absolute inset-0
+        bg-gradient-to-b
+        from-black/30 via-black/15 to-red-900/20
+        pointer-events-none
+      "
+    />
+  </div>
+
+  {/* Contenido sobre el fondo */}
+  <div className="relative z-10">
+    <div className="container py-24 lg:py-32">
+      <div className="max-w-4xl">
+        <p className="kicker text-xs tracking-[0.14em] uppercase">
+          Plan 2026–2030
+        </p>
+        <h1 className="mt-2 text-4xl md:text-6xl font-bold leading-tight">
+          El puente confiable entre Chile/LatAm y Asia Pacífico
+        </h1>
+        <p className="mt-4 text-base md:text-lg hero-desc max-w-2xl">
+          La cámara de comercio más enfocada en <strong>resultados</strong> para
+          empresas de Chile y LatAm: inteligencia comercial, networking y acceso
+          directo a mercados.
+        </p>
+
+        <div className="mt-7 flex flex-wrap gap-3">
+          <Link href="/membresias" className="btn btn-primary">Comparar planes</Link>
+          <a href="#beneficios" className="btn btn-outline hero-outline">Ver beneficios</a>
+          <Link href="/contacto" className="btn btn-outline hero-outline">Habla con nosotros</Link>
         </div>
 
-        {/* Contenido sobre el fondo */}
-        <div className="relative z-10">
-          <div className="container py-24 lg:py-32">
-            <div className="max-w-4xl">
-              <p className="kicker text-xs tracking-[0.14em] uppercase">
-                Plan 2026–2030
-              </p>
-              <h1 className="mt-2 text-4xl md:text-6xl font-bold leading-tight">
-                El puente confiable entre Chile/LatAm y Asia Pacífico
-              </h1>
-              <p className="mt-4 text-base md:text-lg hero-desc max-w-2xl">
-                La cámara de comercio más enfocada en <strong>resultados</strong> para
-                empresas de Chile y LatAm: inteligencia comercial, networking y acceso
-                directo a mercados.
-              </p>
-
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Link href="/membresias" className="btn btn-primary">Comparar planes</Link>
-                <a href="#beneficios" className="btn btn-outline hero-outline">Ver beneficios</a>
-                <Link href="/contacto" className="btn btn-outline hero-outline">Habla con nosotros</Link>
-              </div>
-
-              <div className="mt-8 text-sm hero-meta">
-                2 misiones comerciales/año · Webinars mensuales · Networking trimestral
-              </div>
-            </div>
-          </div>
+        <div className="mt-8 text-sm hero-meta">
+          2 misiones comerciales/año · Webinars mensuales · Networking trimestral
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* PROOF STRIP */}
       <section className="border-y border-neutral-800 bg-neutral-950/40">
