@@ -307,9 +307,9 @@ export default function Page() {
           <Image
             src={p.logo}
             alt={`${p.name} logo`}
-            width={140}
-            height={60}
-            className="h-12 w-auto object-contain bg-white dark:bg-neutral-900 rounded-md p-2"
+            width={200}
+            height={100}
+            className="h-20 w-auto object-contain bg-white dark:bg-neutral-900 rounded-md p-2 shadow-sm"
           />
         </div>
 
