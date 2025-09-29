@@ -310,9 +310,9 @@ export default function Page() {
         <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             { src: '/history/history_workshop.jpg', alt: 'Workshop Asia Pacífico' },
-            { src: '/history/history_ministro.jpg', alt: 'Misión comercial a China' },
-            { src: '/history/history_hklaba.jpg', alt: 'Cursos de comercio internacional UC' },
-            { src: '/history/history_alianza.jpg', alt: 'Alianza APCC con HKLABA' },
+            { src: '/history/history_ministro.jpg', alt: 'Reunión ministro de Economía, Fomento y Turismo de Chile.' },
+            { src: '/history/history_hklaba.jpg', alt: 'Alianza APCC con HKLABA' },
+            { src: '/history/history_alianza.jpg', alt: 'Alianza APCC con Huawei' },
           ].map((img) => (
             <figure
               key={img.src}
