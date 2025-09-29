@@ -40,23 +40,23 @@ type NewPartner = {
 
 const NEW_PARTNERS: NewPartner[] = [
   {
-    name: 'Compañía Alpha',
-    logo: '/partners/alpha-logo.png',
+    name: 'Global 66',
+    logo: '/partners/corporate_global66.png',
     website: 'https://alpha.example.com',
     linkedin: 'https://www.linkedin.com/company/alpha',
     instagram: 'https://www.instagram.com/alpha',
     blurb: 'Importador con foco en electrónica de consumo y cadena logística optimizada para LatAm.',
   },
   {
-    name: 'Grupo Beta',
-    logo: '/partners/beta-logo.png',
+    name: 'Empresas Sura',
+    logo: '/partners/corporate_sura.png',
     website: 'https://beta.example.com',
     x: 'https://x.com/grupobeta',
     blurb: 'Exportador de alimentos con certificaciones y estándares internacionales.',
   },
   {
-    name: 'Empresa Gamma',
-    logo: '/partners/gamma-logo.png',
+    name: 'Huawei',
+    logo: '/partners/corporate_huawei.png',
     website: 'https://gamma.example.com',
     linkedin: 'https://www.linkedin.com/company/gamma',
     blurb: 'Proveedor B2B con soluciones industriales y garantías de postventa para la región Andina.',
