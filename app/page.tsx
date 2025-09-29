@@ -67,7 +67,10 @@ export default function Page() {
   return (
     <>
       {/* HERO */}
-<section id="inicio" className="apcc-hero relative overflow-hidden w-full">
+<section
+  id="inicio"
+  className="apcc-hero relative overflow-hidden w-full min-h-[68vh] md:min-h-[76vh]"
+>
   {/* Fondo con imagen full-bleed */}
   <div className="absolute inset-0">
     <Image
@@ -75,24 +78,28 @@ export default function Page() {
       alt="Fondo APCC"
       fill
       priority
+      quality={90}
       className="object-cover object-center"
       sizes="100vw"
     />
-    {/* Overlay: oscurece para contraste del texto */}
-    <div className="absolute inset-0 bg-black/45 md:bg-[radial-gradient(80%_60%_at_50%_10%,rgba(0,0,0,.35),rgba(0,0,0,.65))]" />
+    {/* Overlay gradiente: contraste sin tapar la foto */}
+    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-transparent pointer-events-none" />
   </div>
 
   {/* Contenido sobre el fondo */}
   <div className="relative z-10">
     <div className="container py-24 lg:py-32">
       <div className="max-w-4xl">
-        <p className="kicker text-xs tracking-[0.14em] uppercase">Plan 2026–2030</p>
+        <p className="kicker text-xs tracking-[0.14em] uppercase">
+          Plan 2026–2030
+        </p>
         <h1 className="mt-2 text-4xl md:text-6xl font-bold leading-tight">
           El puente confiable entre Chile/LatAm y Asia Pacífico
         </h1>
         <p className="mt-4 text-base md:text-lg hero-desc max-w-2xl">
-          La cámara de comercio más enfocada en <strong>resultados</strong> para empresas de Chile y LatAm:
-          inteligencia comercial, networking y acceso directo a mercados.
+          La cámara de comercio más enfocada en <strong>resultados</strong> para
+          empresas de Chile y LatAm: inteligencia comercial, networking y acceso
+          directo a mercados.
         </p>
 
         <div className="mt-7 flex flex-wrap gap-3">
