@@ -13,7 +13,7 @@ type Person = {
   name: string;
   role: string;
   period?: string;
-  photo?: string;   // ruta en /public (ej: /team/frei.jpg)
+  photo?: string; // ruta en /public (ej: /team/frei.jpg)
   bio?: string;
 };
 
@@ -150,9 +150,11 @@ export default function Page() {
           {BOARD_SAMPLE.map((m) => (
             <article key={m.name} className="rounded-2xl border border-neutral-800 bg-neutral-900 p-4">
               <div className="h-28 w-full overflow-hidden rounded-xl bg-neutral-800 grid place-items-center">
-                <img
+                <Image
                   src={m.photo || '/team/placeholder.jpg'}
                   alt={m.name}
+                  width={280}
+                  height={112}
                   className="h-28 w-full object-cover"
                   loading="lazy"
                 />
@@ -172,9 +174,11 @@ export default function Page() {
             <article key={p.name} className="md:col-span-3 rounded-2xl border border-neutral-800 bg-neutral-900 p-6">
               <div className="grid md:grid-cols-3 gap-6 items-start">
                 <div className="rounded-xl overflow-hidden bg-neutral-800">
-                  <img
+                  <Image
                     src={p.photo || '/team/presidencia.jpg'}
                     alt={p.name}
+                    width={640}
+                    height={224}
                     className="w-full h-56 object-cover"
                     loading="lazy"
                   />
@@ -197,9 +201,11 @@ export default function Page() {
           {FORMER_PRESIDENTS.map((p) => (
             <article key={p.name} className="rounded-2xl border border-neutral-800 bg-neutral-900 p-6">
               <div className="rounded-xl overflow-hidden bg-neutral-800">
-                <img
+                <Image
                   src={p.photo || '/team/placeholder.jpg'}
                   alt={p.name}
+                  width={640}
+                  height={176}
                   className="w-full h-44 object-cover"
                   loading="lazy"
                 />
@@ -213,130 +219,114 @@ export default function Page() {
       </section>
 
       {/* HISTORIA / TIMELINE + GALERÍA */}
-<section className="mt-12">
-  <h2 className="text-2xl md:text-3xl font-semibold">Nuestra historia</h2>
-  <p className="mt-2 text-neutral-400 max-w-3xl">
-    Desde 2002, la APCC ha construido conexiones de confianza entre América Latina y Asia, 
-    impulsando proyectos e inversiones con foco en resultados concretos para nuestros socios.
-  </p>
+      <section className="mt-12">
+        <h2 className="text-2xl md:text-3xl font-semibold">Nuestra historia</h2>
+        <p className="mt-2 text-neutral-400 max-w-3xl">
+          Desde 2002, la APCC ha construido conexiones de confianza entre América Latina y Asia, 
+          impulsando proyectos e inversiones con foco en resultados concretos para nuestros socios.
+        </p>
 
-  {/* Timeline ampliado */}
-  <ol className="mt-6 border-l border-neutral-800 space-y-6 pl-5">
-    <li>
-      <div className="text-sm text-neutral-500">2002</div>
-      <div className="text-sm text-neutral-300">
-        Fundación de la APCC con el objetivo de facilitar el comercio y la cooperación entre Chile, 
-        América Latina y Asia. Primeras alianzas con cámaras asiáticas en el marco de los tratados de libre comercio.
-      </div>
-    </li>
+        {/* Timeline ampliado */}
+        <ol className="mt-6 border-l border-neutral-800 space-y-6 pl-5">
+          <li>
+            <div className="text-sm text-neutral-500">2002</div>
+            <div className="text-sm text-neutral-300">
+              Fundación de la APCC con el objetivo de facilitar el comercio y la cooperación entre Chile, 
+              América Latina y Asia. Primeras alianzas con cámaras asiáticas en el marco de los tratados de libre comercio.
+            </div>
+          </li>
 
-    <li>
-      <div className="text-sm text-neutral-500">2004–2019</div>
-      <div className="text-sm text-neutral-300">
-        Producción anual del <strong>Workshop Oficial Asia Pacífico</strong>, reconocido encuentro que reunió a las 
-        economías de Asia y LatAm. Participaron <strong>Presidentes de Chile</strong> (Ricardo Lagos, Michelle Bachelet), 
-        <strong>ministros de Relaciones Exteriores y Economía</strong> (incl. Ignacio Briones), líderes gremiales 
-        como la <strong>CPC</strong> y la <strong>CNC</strong>, además de embajadores y empresarios de ambos continentes.  
-        En 2026 será retomado con toda su fuerza.
-      </div>
-    </li>
+          <li>
+            <div className="text-sm text-neutral-500">2004–2019</div>
+            <div className="text-sm text-neutral-300">
+              Producción anual del <strong>Workshop Oficial Asia Pacífico</strong>, reconocido encuentro que reunió a las 
+              economías de Asia y LatAm. Participaron <strong>Presidentes de Chile</strong> (Ricardo Lagos, Michelle Bachelet), 
+              <strong>ministros de Relaciones Exteriores y Economía</strong> (incl. Ignacio Briones), líderes gremiales 
+              como la <strong>CPC</strong> y la <strong>CNC</strong>, además de embajadores y empresarios de ambos continentes.  
+              En 2026 será retomado con toda su fuerza.
+            </div>
+          </li>
 
-    <li>
-      <div className="text-sm text-neutral-500">2002–2014</div>
-      <div className="text-sm text-neutral-300">
-        Más de <strong>8.000 alumnos</strong> formados en cursos de <strong>comercio internacional</strong> en alianza 
-        con la Pontificia Universidad Católica de Chile.
-      </div>
-    </li>
+          <li>
+            <div className="text-sm text-neutral-500">2002–2014</div>
+            <div className="text-sm text-neutral-300">
+              Más de <strong>8.000 alumnos</strong> formados en cursos de <strong>comercio internacional</strong> en alianza 
+              con la Pontificia Universidad Católica de Chile.
+            </div>
+          </li>
 
-    <li>
-      <div className="text-sm text-neutral-500">2010–2018</div>
-      <div className="text-sm text-neutral-300">
-        Expansión institucional y posicionamiento internacional. Liderazgo en al menos <strong>2 misiones comerciales anuales</strong> 
-        a Asia con empresarios y emprendedores de la región.
-      </div>
-    </li>
+          <li>
+            <div className="text-sm text-neutral-500">2010–2018</div>
+            <div className="text-sm text-neutral-300">
+              Expansión institucional y posicionamiento internacional. Liderazgo en al menos <strong>2 misiones comerciales anuales</strong> 
+              a Asia con empresarios y emprendedores de la región.
+            </div>
+          </li>
 
-    <li>
-      <div className="text-sm text-neutral-500">2018–2022</div>
-      <div className="text-sm text-neutral-300">
-        Fortalecimiento de la agenda público-privada con foco en Asia-Pacífico. Nuevas alianzas internacionales 
-        y posicionamiento como hub estratégico de la región.
-      </div>
-    </li>
+          <li>
+            <div className="text-sm text-neutral-500">2018–2022</div>
+            <div className="text-sm text-neutral-300">
+              Fortalecimiento de la agenda público-privada con foco en Asia-Pacífico. Nuevas alianzas internacionales 
+              y posicionamiento como hub estratégico de la región.
+            </div>
+          </li>
 
-    <li>
-      <div className="text-sm text-neutral-500">2019</div>
-      <div className="text-sm text-neutral-300">
-        La APCC se integra a la <strong>Hong Kong – Latin America Business Association (HKLABA)</strong>, 
-        convirtiéndose en el puente oficial con la <strong>Federation of Hong Kong Business Associations Worldwide</strong>.  
-        Esto abrió el mercado a empresas globales, más allá de América Latina.
-      </div>
-    </li>
+          <li>
+            <div className="text-sm text-neutral-500">2019</div>
+            <div className="text-sm text-neutral-300">
+              La APCC se integra a la <strong>Hong Kong – Latin America Business Association (HKLABA)</strong>, 
+              convirtiéndose en el puente oficial con la <strong>Federation of Hong Kong Business Associations Worldwide</strong>.  
+              Esto abrió el mercado a empresas globales, más allá de América Latina.
+            </div>
+          </li>
 
-    <li>
-      <div className="text-sm text-neutral-500">2020–2021 (Pandemia)</div>
-      <div className="text-sm text-neutral-300">
-        Apoyo solidario a ciudadanos latinoamericanos <strong>varados en Asia</strong>, gestionando su regreso y 
-        facilitando cooperación humanitaria en tiempos críticos.
-      </div>
-    </li>
+          <li>
+            <div className="text-sm text-neutral-500">2020–2021 (Pandemia)</div>
+            <div className="text-sm text-neutral-300">
+              Apoyo solidario a ciudadanos latinoamericanos <strong>varados en Asia</strong>, gestionando su regreso y 
+              facilitando cooperación humanitaria en tiempos críticos.
+            </div>
+          </li>
 
-    <li>
-      <div className="text-sm text-neutral-500">2022–2025</div>
-      <div className="text-sm text-neutral-300">
-        <strong>Grandes alianzas con empresas e instituciones</strong> como Banco Scotiabank, Empresas Sura, Huawei y Global66, 
-        ampliando beneficios para los socios y sentando las bases del Plan 2026–2030.
-      </div>
-    </li>
+          <li>
+            <div className="text-sm text-neutral-500">2022–2025</div>
+            <div className="text-sm text-neutral-300">
+              <strong>Grandes alianzas con empresas e instituciones</strong> como Banco Scotiabank, Empresas Sura, Huawei y Global66, 
+              ampliando beneficios para los socios y sentando las bases del Plan 2026–2030.
+            </div>
+          </li>
 
-    <li>
-      <div className="text-sm text-neutral-500">2026–2030</div>
-      <div className="text-sm text-neutral-300">
-        Consolidación del plan estratégico: <strong>inteligencia comercial</strong>, <strong>networking sectorial</strong> 
-        y <strong>misiones con valor real</strong>. Retorno del Workshop Asia Pacífico como evento insignia para reunir a 
-        autoridades, empresarios y líderes internacionales.
-      </div>
-    </li>
-  </ol>
+          <li>
+            <div className="text-sm text-neutral-500">2026–2030</div>
+            <div className="text-sm text-neutral-300">
+              Consolidación del plan estratégico: <strong>inteligencia comercial</strong>, <strong>networking sectorial</strong> 
+              y <strong>misiones con valor real</strong>. Retorno del Workshop Asia Pacífico como evento insignia para reunir a 
+              autoridades, empresarios y líderes internacionales.
+            </div>
+          </li>
+        </ol>
 
-  {/* Galería histórica */}
-  <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
-    {[
-      { src: '/history/workshop.jpg', alt: 'Workshop Asia Pacífico' },
-      { src: '/history/mision.jpg', alt: 'Misión comercial a China' },
-      { src: '/history/formacion.jpg', alt: 'Cursos de comercio internacional UC' },
-      { src: '/history/hklaba.jpg', alt: 'Alianza APCC con HKLABA' },
-    ].map((img) => (
-      <figure
-        key={img.src}
-        className="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900"
-      >
-        <Image
-          src={img.src}
-          alt={img.alt}
-          width={640}
-          height={384}
-          className="h-40 md:h-48 w-full object-cover transition-transform group-hover:scale-105"
-          sizes="(max-width: 768px) 50vw, 25vw"
-          loading="lazy"
-        />
-        <figcaption className="p-3 text-xs text-neutral-300">{img.alt}</figcaption>
-      </figure>
-    ))}
-  </div>
-</section>
-
-        {/* Galería 4 fotos */}
-        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+        {/* Galería histórica (4 fotos) */}
+        <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { src: '/history/h-1.jpg', alt: 'Firma de alianza' },
-            { src: '/history/h-2.jpg', alt: 'Misión comercial en feria' },
-            { src: '/history/h-3.jpg', alt: 'Seminario APCC' },
-            { src: '/history/h-4.jpg', alt: 'Rueda de negocios' },
+            { src: '/history/workshop.jpg', alt: 'Workshop Asia Pacífico' },
+            { src: '/history/mision.jpg', alt: 'Misión comercial a China' },
+            { src: '/history/formacion.jpg', alt: 'Cursos de comercio internacional UC' },
+            { src: '/history/hklaba.jpg', alt: 'Alianza APCC con HKLABA' },
           ].map((img) => (
-            <figure key={img.src} className="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900">
-              <img src={img.src} alt={img.alt} className="h-40 md:h-48 w-full object-cover transition-transform group-hover:scale-105" loading="lazy" />
+            <figure
+              key={img.src}
+              className="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900"
+            >
+              <Image
+                src={img.src}
+                alt={img.alt}
+                width={640}
+                height={384}
+                className="h-40 md:h-48 w-full object-cover transition-transform group-hover:scale-105"
+                sizes="(max-width: 768px) 50vw, 25vw"
+                loading="lazy"
+              />
               <figcaption className="p-3 text-xs text-neutral-300">{img.alt}</figcaption>
             </figure>
           ))}
