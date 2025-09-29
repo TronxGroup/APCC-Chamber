@@ -218,94 +218,101 @@ export default function Page() {
         </div>
       </section>
 
-      {/* HISTORIA / TIMELINE + GALERÍA */}
-      <section className="mt-12">
-        <h2 className="text-2xl md:text-3xl font-semibold">Nuestra historia</h2>
-        <p className="mt-2 text-neutral-400 max-w-3xl">
-          Desde 2002, la APCC ha construido conexiones de confianza entre América Latina y Asia, 
-          impulsando proyectos e inversiones con foco en resultados concretos para nuestros socios.
-        </p>
+     {/* NUESTRA HISTORIA (Timeline resumido y visual) */}
+<section className="mt-12">
+  <h2 className="text-2xl md:text-3xl font-semibold">Nuestra historia</h2>
+  <p className="mt-2 text-neutral-600 dark:text-neutral-400 max-w-3xl">
+    Desde 2002, la APCC conecta América Latina y Asia con un enfoque en resultados, alianzas estratégicas
+    y acompañamiento real a empresas.
+  </p>
 
-        {/* Timeline ampliado */}
-        <ol className="mt-6 border-l border-neutral-800 space-y-6 pl-5">
-          <li>
-            <div className="text-sm text-neutral-500">2002</div>
-            <div className="text-sm text-neutral-300">
-              Fundación de la APCC con el objetivo de facilitar el comercio y la cooperación entre Chile, 
-              América Latina y Asia. Primeras alianzas con cámaras asiáticas en el marco de los tratados de libre comercio.
-            </div>
-          </li>
+  <ol className="relative mt-8 grid gap-8 md:grid-cols-2">
+    {/* Línea vertical decorativa en md+ */}
+    <div
+      aria-hidden
+      className="hidden md:block absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-neutral-700/40 to-transparent"
+    />
 
-          <li>
-            <div className="text-sm text-neutral-500">2004–2019</div>
-            <div className="text-sm text-neutral-300">
-              Producción anual del <strong>Workshop Oficial Asia Pacífico</strong>, reconocido encuentro que reunió a las 
-              economías de Asia y LatAm. Participaron <strong>Presidentes de Chile</strong> (Ricardo Lagos, Michelle Bachelet), 
-              <strong>ministros de Relaciones Exteriores y Economía</strong> (incl. Ignacio Briones), líderes gremiales 
-              como la <strong>CPC</strong> y la <strong>CNC</strong>, además de embajadores y empresarios de ambos continentes.  
-              En 2026 será retomado con toda su fuerza.
-            </div>
-          </li>
-
-          <li>
-            <div className="text-sm text-neutral-500">2002–2014</div>
-            <div className="text-sm text-neutral-300">
-              Más de <strong>8.000 alumnos</strong> formados en cursos de <strong>comercio internacional</strong> en alianza 
-              con la Pontificia Universidad Católica de Chile.
-            </div>
-          </li>
-
-          <li>
-            <div className="text-sm text-neutral-500">2010–2018</div>
-            <div className="text-sm text-neutral-300">
-              Expansión institucional y posicionamiento internacional. Liderazgo en al menos <strong>2 misiones comerciales anuales</strong> 
-              a Asia con empresarios y emprendedores de la región.
-            </div>
-          </li>
-
-          <li>
-            <div className="text-sm text-neutral-500">2018–2022</div>
-            <div className="text-sm text-neutral-300">
-              Fortalecimiento de la agenda público-privada con foco en Asia-Pacífico. Nuevas alianzas internacionales 
-              y posicionamiento como hub estratégico de la región.
-            </div>
-          </li>
-
-          <li>
-            <div className="text-sm text-neutral-500">2019</div>
-            <div className="text-sm text-neutral-300">
-              La APCC se integra a la <strong>Hong Kong – Latin America Business Association (HKLABA)</strong>, 
-              convirtiéndose en el puente oficial con la <strong>Federation of Hong Kong Business Associations Worldwide</strong>.  
-              Esto abrió el mercado a empresas globales, más allá de América Latina.
-            </div>
-          </li>
-
-          <li>
-            <div className="text-sm text-neutral-500">2020–2021 (Pandemia)</div>
-            <div className="text-sm text-neutral-300">
-              Apoyo solidario a ciudadanos latinoamericanos <strong>varados en Asia</strong>, gestionando su regreso y 
-              facilitando cooperación humanitaria en tiempos críticos.
-            </div>
-          </li>
-
-          <li>
-            <div className="text-sm text-neutral-500">2022–2025</div>
-            <div className="text-sm text-neutral-300">
-              <strong>Grandes alianzas con empresas e instituciones</strong> como Banco Scotiabank, Empresas Sura, Huawei y Global66, 
-              ampliando beneficios para los socios y sentando las bases del Plan 2026–2030.
-            </div>
-          </li>
-
-          <li>
-            <div className="text-sm text-neutral-500">2026–2030</div>
-            <div className="text-sm text-neutral-300">
-              Consolidación del plan estratégico: <strong>inteligencia comercial</strong>, <strong>networking sectorial</strong> 
-              y <strong>misiones con valor real</strong>. Retorno del Workshop Asia Pacífico como evento insignia para reunir a 
-              autoridades, empresarios y líderes internacionales.
-            </div>
-          </li>
-        </ol>
-
+    {/* Item */}
+    {[
+      {
+        year: '2002',
+        title: 'Fundación APCC',
+        text:
+          'Nacemos para facilitar comercio y cooperación Chile–LatAm–Asia, alineados a los TLC con Hong Kong, China, Japón y otros.',
+      },
+      {
+        year: '2004–2019',
+        title: 'Workshop Asia Pacífico',
+        text:
+          'Encuentro insignia con presidentes (Lagos, Bachelet), cancillería y economía (incl. Briones), CPC/CNC, embajadas y líderes. Regresa en 2026.',
+        badge: 'Vuelve 2026',
+      },
+      {
+        year: '2002–2014',
+        title: 'Formación ejecutiva',
+        text:
+          '8.000+ alumnos en cursos de comercio internacional junto a la Pontificia Universidad Católica de Chile.',
+      },
+      {
+        year: '2010–2018',
+        title: 'Misiones a Asia',
+        text:
+          'Expansión institucional y 2+ misiones comerciales por año con empresas y emprendedores.',
+      },
+      {
+        year: '2019',
+        title: 'Alianza HKLABA',
+        text:
+          'Ingreso a HKLABA y a la Federation of HK Business Associations Worldwide: abrimos el ecosistema a empresas globales.',
+        badge: 'Puente global',
+      },
+      {
+        year: '2020–2021',
+        title: 'Pandemia',
+        text:
+          'Apoyo a latinoamericanos varados en Asia, gestionando retornos y cooperación en momentos críticos.',
+      },
+      {
+        year: '2022–2025',
+        title: 'Alianzas clave',
+        text:
+          'Scotiabank, Empresas Sura, Huawei, Global66, entre otros: beneficios ampliados y base del Plan 2026–2030.',
+      },
+      {
+        year: '2026–2030',
+        title: 'Plan estratégico',
+        text:
+          'Inteligencia comercial, networking sectorial y misiones con valor medible. Vuelve el Workshop Asia Pacífico.',
+        badge: 'En curso',
+      },
+    ].map((item, i) => (
+      <li key={item.year} className="relative">
+        {/* Punto del timeline (lado alternado) */}
+        <span
+          aria-hidden
+          className={[
+            'hidden md:block absolute top-2 h-3 w-3 rounded-full ring-4 ring-neutral-900',
+            i % 2 === 0 ? '-right-1.5 bg-[var(--apcc-accent)]' : '-left-1.5 bg-neutral-500',
+          ].join(' ')}
+        />
+        <article className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-5 shadow-sm">
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center rounded-full border border-neutral-200 dark:border-neutral-700 px-2 py-0.5 text-[10px] uppercase tracking-wider text-neutral-600 dark:text-neutral-400">
+              {item.year}
+            </span>
+            {item.badge && (
+              <span className="inline-flex items-center rounded-full bg-[var(--apcc-accent)]/10 text-[var(--apcc-accent)] px-2 py-0.5 text-[10px] uppercase tracking-wider">
+                {item.badge}
+              </span>
+            )}
+          </div>
+          <h3 className="mt-2 text-base font-semibold">{item.title}</h3>
+          <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">{item.text}</p>
+        </article>
+      </li>
+    ))}
+  </ol>
         {/* Galería histórica (4 fotos) */}
         <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
