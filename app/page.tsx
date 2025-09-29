@@ -174,12 +174,26 @@ export default function Page() {
       </section>
 
       {/* SUPPORTING ORGANIZATIONS */}
-<section id="supporting-orgs" className="border-y border-neutral-800">
-  <div className="container py-10">
-    <div className="text-xs uppercase tracking-widest text-neutral-500">
+<section
+  id="supporting-orgs"
+  className="
+    border-y border-neutral-200 dark:border-neutral-800
+    bg-neutral-50 dark:bg-neutral-950
+  "
+>
+  <div className="container py-10 md:py-12">
+    <div className="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
       Supporting Organizations
     </div>
-    <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-6 items-center">
+
+    <div
+      className="
+        mt-6
+        grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6
+        gap-x-8 gap-y-8
+        items-center justify-items-center
+      "
+    >
       {[
         '/supporters/supporting_logo_1.png',
         '/supporters/supporting_logo_2.png',
