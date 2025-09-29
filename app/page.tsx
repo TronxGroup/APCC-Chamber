@@ -174,17 +174,29 @@ export default function Page() {
       </section>
 
       {/* SUPPORTING ORGANIZATIONS */}
-      <section id="supporting-orgs" className="border-y border-neutral-800">
-        <div className="container py-10">
-          <div className="text-xs uppercase tracking-widest text-neutral-500">
-            Supporting Organizations
-          </div>
-          <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-4 items-center">
-            {['/supporters/logo-1.png','/supporters/logo-2.png','/supporters/logo-3.png','/supporters/logo-4.png','/supporters/logo-5.png','/supporters/logo-6.png']
-            .map((src, i) => (<SupportingLogo key={src} src={src} alt={`Logo organización patrocinadora #${i + 1}`} />))}
-          </div>
-        </div>
-      </section>
+<section id="supporting-orgs" className="border-y border-neutral-800">
+  <div className="container py-10">
+    <div className="text-xs uppercase tracking-widest text-neutral-500">
+      Supporting Organizations
+    </div>
+    <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-6 items-center">
+      {[
+        '/supporters/supporting_logo_1.png',
+        '/supporters/supporting_logo_2.png',
+        '/supporters/supporting_logo_3.png',
+        '/supporters/supporting_logo_4.png',
+        '/supporters/supporting_logo_5.png',
+        '/supporters/supporting_logo_6.png',
+      ].map((src, i) => (
+        <SupportingLogo
+          key={src}
+          src={src}
+          alt={`Logo organización patrocinadora ${i + 1}`}
+        />
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* MEMBRESÍAS CON VALOR */}
       <section id="membresias-valor" className="container py-14">
