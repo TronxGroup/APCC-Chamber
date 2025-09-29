@@ -316,10 +316,10 @@ export default function Page() {
         {/* Galería histórica (4 fotos) */}
         <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { src: '/history/history_workshop.jpg', alt: 'Workshop Asia Pacífico' },
-            { src: '/history/history_ministro.jpg', alt: 'Reunión ministro de Economía, Fomento y Turismo de Chile.' },
-            { src: '/history/history_hklaba.jpg', alt: 'Alianza APCC con HKLABA' },
-            { src: '/history/history_alianza.jpg', alt: 'Alianza APCC con Huawei' },
+            { src: '/history/history_workshop.jpg', alt: '13° Workshop Asia Pacífico 2017 — Francisco Garcés con la Presidenta Michelle Bachelet' },
+            { src: '/history/history_ministro.jpg', alt: 'Reunión de la APCC con Nicolás Grau, Ministro de Economía, Fomento y Turismo de Chile.' },
+            { src: '/history/history_hklaba.jpg', alt: 'Alianza estratégica de la APCC con HKLABA, consolidando el puente entre América Latina y Hong Kong.' },
+            { src: '/history/history_alianza.jpg', alt: 'Firma de alianza estratégica entre APCC y Huawei para impulsar innovación y cooperación tecnológica.' },
           ].map((img) => (
             <figure
               key={img.src}
