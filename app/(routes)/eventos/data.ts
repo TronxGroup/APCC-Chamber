@@ -23,7 +23,36 @@ export type EventItem = {
 };
 
 export const EVENTS: EventItem[] = [
-  // 1) 21 Oct · Mesa de Trabajo de Logística
+  // 1) 07 Oct · Webinar
+  {
+    slug: '2025-10-webinar-ferias-hktdc-toys-baby-stationery',
+    title:
+      'Webinar Informativo HKTDC: Toys & Games · Baby Products · Stationery & School Supplies',
+    date: '07 Oct 2025',
+    time: '17:30–18:30 (CLST)',
+    mode: 'Webinar',
+    location: 'Online (Zoom)',
+    poster: '/events/posters/2025-10-webinar-hktdc-toys.jpg',
+    summary:
+      'Oportunidades en las ferias de enero 2026 en Hong Kong y Shenzhen. Categorías, agenda y detalles de misión comercial (10–16 ene 2026).',
+    guests: ['HKTDC', 'APCC', 'ITT Travel Boutique'],
+    sponsors: [
+      { name: 'APCC', logo: '/sponsors/apcc.png', role: 'Produce' },
+      { name: 'HKTDC', logo: '/sponsors/hktdc.png', role: 'Organiza' },
+      { name: 'Global66', logo: '/sponsors/global66.png', role: 'Auspicia' },
+      { name: 'HKLABA', logo: '/sponsors/hklaba.png', role: 'Auspicia' },
+      { name: 'Empresas SURA', logo: '/sponsors/sura.png', role: 'Auspicia' },
+      { name: 'Huawei', logo: '/sponsors/huawei.png', role: 'Auspicia' },
+    ],
+    agenda: [
+      { time: '17:30', topic: 'Bienvenida y contexto de ferias HKTDC', speaker: 'HKTDC' },
+      { time: '17:40', topic: 'Toys & Games, Baby Products, Stationery: qué esperar' },
+      { time: '18:00', topic: 'Misión comercial 10–16 ene 2026: logística e inscripción', speaker: 'APCC / ITT' },
+      { time: '18:20', topic: 'Q&A y próximos pasos' },
+    ],
+  },
+
+  // 2) 21 Oct · Mesa de Trabajo de Logística
   {
     slug: '2025-10-mesa-logistica-comercio-asia',
     title:
@@ -52,7 +81,7 @@ export const EVENTS: EventItem[] = [
     ],
   },
 
-  // 2) 07 Nov · Seminario
+  // 3) 07 Nov · Seminario
   {
     slug: '2025-11-seminario-oportunidades-desafios-asia',
     title:
@@ -83,7 +112,7 @@ export const EVENTS: EventItem[] = [
     ],
   },
 
-  // 3) 02–03 Dic · Foro
+  // 4) 02–03 Dic · Foro
   {
     slug: '2025-12-hong-kong-forum-26',
     title: '26º Hong Kong Forum (HKLABA · Federation)',
@@ -110,35 +139,6 @@ export const EVENTS: EventItem[] = [
       { time: 'Día 1 (PM)', topic: 'Sesiones de networking y reuniones 1:1' },
       { time: 'Día 2', topic: 'Paneles temáticos y casos de éxito' },
       { time: 'Día 2 (PM)', topic: 'Programa de visitas: infraestructura & ecosistema' },
-    ],
-  },
-
-  // 4) 07 Oct · Webinar
-  {
-    slug: '2025-10-webinar-ferias-hktdc-toys-baby-stationery',
-    title:
-      'Webinar Informativo HKTDC: Toys & Games · Baby Products · Stationery & School Supplies',
-    date: '07 Oct 2025',
-    time: '17:30–18:30 (CLST)',
-    mode: 'Webinar',
-    location: 'Online (Zoom)',
-    poster: '/events/posters/2025-10-webinar-hktdc-toys.jpg',
-    summary:
-      'Oportunidades en las ferias de enero 2026 en Hong Kong y Shenzhen. Categorías, agenda y detalles de misión comercial (10–16 ene 2026).',
-    guests: ['HKTDC', 'APCC', 'ITT Travel Boutique'],
-    sponsors: [
-      { name: 'APCC', logo: '/sponsors/apcc.png', role: 'Produce' },
-      { name: 'HKTDC', logo: '/sponsors/hktdc.png', role: 'Organiza' },
-      { name: 'Global66', logo: '/sponsors/global66.png', role: 'Auspicia' },
-      { name: 'HKLABA', logo: '/sponsors/hklaba.png', role: 'Auspicia' },
-      { name: 'Empresas SURA', logo: '/sponsors/sura.png', role: 'Auspicia' },
-      { name: 'Huawei', logo: '/sponsors/huawei.png', role: 'Auspicia' },
-    ],
-    agenda: [
-      { time: '17:30', topic: 'Bienvenida y contexto de ferias HKTDC', speaker: 'HKTDC' },
-      { time: '17:40', topic: 'Toys & Games, Baby Products, Stationery: qué esperar' },
-      { time: '18:00', topic: 'Misión comercial 10–16 ene 2026: logística e inscripción', speaker: 'APCC / ITT' },
-      { time: '18:20', topic: 'Q&A y próximos pasos' },
     ],
   },
 ];
