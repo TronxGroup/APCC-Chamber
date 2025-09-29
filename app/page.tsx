@@ -12,7 +12,8 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://www.asiapacific-chamber.com/' },
   openGraph: {
     title: 'APCC — Puente Chile/LatAm–Asia',
-    description: 'Resultados medibles: inteligencia, networking y acceso directo a mercados en Asia.',
+    description:
+      'Resultados medibles: inteligencia, networking y acceso directo a mercados en Asia.',
     url: 'https://www.asiapacific-chamber.com/',
     siteName: 'APCC',
     images: [{ url: '/og/apcc-home.jpg', width: 1200, height: 630 }],
@@ -49,7 +50,8 @@ const NEW_PARTNERS: NewPartner[] = [
     instagram: 'https://www.instagram.com/global_66/',
     x: 'https://x.com/SomosGlobal66/',
     linkedin: 'https://www.linkedin.com/company/global66/',
-    blurb: 'Aliado en soluciones financieras y logísticas para importadores y exportadores.',
+    blurb:
+      'Aliado en soluciones financieras y logísticas para importadores y exportadores.',
   },
   {
     name: 'Empresas Sura',
@@ -58,7 +60,8 @@ const NEW_PARTNERS: NewPartner[] = [
     x: 'https://x.com/gruposura',
     linkedin: 'https://www.linkedin.com/company/grupo-sura/',
     youtube: 'https://www.youtube.com/user/GRUPOSURA',
-    blurb: 'Referente regional en seguros y gestión de riesgos, con foco en sostenibilidad y certificaciones.',
+    blurb:
+      'Referente regional en seguros y gestión de riesgos, con foco en sostenibilidad y certificaciones.',
   },
   {
     name: 'Huawei',
@@ -67,92 +70,129 @@ const NEW_PARTNERS: NewPartner[] = [
     facebook: 'https://web.facebook.com/HuaweimobileCL/',
     youtube: 'https://www.youtube.com/user/HuaweiDeviceChile',
     instagram: 'https://www.instagram.com/huaweimobilecl/',
-    blurb: 'Líder en innovación tecnológica y conectividad, con soluciones industriales para la región andina.',
+    blurb:
+      'Líder en innovación tecnológica y conectividad, con soluciones industriales para la región andina.',
   },
 ];
 
 export default function Page() {
   return (
     <>
-      {/* HERO */}
-<section
-  id="inicio"
-  className="apcc-hero relative overflow-hidden w-full min-h-[68vh] md:min-h-[76vh]"
->
-  {/* Fondo con imagen full-bleed */}
-  <div className="absolute inset-0">
-    <Image
-      src="/bg_image_apcc_home.png"
-      alt="Fondo APCC"
-      fill
-      priority
-      quality={90}
-      className="object-cover object-center"
-      sizes="100vw"
-    />
-    {/* Overlay más oscuro para asegurar contraste */}
-    <div className="absolute inset-0 bg-black/45 md:bg-black/40 pointer-events-none" />
-  </div>
-
-  {/* Contenido sobre el fondo */}
-  <div className="relative z-10">
-    <div className="container py-24 lg:py-32">
-      <div className="max-w-4xl">
-        <p className="kicker text-xs tracking-[0.14em] uppercase text-white drop-shadow">
-          Plan 2026–2030
-        </p>
-
-        <h1 className="mt-2 text-4xl md:text-6xl font-bold leading-tight text-white drop-shadow">
-          El puente confiable entre Chile/LatAm y Asia Pacífico
-        </h1>
-
-        <p className="mt-4 text-base md:text-lg max-w-2xl text-white/95 drop-shadow">
-          La cámara de comercio más enfocada en <strong className="text-white">resultados</strong> para
-          empresas de Chile y LatAm: inteligencia comercial, networking y acceso
-          directo a mercados.
-        </p>
-
-        <div className="mt-7 flex flex-wrap gap-3">
-          <Link href="/membresias" className="btn btn-primary">Comparar planes</Link>
-          <a href="#beneficios" className="btn btn-outline hero-outline">Ver beneficios</a>
-          <Link href="/contacto" className="btn btn-outline hero-outline">Habla con nosotros</Link>
+      {/* HERO (único con textos blancos) */}
+      <section
+        id="inicio"
+        className="apcc-hero relative overflow-hidden w-full min-h-[68vh] md:min-h-[76vh]"
+      >
+        {/* Fondo con imagen full-bleed */}
+        <div className="absolute inset-0">
+          <Image
+            src="/bg_image_apcc_home.png"
+            alt="Fondo APCC"
+            fill
+            priority
+            quality={90}
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+          {/* Overlay más oscuro para asegurar contraste */}
+          <div className="absolute inset-0 bg-black/45 md:bg-black/40 pointer-events-none" />
         </div>
 
-        <div className="mt-8 text-sm text-white/90 drop-shadow">
-          2 misiones comerciales/año · Webinars mensuales · Networking trimestral
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        {/* Contenido sobre el fondo */}
+        <div className="relative z-10">
+          <div className="container py-24 lg:py-32">
+            <div className="max-w-4xl">
+              <p className="kicker text-xs tracking-[0.14em] uppercase text-white drop-shadow">
+                Plan 2026–2030
+              </p>
 
-      {/* PROOF STRIP */}
-      <section className="border-y border-neutral-700 bg-neutral-950/40">
-        <div className="container py-6 grid gap-4 md:grid-cols-3 text-sm">
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl border border-neutral-700 grid place-items-center" aria-hidden>🌏</div>
-            <p className="text-neutral-200"><strong>Asia-first:</strong> foco en Hong Kong, China y hubs APAC.</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl border border-neutral-700 grid place-items-center" aria-hidden>🤝</div>
-            <p className="text-neutral-200"><strong>Business Matching:</strong> proveedores y compradores verificados.</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl border border-neutral-700 grid place-items-center" aria-hidden>📈</div>
-            <p className="text-neutral-200"><strong>Renovación por valor:</strong> programas medibles y continuos.</p>
+              <h1 className="mt-2 text-4xl md:text-6xl font-bold leading-tight text-white drop-shadow">
+                El puente confiable entre Chile/LatAm y Asia Pacífico
+              </h1>
+
+              <p className="mt-4 text-base md:text-lg max-w-2xl text-white/95 drop-shadow">
+                La cámara de comercio más enfocada en{' '}
+                <strong className="text-white">resultados</strong> para empresas
+                de Chile y LatAm: inteligencia comercial, networking y acceso
+                directo a mercados.
+              </p>
+
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link href="/membresias" className="btn btn-primary">
+                  Comparar planes
+                </Link>
+                <a href="#beneficios" className="btn btn-outline hero-outline">
+                  Ver beneficios
+                </a>
+                <Link href="/contacto" className="btn btn-outline hero-outline">
+                  Habla con nosotros
+                </Link>
+              </div>
+
+              <div className="mt-8 text-sm text-white/90 drop-shadow">
+                2 misiones comerciales/año · Webinars mensuales · Networking
+                trimestral
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ¿QUÉ HACEMOS? – 2026–2030 */}
+      {/* PROOF STRIP (texto normal del tema) */}
+      <section className="border-y border-[var(--apcc-border)] bg-[color:rgb(0_0_0_/_0.04)]/5">
+        <div className="container py-6 grid gap-4 md:grid-cols-3 text-sm">
+          <div className="flex items-center gap-3">
+            <div
+              className="h-10 w-10 rounded-xl border border-[var(--apcc-border)] grid place-items-center"
+              aria-hidden
+            >
+              🌏
+            </div>
+            <p className="text-[var(--apcc-text-2)]">
+              <strong>Asia-first:</strong> foco en Hong Kong, China y hubs APAC.
+            </p>
+          </div>
+          <div className="flex items-center gap-3">
+            <div
+              className="h-10 w-10 rounded-xl border border-[var(--apcc-border)] grid place-items-center"
+              aria-hidden
+            >
+              🤝
+            </div>
+            <p className="text-[var(--apcc-text-2)]">
+              <strong>Business Matching:</strong> proveedores y compradores
+              verificados.
+            </p>
+          </div>
+          <div className="flex items-center gap-3">
+            <div
+              className="h-10 w-10 rounded-xl border border-[var(--apcc-border)] grid place-items-center"
+              aria-hidden
+            >
+              📈
+            </div>
+            <p className="text-[var(--apcc-text-2)]">
+              <strong>Renovación por valor:</strong> programas medibles y
+              continuos.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ¿QUÉ HACEMOS? – 2026–2030 (colores claros) */}
       <section id="que-hacemos" className="container py-14">
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-3">
-            <h2 className="text-2xl md:text-3xl font-semibold text-white">¿Qué hacemos?</h2>
-            <p className="mt-3 text-neutral-200 max-w-3xl">
-              La <strong>Cámara de Comercio Asia Pacífico (APCC)</strong> impulsa el éxito de importadores, exportadores y empresas
-              que buscan crecer en Asia y LatAm. Nuestro <strong>Plan 2026–2030</strong> entrega valor real y constante combinando
-              <em> inteligencia comercial</em>, <em>networking</em> y <em>acceso directo a mercados</em>.
+            <h2 className="text-2xl md:text-3xl font-semibold">
+              ¿Qué hacemos?
+            </h2>
+            <p className="mt-3 text-[var(--apcc-text-2)] max-w-3xl">
+              La <strong>Cámara de Comercio Asia Pacífico (APCC)</strong>{' '}
+              impulsa el éxito de importadores, exportadores y empresas que
+              buscan crecer en Asia y LatAm. Nuestro{' '}
+              <strong>Plan 2026–2030</strong> entrega valor real y constante
+              combinando <em>inteligencia comercial</em>,{' '}
+              <em>networking</em> y <em>acceso directo a mercados</em>.
             </p>
           </div>
 
@@ -173,10 +213,17 @@ export default function Page() {
               desc: 'Conexión directa con proveedores y compradores verificados de primer nivel para acelerar acuerdos.',
             },
           ].map((card) => (
-            <article key={card.title} className="rounded-2xl border border-neutral-700 bg-neutral-900 p-6">
-              <div className="text-xs uppercase tracking-wider text-neutral-400">{card.tag}</div>
-              <h3 className="mt-2 text-lg font-semibold text-white">{card.title}</h3>
-              <p className="mt-2 text-sm text-neutral-300">{card.desc}</p>
+            <article
+              key={card.title}
+              className="rounded-2xl border border-[var(--apcc-border)] bg-[var(--apcc-card)] p-6"
+            >
+              <div className="text-xs uppercase tracking-wider text-[var(--apcc-muted)]">
+                {card.tag}
+              </div>
+              <h3 className="mt-2 text-lg font-semibold">{card.title}</h3>
+              <p className="mt-2 text-sm text-[var(--apcc-text-2)]">
+                {card.desc}
+              </p>
             </article>
           ))}
         </div>
@@ -185,10 +232,10 @@ export default function Page() {
       {/* SUPPORTING ORGANIZATIONS */}
       <section
         id="supporting-orgs"
-        className="border-y border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950"
+        className="border-y border-[var(--apcc-border)] bg-[var(--apcc-card)]"
       >
         <div className="container py-10 md:py-12">
-          <div className="text-xs uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
+          <div className="text-xs uppercase tracking-widest text-[var(--apcc-muted)]">
             Supporting Organizations
           </div>
 
@@ -214,9 +261,12 @@ export default function Page() {
       {/* MEMBRESÍAS CON VALOR */}
       <section id="membresias-valor" className="container py-14">
         <div className="max-w-3xl">
-          <h2 className="text-2xl md:text-3xl font-semibold text-white">Membresías con valor</h2>
-          <p className="mt-2 text-neutral-300">
-            Ser socio APCC es pertenecer a la <strong>Red Asia Pacífico</strong> y acceder a beneficios exclusivos.
+          <h2 className="text-2xl md:text-3xl font-semibold">
+            Membresías con valor
+          </h2>
+          <p className="mt-2 text-[var(--apcc-text-2)]">
+            Ser socio APCC es pertenecer a la <strong>Red Asia Pacífico</strong>{' '}
+            y acceder a beneficios exclusivos.
           </p>
         </div>
         <ul className="mt-6 grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
@@ -226,20 +276,32 @@ export default function Page() {
             'Reuniones ejecutivas de orientación',
             'Visibilidad en web, newsletter y directorios',
           ].map((b) => (
-            <li key={b} className="bg-neutral-900 border border-neutral-700 rounded-2xl p-4 text-neutral-200">
+            <li
+              key={b}
+              className="rounded-2xl p-4 bg-[var(--apcc-card)] border border-[var(--apcc-border)] text-[var(--apcc-text-2)]"
+            >
               {b}
             </li>
           ))}
         </ul>
         <div className="mt-6">
-          <Link href="/membresias" className="btn btn-primary">Comparar planes</Link>
+          <Link href="/membresias" className="btn btn-primary">
+            Comparar planes
+          </Link>
         </div>
       </section>
 
       {/* BENEFICIOS TRANSVERSALES */}
-      <section id="beneficios" className="container py-16 border-t border-neutral-700">
-        <h2 className="text-2xl md:text-3xl font-semibold text-white">Beneficios transversales</h2>
-        <p className="mt-2 text-neutral-300 max-w-2xl">Herramientas y espacios que impulsan tus negocios.</p>
+      <section
+        id="beneficios"
+        className="container py-16 border-t border-[var(--apcc-border)]"
+      >
+        <h2 className="text-2xl md:text-3xl font-semibold">
+          Beneficios transversales
+        </h2>
+        <p className="mt-2 text-[var(--apcc-text-2)] max-w-2xl">
+          Herramientas y espacios que impulsan tus negocios.
+        </p>
         <ul className="mt-6 grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
           {[
             'Biblioteca digital con guías',
@@ -247,7 +309,10 @@ export default function Page() {
             'Difusión en web/newsletter',
             'Acceso preferente a misiones',
           ].map((b) => (
-            <li key={b} className="bg-neutral-900 border border-neutral-700 rounded-2xl p-4 text-neutral-200">
+            <li
+              key={b}
+              className="rounded-2xl p-4 bg-[var(--apcc-card)] border border-[var(--apcc-border)] text-[var(--apcc-text-2)]"
+            >
               {b}
             </li>
           ))}
@@ -258,10 +323,17 @@ export default function Page() {
       <section id="eventos-fotos" className="container py-14">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <h2 className="text-2xl md:text-3xl font-semibold text-white">Eventos APCC</h2>
-            <p className="mt-2 text-neutral-300">Una mirada a nuestras actividades en Chile, Hong Kong y Asia.</p>
+            <h2 className="text-2xl md:text-3xl font-semibold">Eventos APCC</h2>
+            <p className="mt-2 text-[var(--apcc-text-2)]">
+              Una mirada a nuestras actividades en Chile, Hong Kong y Asia.
+            </p>
           </div>
-          <Link href="/eventos" className="text-sm text-neutral-200 hover:text-white">Ver calendario →</Link>
+          <Link
+            href="/eventos"
+            className="text-sm text-[var(--apcc-text-2)] hover:text-[var(--apcc-accent)]"
+          >
+            Ver calendario →
+          </Link>
         </div>
         <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
@@ -270,7 +342,10 @@ export default function Page() {
             { src: '/gallery/event-3.jpg', alt: 'Webinar de logística' },
             { src: '/gallery/event-4.jpg', alt: 'Networking sectorial' },
           ].map((img) => (
-            <figure key={img.src} className="group relative overflow-hidden rounded-2xl border border-neutral-700 bg-neutral-900">
+            <figure
+              key={img.src}
+              className="group relative overflow-hidden rounded-2xl border border-[var(--apcc-border)] bg-[var(--apcc-card)]"
+            >
               <Image
                 src={img.src}
                 alt={img.alt}
@@ -280,18 +355,26 @@ export default function Page() {
                 sizes="(max-width: 768px) 50vw, 25vw"
                 loading="lazy"
               />
-              <figcaption className="p-3 text-xs text-neutral-200">{img.alt}</figcaption>
+              <figcaption className="p-3 text-xs text-[var(--apcc-text-2)]">
+                {img.alt}
+              </figcaption>
             </figure>
           ))}
         </div>
       </section>
 
       {/* NUEVOS SOCIOS */}
-      <section id="nuevos-socios" className="container py-14 border-t border-neutral-200 dark:border-neutral-800">
+      <section
+        id="nuevos-socios"
+        className="container py-14 border-t border-[var(--apcc-border)]"
+      >
         <div className="max-w-3xl">
-          <h2 className="text-2xl md:text-3xl font-semibold text-white">Nuevos socios corporativos</h2>
-          <p className="mt-2 text-neutral-700 dark:text-neutral-300">
-            ¡Bienvenidos a la Red Asia Pacífico! Conoce a quienes se suman este mes.
+          <h2 className="text-2xl md:text-3xl font-semibold">
+            Nuevos socios corporativos
+          </h2>
+          <p className="mt-2 text-[var(--apcc-text-2)]">
+            ¡Bienvenidos a la Red Asia Pacífico! Conoce a quienes se suman este
+            mes.
           </p>
         </div>
 
@@ -305,33 +388,46 @@ export default function Page() {
       {/* NUESTRA TRAYECTORIA */}
       <section id="trayectoria" className="container py-14">
         <div className="max-w-3xl">
-          <h2 className="text-2xl md:text-3xl font-semibold text-white">Nuestra trayectoria</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold">
+            Nuestra trayectoria
+          </h2>
         </div>
         <div className="mt-3 grid gap-4">
-          <p className="text-neutral-200 max-w-3xl">
-            Fundada el <strong>6 de marzo de 2002</strong>, la APCC se ha consolidado como un <strong>hub estratégico</strong> para
-            <strong> empresas de Chile y LatAm</strong>. Conectamos la región con Asia mediante relaciones sólidas,
-            recursos confiables y oportunidades reales.
+          <p className="text-[var(--apcc-text-2)] max-w-3xl">
+            Fundada el <strong>6 de marzo de 2002</strong>, la APCC se ha
+            consolidado como un <strong>hub estratégico</strong> para
+            <strong> empresas de Chile y LatAm</strong>. Conectamos la región
+            con Asia mediante relaciones sólidas, recursos confiables y
+            oportunidades reales.
           </p>
-          <p className="text-neutral-300 max-w-3xl">
-            Con el <strong>Plan 2026–2030</strong>, reforzamos ese compromiso: una cámara moderna, digital y enfocada en resultados
-            que impulsa la renovación continua de nuestros socios gracias al valor generado año tras año.
+          <p className="text-[var(--apcc-text-2)] max-w-3xl">
+            Con el <strong>Plan 2026–2030</strong>, reforzamos ese compromiso:
+            una cámara moderna, digital y enfocada en resultados que impulsa la
+            renovación continua de nuestros socios gracias al valor generado año
+            tras año.
           </p>
         </div>
       </section>
 
       {/* CTA FINAL + JSON-LD */}
       <section className="container py-16">
-        <div className="rounded-2xl border border-neutral-700 bg-neutral-900 p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="rounded-2xl border border-[var(--apcc-border)] bg-[var(--apcc-card)] p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
-            <h3 className="text-xl md:text-2xl font-semibold text-white">¿Listo para acelerar tu negocio con Asia?</h3>
-            <p className="mt-2 text-neutral-300 max-w-2xl">
-              Conecta con proveedores confiables, participa en misiones comerciales y aprovecha la Red Asia Pacífico.
+            <h3 className="text-lg md:text-xl font-semibold">
+              ¿Listo para acelerar tu negocio con Asia?
+            </h3>
+            <p className="mt-2 text-[var(--apcc-text-2)] max-w-2xl">
+              Conecta con proveedores confiables, participa en misiones
+              comerciales y aprovecha la Red Asia Pacífico.
             </p>
           </div>
           <div className="flex gap-3">
-            <Link href="/membresias" className="btn btn-primary">Comparar planes</Link>
-            <Link href="/contacto" className="btn btn-secondary">Agendar llamada</Link>
+            <Link href="/membresias" className="btn btn-primary">
+              Comparar planes
+            </Link>
+            <Link href="/contacto" className="btn btn-secondary">
+              Agendar llamada
+            </Link>
           </div>
         </div>
 
