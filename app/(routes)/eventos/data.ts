@@ -23,36 +23,36 @@ export type EventItem = {
 };
 
 export const EVENTS: EventItem[] = [
-  // 1) Webinar Informativo Ferias HKTDC
+  // 1) 21 Oct · Mesa de Trabajo de Logística
   {
-    slug: '2025-10-webinar-ferias-hktdc-toys-baby-stationery',
+    slug: '2025-10-mesa-logistica-comercio-asia',
     title:
-      'Webinar Informativo HKTDC: Toys & Games · Baby Products · Stationery & School Supplies',
-    date: '07 Oct 2025',
-    time: '17:30–18:30 (CLST)',
-    mode: 'Webinar',
-    location: 'Online (Zoom)',
-    poster: '/events/posters/2025-10-webinar-hktdc-toys.jpg',
+      'Mesa de Trabajo de Logística: Desafíos y Oportunidades de Comercio Exterior hacia Asia Pacífico',
+    date: '21 Oct 2025',
+    time: '09:30–12:00',
+    mode: 'Mesa de Trabajo',
+    location: 'Hotel Sheraton Santiago, Av. Sta. María 1742, Providencia, Chile',
+    poster: '/events/posters/2025-10-mesa-logistica.jpg',
     summary:
-      'Oportunidades en las ferias de enero 2026 en Hong Kong y Shenzhen. Categorías, agenda y detalles de misión comercial (10–16 ene 2026).',
-    guests: ['HKTDC', 'APCC', 'ITT Travel Boutique'],
+      '2ª edición con actores clave (Puerto de San Antonio, ZOFRI, HKTDC y APCC). Costos, colaboración y tendencias para optimizar la cadena Chile–Asia.',
+    guests: ['Puerto de San Antonio', 'ZOFRI', 'HKTDC', 'APCC'],
     sponsors: [
       { name: 'APCC', logo: '/sponsors/apcc.png', role: 'Produce' },
       { name: 'HKTDC', logo: '/sponsors/hktdc.png', role: 'Organiza' },
-      { name: 'Global66', logo: '/sponsors/global66.png', role: 'Auspicia' },
-      { name: 'HKLABA', logo: '/sponsors/hklaba.png', role: 'Auspicia' },
-      { name: 'Empresas SURA', logo: '/sponsors/sura.png', role: 'Auspicia' },
-      { name: 'Huawei', logo: '/sponsors/huawei.png', role: 'Auspicia' },
+      { name: 'ZOFRI', logo: '/sponsors/zofri.png', role: 'Patrocina' },
+      { name: 'Puerto de San Antonio', logo: '/sponsors/san-antonio.png', role: 'Auspicia' },
     ],
     agenda: [
-      { time: '17:30', topic: 'Bienvenida y contexto de ferias HKTDC', speaker: 'HKTDC' },
-      { time: '17:40', topic: 'Toys & Games, Baby Products, Stationery: qué esperar' },
-      { time: '18:00', topic: 'Misión comercial 10–16 ene 2026: logística e inscripción', speaker: 'APCC / ITT' },
-      { time: '18:20', topic: 'Q&A y próximos pasos' },
+      { time: '09:30', topic: 'Acreditación y bienvenida' },
+      { time: '09:45', topic: 'Optimización de costos y tiempos logísticos', speaker: 'Puerto de San Antonio' },
+      { time: '10:15', topic: 'Oportunidades de colaboración Chile–Asia', speaker: 'ZOFRI' },
+      { time: '10:45', topic: 'Herramientas y apoyo para internacionalización', speaker: 'HKTDC' },
+      { time: '11:15', topic: 'Tendencias y proyección futura', speaker: 'APCC' },
+      { time: '11:45', topic: 'Q&A y networking' },
     ],
   },
 
-  // 2) Seminario Gratuito: Oportunidades y desafíos para Chile en Hong Kong, China y Asia
+  // 2) 07 Nov · Seminario
   {
     slug: '2025-11-seminario-oportunidades-desafios-asia',
     title:
@@ -83,7 +83,7 @@ export const EVENTS: EventItem[] = [
     ],
   },
 
-  // 3) 26º Hong Kong Forum (HKLABA · Federation)
+  // 3) 02–03 Dic · Foro
   {
     slug: '2025-12-hong-kong-forum-26',
     title: '26º Hong Kong Forum (HKLABA · Federation)',
@@ -113,32 +113,32 @@ export const EVENTS: EventItem[] = [
     ],
   },
 
-  // 4) Mesa de Trabajo de Logística
+  // 4) 07 Oct · Webinar
   {
-    slug: '2025-10-mesa-logistica-comercio-asia',
+    slug: '2025-10-webinar-ferias-hktdc-toys-baby-stationery',
     title:
-      'Mesa de Trabajo de Logística: Desafíos y Oportunidades de Comercio Exterior hacia Asia Pacífico',
-    date: '21 Oct 2025',
-    time: '09:30–12:00',
-    mode: 'Mesa de Trabajo',
-    location: 'Hotel Sheraton Santiago, Av. Sta. María 1742, Providencia, Chile',
-    poster: '/events/posters/2025-10-mesa-logistica.jpg',
+      'Webinar Informativo HKTDC: Toys & Games · Baby Products · Stationery & School Supplies',
+    date: '07 Oct 2025',
+    time: '17:30–18:30 (CLST)',
+    mode: 'Webinar',
+    location: 'Online (Zoom)',
+    poster: '/events/posters/2025-10-webinar-hktdc-toys.jpg',
     summary:
-      '2ª edición con actores clave (Puerto de San Antonio, ZOFRI, HKTDC y APCC). Costos, colaboración y tendencias para optimizar la cadena Chile–Asia.',
-    guests: ['Puerto de San Antonio', 'ZOFRI', 'HKTDC', 'APCC'],
+      'Oportunidades en las ferias de enero 2026 en Hong Kong y Shenzhen. Categorías, agenda y detalles de misión comercial (10–16 ene 2026).',
+    guests: ['HKTDC', 'APCC', 'ITT Travel Boutique'],
     sponsors: [
       { name: 'APCC', logo: '/sponsors/apcc.png', role: 'Produce' },
       { name: 'HKTDC', logo: '/sponsors/hktdc.png', role: 'Organiza' },
-      { name: 'ZOFRI', logo: '/sponsors/zofri.png', role: 'Patrocina' },
-      { name: 'Puerto de San Antonio', logo: '/sponsors/san-antonio.png', role: 'Auspicia' },
+      { name: 'Global66', logo: '/sponsors/global66.png', role: 'Auspicia' },
+      { name: 'HKLABA', logo: '/sponsors/hklaba.png', role: 'Auspicia' },
+      { name: 'Empresas SURA', logo: '/sponsors/sura.png', role: 'Auspicia' },
+      { name: 'Huawei', logo: '/sponsors/huawei.png', role: 'Auspicia' },
     ],
     agenda: [
-      { time: '09:30', topic: 'Acreditación y bienvenida' },
-      { time: '09:45', topic: 'Optimización de costos y tiempos logísticos', speaker: 'Puerto de San Antonio' },
-      { time: '10:15', topic: 'Oportunidades de colaboración Chile–Asia', speaker: 'ZOFRI' },
-      { time: '10:45', topic: 'Herramientas y apoyo para internacionalización', speaker: 'HKTDC' },
-      { time: '11:15', topic: 'Tendencias y proyección futura', speaker: 'APCC' },
-      { time: '11:45', topic: 'Q&A y networking' },
+      { time: '17:30', topic: 'Bienvenida y contexto de ferias HKTDC', speaker: 'HKTDC' },
+      { time: '17:40', topic: 'Toys & Games, Baby Products, Stationery: qué esperar' },
+      { time: '18:00', topic: 'Misión comercial 10–16 ene 2026: logística e inscripción', speaker: 'APCC / ITT' },
+      { time: '18:20', topic: 'Q&A y próximos pasos' },
     ],
   },
 ];
