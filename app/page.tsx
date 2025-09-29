@@ -286,7 +286,7 @@ export default function Page() {
       {/* NUEVOS SOCIOS */}
       <section id="nuevos-socios" className="container py-14 border-t border-neutral-800">
         <div className="max-w-3xl">
-          <h2 className="text-2xl md:text-3xl font-semibold">Nuevos socios</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold">Nuevos socios corporativos</h2>
           <p className="mt-2 text-neutral-400">¡Bienvenidos a la Red Asia Pacífico! Conoce a quienes se suman este mes.</p>
         </div>
 
