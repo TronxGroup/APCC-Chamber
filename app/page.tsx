@@ -90,33 +90,39 @@ export default function Page() {
       className="object-cover object-center"
       sizes="100vw"
     />
-    {/* Overlay: ligero para resaltar el texto */}
-    <div className="absolute inset-0 bg-black/40" />
+    {/* Overlay gradiente: contraste + acento rojo */}
+    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-red-900/20 pointer-events-none" />
   </div>
 
   {/* Contenido sobre el fondo */}
   <div className="relative z-10">
     <div className="container py-24 lg:py-32">
       <div className="max-w-4xl text-white">
-        <p className="kicker text-xs tracking-[0.14em] uppercase">
+        <p className="kicker text-xs tracking-[0.14em] uppercase text-neutral-100">
           Plan 2026–2030
         </p>
-        <h1 className="mt-2 text-4xl md:text-6xl font-bold leading-tight">
+        <h1 className="mt-2 text-4xl md:text-6xl font-bold leading-tight text-white">
           El puente confiable entre Chile/LatAm y Asia Pacífico
         </h1>
-        <p className="mt-4 text-base md:text-lg max-w-2xl">
+        <p className="mt-4 text-base md:text-lg max-w-2xl text-neutral-100">
           La cámara de comercio más enfocada en <strong>resultados</strong> para
           empresas de Chile y LatAm: inteligencia comercial, networking y acceso
           directo a mercados.
         </p>
 
         <div className="mt-7 flex flex-wrap gap-3">
-          <Link href="/membresias" className="btn btn-primary">Comparar planes</Link>
-          <a href="#beneficios" className="btn btn-outline hero-outline">Ver beneficios</a>
-          <Link href="/contacto" className="btn btn-outline hero-outline">Habla con nosotros</Link>
+          <Link href="/membresias" className="btn btn-primary">
+            Comparar planes
+          </Link>
+          <a href="#beneficios" className="btn btn-outline hero-outline">
+            Ver beneficios
+          </a>
+          <Link href="/contacto" className="btn btn-outline hero-outline">
+            Habla con nosotros
+          </Link>
         </div>
 
-        <div className="mt-8 text-sm">
+        <div className="mt-8 text-sm text-neutral-100">
           2 misiones comerciales/año · Webinars mensuales · Networking trimestral
         </div>
       </div>
