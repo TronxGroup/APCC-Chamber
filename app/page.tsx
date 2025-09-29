@@ -291,16 +291,53 @@ export default function Page() {
       </section>
 
       {/* NUEVOS SOCIOS */}
-      <section id="nuevos-socios" className="container py-14 border-t border-neutral-800">
-        <div className="max-w-3xl">
-          <h2 className="text-2xl md:text-3xl font-semibold">Nuevos socios corporativos</h2>
-          <p className="mt-2 text-neutral-400">¡Bienvenidos a la Red Asia Pacífico! Conoce a quienes se suman este mes.</p>
+<section id="nuevos-socios" className="container py-14 border-t border-neutral-200 dark:border-neutral-800">
+  <div className="max-w-3xl">
+    <h2 className="text-2xl md:text-3xl font-semibold">Nuevos socios corporativos</h2>
+    <p className="mt-2 text-neutral-600 dark:text-neutral-400">
+      ¡Bienvenidos a la Red Asia Pacífico! Conoce a quienes se suman este mes.
+    </p>
+  </div>
+
+  <div className="mt-6 grid md:grid-cols-3 gap-6">
+    {NEW_PARTNERS.map((p) => (
+      <article key={p.name} className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 flex flex-col shadow-sm">
+        {/* Logo */}
+        <div className="h-14 flex items-center justify-center">
+          <Image
+            src={p.logo}
+            alt={`${p.name} logo`}
+            width={140}
+            height={60}
+            className="h-12 w-auto object-contain bg-white dark:bg-neutral-900 rounded-md p-2"
+          />
         </div>
 
-        <div className="mt-6 grid md:grid-cols-3 gap-4">
-          {NEW_PARTNERS.map((p) => <PartnerCard key={p.name} p={p} />)}
+        {/* Nombre */}
+        <h3 className="mt-3 text-lg font-semibold">{p.name}</h3>
+
+        {/* Blurb */}
+        <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400 flex-1">{p.blurb}</p>
+
+        {/* Links */}
+        <div className="mt-4 flex items-center flex-wrap gap-3 text-sm">
+          <Link
+            href={p.website}
+            target="_blank"
+            className="text-[var(--apcc-accent)] hover:underline"
+          >
+            Sitio web
+          </Link>
+          {p.linkedin && <Link href={p.linkedin} target="_blank" className="text-neutral-500 hover:text-[var(--apcc-accent)]">LinkedIn</Link>}
+          {p.instagram && <Link href={p.instagram} target="_blank" className="text-neutral-500 hover:text-[var(--apcc-accent)]">Instagram</Link>}
+          {p.facebook && <Link href={p.facebook} target="_blank" className="text-neutral-500 hover:text-[var(--apcc-accent)]">Facebook</Link>}
+          {p.x && <Link href={p.x} target="_blank" className="text-neutral-500 hover:text-[var(--apcc-accent)]">X</Link>}
+          {p.youtube && <Link href={p.youtube} target="_blank" className="text-neutral-500 hover:text-[var(--apcc-accent)]">YouTube</Link>}
         </div>
-      </section>
+      </article>
+    ))}
+  </div>
+</section>
 
       {/* NUESTRA TRAYECTORIA */}
       <section id="trayectoria" className="container py-14">
