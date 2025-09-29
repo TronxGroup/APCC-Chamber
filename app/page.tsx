@@ -42,24 +42,24 @@ const NEW_PARTNERS: NewPartner[] = [
   {
     name: 'Global 66',
     logo: '/partners/corporate_global66.png',
-    website: 'https://alpha.example.com',
+    website: 'https://global66.com/',
     linkedin: 'https://www.linkedin.com/company/alpha',
     instagram: 'https://www.instagram.com/alpha',
-    blurb: 'Importador con foco en electrónica de consumo y cadena logística optimizada para LatAm.',
+    blurb: 'Aliado en soluciones financieras y logísticas para importadores y exportadores.',
   },
   {
     name: 'Empresas Sura',
     logo: '/partners/corporate_sura.png',
-    website: 'https://beta.example.com',
+    website: 'https://www.sura.com/',
     x: 'https://x.com/grupobeta',
-    blurb: 'Exportador de alimentos con certificaciones y estándares internacionales.',
+    blurb: 'Referente regional en seguros y gestión de riesgos, con foco en sostenibilidad y certificaciones.',
   },
   {
     name: 'Huawei',
     logo: '/partners/corporate_huawei.png',
-    website: 'https://gamma.example.com',
+    website: 'https://www.huawei.com/mx/',
     linkedin: 'https://www.linkedin.com/company/gamma',
-    blurb: 'Proveedor B2B con soluciones industriales y garantías de postventa para la región Andina.',
+    blurb: 'Líder en innovación tecnológica y conectividad, con soluciones industriales para la región andina.',
   },
 ];
 
