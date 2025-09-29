@@ -22,7 +22,7 @@ const PRESIDENTS: Person[] = [
     name: 'Álvaro Echeverría',
     role: 'Presidente',
     period: '2022 — presente',
-    photo: '/team/presidencia-actual.jpg',
+    photo: '/team/director_alvaro_echeverria.jpg',
     bio: 'Liderazgo estratégico de la Cámara, relaciones institucionales y supervisión del Plan 2026–2030.',
   },
 ];
@@ -52,10 +52,10 @@ const FORMER_PRESIDENTS: Person[] = [
 ];
 
 const BOARD_SAMPLE: Person[] = [
-  { name: 'Jorge Carey', role: 'Director', photo: '/team/board-1.jpg' },
-  { name: 'Álvaro Echeverría', role: 'Director', photo: '/team/board-2.jpg' },
-  { name: 'Charles Kimber', role: 'Director', photo: '/team/board-3.jpg' },
-  { name: 'Alberto Salas', role: 'Director', photo: '/team/board-4.jpg' },
+  { name: 'Jorge Carey', role: 'Director', photo: '/team/director_jorge_carey.jpg' },
+  { name: 'Álvaro Echeverría', role: 'Director', photo: '/team/director_alvaro_echeverria.jpg' },
+  { name: 'Charles Kimber', role: 'Director', photo: '/team/director_charles_kimber.jpg' },
+  { name: 'Alberto Salas', role: 'Director', photo: '/team/director_alberto_salas.jpg' },
 ];
 
 export default function Page() {
