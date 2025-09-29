@@ -5,20 +5,21 @@
 /* ================================
    APCC Design Tokens (Light)
    ================================ */
-:root{
+:root {
   --apcc-bg: #edeff2;         /* fondo general */
   --apcc-text: #111111;       /* texto principal (negro suave) */
   --apcc-text-2: #222222;     /* texto secundario */
   --apcc-muted: #4b5563;      /* texto tenue (descripciones) */
   --apcc-card: #ffffff;       /* tarjetas/pastillas claras */
-  --apcc-border: #d7dbe0;     /* bordes suave */
+  --apcc-border: #d7dbe0;     /* bordes suaves */
   --apcc-accent: #be2d2a;     /* institucional */
 }
 
-/* ================================
-   Base global
-   ================================ */
-html, body { background: var(--apcc-bg); color: var(--apcc-text); }
+/* Base global */
+html, body {
+  background: var(--apcc-bg);
+  color: var(--apcc-text);
+}
 a { text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
@@ -36,26 +37,21 @@ p, li, small { color: var(--apcc-text-2); }
    APCC Light Theme PATCHER
    Corrige componentes que quedaron
    con clases "oscuras" de Tailwind
-   (EXCLUYE el HERO)
    ================================ */
-
-/* Fondos oscuros -> claros (excepto dentro del HERO) */
-.apcc-light :not(.apcc-hero) .bg-neutral-950,
-.apcc-light :not(.apcc-hero) .bg-neutral-900,
-.apcc-light :not(.apcc-hero) .bg-gray-900,
-.apcc-light :not(.apcc-hero) .bg-black {
+.apcc-light .bg-neutral-950,
+.apcc-light .bg-neutral-900,
+.apcc-light .bg-gray-900,
+.apcc-light .bg-black {
   background-color: var(--apcc-card) !important;
 }
 
-/* Textos claros -> oscuros (excepto dentro del HERO) */
-.apcc-light :not(.apcc-hero) .text-neutral-100,
-.apcc-light :not(.apcc-hero) .text-neutral-200,
-.apcc-light :not(.apcc-hero) .text-neutral-300,
-.apcc-light :not(.apcc-hero) .text-white {
+.apcc-light .text-neutral-100,
+.apcc-light .text-neutral-200,
+.apcc-light .text-neutral-300 {
   color: var(--apcc-text) !important;
 }
+/* ⚠️ Eliminado .apcc-light .text-white para no pisar el hero */
 
-/* Bordes muy oscuros -> sutiles */
 .apcc-light .border-neutral-800,
 .apcc-light .border-neutral-700,
 .apcc-light .border-neutral-600,
@@ -63,10 +59,10 @@ p, li, small { color: var(--apcc-text-2); }
   border-color: var(--apcc-border) !important;
 }
 
-/* “Chips” / pastillas oscuras → claras (excepto HERO) */
-.apcc-light :not(.apcc-hero) .chip,
-.apcc-light :not(.apcc-hero) [class*="rounded-3xl"].bg-neutral-900,
-.apcc-light :not(.apcc-hero) [class*="rounded-2xl"].bg-neutral-900 {
+/* “Chips” / pastillas oscuras → claras */
+.apcc-light .chip,
+.apcc-light [class*="rounded-3xl"].bg-neutral-900,
+.apcc-light [class*="rounded-2xl"].bg-neutral-900 {
   background: var(--apcc-card) !important;
   color: var(--apcc-text) !important;
   border: 1px solid var(--apcc-border) !important;
@@ -84,7 +80,9 @@ p, li, small { color: var(--apcc-text-2); }
 
 /* Botones */
 .btn { @apply inline-flex items-center justify-center rounded-md px-4 py-2 font-medium; }
-.btn-primary { background: var(--apcc-accent); color: #fff; }
+.btn-primary {
+  background: var(--apcc-accent); color: #fff;
+}
 .btn-primary:hover { filter: brightness(0.95); }
 .btn-outline {
   background: transparent; color: var(--apcc-text);
@@ -114,24 +112,24 @@ p, li, small { color: var(--apcc-text-2); }
   border-color: #f7c9c7;
 }
 
-/* Catch-alls agresivos (EXCLUYEN HERO) */
-.apcc-light :not(.apcc-hero) [class*="bg-neutral-9"],
-.apcc-light :not(.apcc-hero) [class*="bg-gray-9"],
-.apcc-light :not(.apcc-hero) [class*="bg-black"],
-.apcc-light :not(.apcc-hero) [class*="bg-zinc-9"] {
+/* Stronger catch-all overrides */
+.apcc-light [class*="bg-neutral-9"],
+.apcc-light [class*="bg-gray-9"],
+.apcc-light [class*="bg-black"],
+.apcc-light [class*="bg-zinc-9"] {
   background-color: var(--apcc-card) !important;
 }
 
-.apcc-light :not(.apcc-hero) [class*="text-neutral-1"],
-.apcc-light :not(.apcc-hero) [class*="text-gray-1"],
-.apcc-light :not(.apcc-hero) [class*="text-zinc-1"],
-.apcc-light :not(.apcc-hero) [class*="text-white"] {
+.apcc-light [class*="text-neutral-1"],
+.apcc-light [class*="text-gray-1"],
+.apcc-light [class*="text-zinc-1"] {
   color: var(--apcc-text) !important;
 }
+/* ⚠️ Quitado .apcc-light [class*="text-white"] */
 
-/* Pills que parecían chips en dark theme (EXCLUYEN HERO) */
-.apcc-light :not(.apcc-hero) [class*="rounded-3xl"][class*="bg-"],
-.apcc-light :not(.apcc-hero) [class*="rounded-full"][class*="bg-"] {
+/* Pills que parecían chips en dark theme */
+.apcc-light [class*="rounded-3xl"][class*="bg-"],
+.apcc-light [class*="rounded-full"][class*="bg-"] {
   background: var(--apcc-card) !important;
   color: var(--apcc-text) !important;
   border: 1px solid var(--apcc-border) !important;
@@ -139,7 +137,6 @@ p, li, small { color: var(--apcc-text-2); }
 
 /* ================================
    HERO – Solo texto blanco dentro
-   (Este bloque va al FINAL para ganar cascada)
    ================================ */
 .apcc-hero .kicker { 
   color: rgba(255,255,255,.92) !important; 
@@ -155,17 +152,19 @@ p, li, small { color: var(--apcc-text-2); }
   color: #fff !important;
   border-color: rgba(255,255,255,.75) !important;
 }
-.apcc-hero .hero-outline:hover { border-color: #fff !important; }
+.apcc-hero .hero-outline:hover {
+  border-color: #fff !important;
+}
 
 /* Sombra para legibilidad */
-.apcc-hero h1,
-.apcc-hero .hero-desc,
+.apcc-hero h1, 
+.apcc-hero .hero-desc, 
 .apcc-hero .hero-meta,
 .apcc-hero p {
   text-shadow: 0 1px 6px rgba(0,0,0,.35);
 }
 
-/* No tocar overlays del HERO */
+/* No tocar fondos oscuros del hero */
 .apcc-light .apcc-hero [class*="bg-black"],
 .apcc-light .apcc-hero [class*="bg-neutral-9"],
 .apcc-light .apcc-hero [class*="bg-gray-9"],
