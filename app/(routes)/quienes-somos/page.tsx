@@ -245,7 +245,7 @@ export default function Page() {
         year: '2004–2019',
         title: 'Workshop Asia Pacífico',
         text:
-          'Encuentro insignia con presidentes (Lagos, Bachelet), cancillería y economía (incl. Briones), CPC/CNC, embajadas y líderes. Regresa en 2026.',
+          'Workshop Asia Pacífico: encuentro insignia que reunió a presidentes de Chile, ministros de Estado, líderes gremiales, embajadores y empresarios de ambas regiones. Regresa en 2026.',
         badge: 'Vuelve 2026',
       },
       {
