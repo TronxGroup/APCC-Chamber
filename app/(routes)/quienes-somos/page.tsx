@@ -327,7 +327,6 @@ export default function Page() {
   </div>
 </section>
 
-
         {/* Galería 4 fotos */}
         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
