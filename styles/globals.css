@@ -11,67 +11,92 @@
   --apcc-text-2: #222222;     /* texto secundario */
   --apcc-muted: #4b5563;      /* texto tenue (descripciones) */
   --apcc-card: #ffffff;       /* tarjetas/pastillas claras */
-  --apcc-border: #d7dbe0;     /* bordes suave */
-  --apcc-accent: #be2d2a;     /* institucional */
+  --apcc-border: #d7dbe0;     /* bordes suaves */
+  --apcc-accent: #be2d2a;     /* rojo institucional */
 }
 
-/* Base global */
+/* ================================
+   Base global
+   ================================ */
 html, body { background: var(--apcc-bg); color: var(--apcc-text); }
 a { text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-/* Tipografías por defecto (mejor legibilidad) */
+/* Tipografías por defecto */
 h1, h2, h3, h4 { color: var(--apcc-text); }
 p, li, small { color: var(--apcc-text-2); }
 .muted, .text-muted { color: var(--apcc-muted); }
 
-/* Contenedor utilitario (si usas className="container") */
+/* Contenedor utilitario */
 @layer utilities {
   .container { max-width: 1200px; margin-inline: auto; padding-inline: 1rem; }
 }
 
 /* ================================
    APCC Light Theme PATCHER
-   Corrige componentes que quedaron
-   con clases "oscuras" de Tailwind
+   (aplícalo sólo dentro de .apcc-surface)
    ================================ */
-.apcc-light .bg-neutral-950,
-.apcc-light .bg-neutral-900,
-.apcc-light .bg-gray-900,
-.apcc-light .bg-black {
+/* Pon .apcc-surface en secciones de fondo claro (cards, content). 
+   NO lo uses en héroes con foto ni secciones oscuras. */
+.apcc-light .apcc-surface .bg-neutral-950,
+.apcc-light .apcc-surface .bg-neutral-900,
+.apcc-light .apcc-surface .bg-gray-900,
+.apcc-light .apcc-surface .bg-black {
   background-color: var(--apcc-card) !important;
 }
 
-.apcc-light .text-neutral-100,
-.apcc-light .text-neutral-200,
-.apcc-light .text-neutral-300,
-.apcc-light .text-white {
+.apcc-light .apcc-surface .text-neutral-100,
+.apcc-light .apcc-surface .text-neutral-200,
+.apcc-light .apcc-surface .text-neutral-300,
+.apcc-light .apcc-surface .text-white {
   color: var(--apcc-text) !important;
 }
 
-.apcc-light .border-neutral-800,
-.apcc-light .border-neutral-700,
-.apcc-light .border-neutral-600,
-.apcc-light .border-black {
+.apcc-light .apcc-surface .border-neutral-800,
+.apcc-light .apcc-surface .border-neutral-700,
+.apcc-light .apcc-surface .border-neutral-600,
+.apcc-light .apcc-surface .border-black {
   border-color: var(--apcc-border) !important;
 }
 
-/* “Chips” / pastillas oscuras → claras */
-.apcc-light .chip,
-.apcc-light [class*="rounded-3xl"].bg-neutral-900,
-.apcc-light [class*="rounded-2xl"].bg-neutral-900 {
+/* “Chips” / pastillas oscuras → claras dentro de superficies claras */
+.apcc-light .apcc-surface .chip,
+.apcc-light .apcc-surface [class*="rounded-3xl"].bg-neutral-900,
+.apcc-light .apcc-surface [class*="rounded-2xl"].bg-neutral-900 {
   background: var(--apcc-card) !important;
   color: var(--apcc-text) !important;
   border: 1px solid var(--apcc-border) !important;
 }
 
-/* Separadores muy oscuros → sutiles */
-.apcc-light hr,
-.apcc-light .divide-neutral-800 > :not([hidden]) ~ :not([hidden]) {
+/* Separadores muy oscuros → sutiles (sólo en superficies claras) */
+.apcc-light .apcc-surface hr,
+.apcc-light .apcc-surface .divide-neutral-800 > :not([hidden]) ~ :not([hidden]) {
   border-color: var(--apcc-border) !important;
 }
 
-/* Enlaces y estados */
+/* Catch-all prudente sólo dentro de superficies claras */
+.apcc-light .apcc-surface [class*="bg-neutral-9"],
+.apcc-light .apcc-surface [class*="bg-gray-9"],
+.apcc-light .apcc-surface [class*="bg-black"],
+.apcc-light .apcc-surface [class*="bg-zinc-9"] {
+  background-color: var(--apcc-card) !important;
+}
+.apcc-light .apcc-surface [class*="text-neutral-1"],
+.apcc-light .apcc-surface [class*="text-gray-1"],
+.apcc-light .apcc-surface [class*="text-zinc-1"],
+.apcc-light .apcc-surface [class*="text-white"] {
+  color: var(--apcc-text) !important;
+}
+.apcc-light .apcc-surface [class*="rounded-3xl"][class*="bg-"],
+.apcc-light .apcc-surface [class*="rounded-full"][class*="bg-"] {
+  background: var(--apcc-card) !important;
+  color: var(--apcc-text) !important;
+  border: 1px solid var(--apcc-border) !important;
+}
+
+/* ================================
+   Componentes
+   ================================ */
 .apcc-link { color: var(--apcc-accent); }
 .apcc-link:hover { opacity: .9; }
 
@@ -109,55 +134,19 @@ p, li, small { color: var(--apcc-text-2); }
   border-color: #f7c9c7;
 }
 
-
-/* Stronger catch-all overrides for any residual dark utilities (including opacity variants) */
-.apcc-light [class*="bg-neutral-9"],
-.apcc-light [class*="bg-gray-9"],
-.apcc-light [class*="bg-black"],
-.apcc-light [class*="bg-zinc-9"] {
-  background-color: var(--apcc-card) !important;
-}
-
-.apcc-light [class*="text-neutral-1"],
-.apcc-light [class*="text-gray-1"],
-.apcc-light [class*="text-zinc-1"],
-.apcc-light [class*="text-white"] {
-  color: var(--apcc-text) !important;
-}
-
-/* Pills that looked like chips in dark theme */
-.apcc-light [class*="rounded-3xl"][class*="bg-"],
-.apcc-light [class*="rounded-full"][class*="bg-"] {
-  background: var(--apcc-card) !important;
-  color: var(--apcc-text) !important;
-  border: 1px solid var(--apcc-border) !important;
-}
-
-/* ===== HERO overrides (siempre legible sobre foto oscura) ===== */
-.apcc-hero .kicker { color: rgba(255,255,255,.85) !important; letter-spacing: .14em; }
-.apcc-hero h1 { color: #fff !important; }
-.apcc-hero .hero-desc { color: rgba(255,255,255,.9) !important; }
-.apcc-hero .hero-meta { color: rgba(255,255,255,.8) !important; }
-
-/* Botones outline en hero (blancos) */
-.apcc-hero .hero-outline {
-  color: #fff !important;
-  border-color: rgba(255,255,255,.7) !important;
-}
-.apcc-hero .hero-outline:hover {
-  border-color: #fff !important;
-}
-
-/* ====== FIX HERO: no permitir que el patcher lo sobrescriba ====== */
+/* ================================
+   HERO – Siempre legible sobre foto
+   (debe ir al FINAL del archivo)
+   ================================ */
 .apcc-hero, .apcc-hero * { color: #fff !important; }
 
-/* Texto específico */
-.apcc-hero .kicker { color: rgba(255,255,255,.9) !important; letter-spacing: .14em; }
+/* Texto */
+.apcc-hero .kicker { color: rgba(255,255,255,.92) !important; letter-spacing: .14em; }
 .apcc-hero h1 { color: #fff !important; }
-.apcc-hero .hero-desc { color: rgba(255,255,255,.95) !important; }
+.apcc-hero .hero-desc { color: rgba(255,255,255,.96) !important; }
 .apcc-hero .hero-meta { color: rgba(255,255,255,.9) !important; }
 
-/* No convertir fondos oscuros del HERO a blanco */
+/* Evitar que el patcher claro toque el hero */
 .apcc-light .apcc-hero [class*="bg-black"],
 .apcc-light .apcc-hero [class*="bg-neutral-9"],
 .apcc-light .apcc-hero [class*="bg-gray-9"],
@@ -165,17 +154,14 @@ p, li, small { color: var(--apcc-text-2); }
   background-color: inherit !important; /* respeta overlay/gradiente del hero */
 }
 
-/* Botones outline en el HERO (blancos) */
+/* Botones outline blancos en el hero */
 .apcc-hero .hero-outline {
   color: #fff !important;
   border-color: rgba(255,255,255,.75) !important;
 }
-.apcc-hero .hero-outline:hover {
-  border-color: #fff !important;
-}
+.apcc-hero .hero-outline:hover { border-color: #fff !important; }
 
-/* Si algún heading/parrafo global se cuela, recuérdales que aquí son blancos */
-.apcc-hero h1, .apcc-hero h2, .apcc-hero h3, .apcc-hero h4,
-.apcc-hero p, .apcc-hero li, .apcc-hero small {
-  color: #fff !important;
+/* Sombra suave para legibilidad */
+.apcc-hero h1, .apcc-hero .hero-desc, .apcc-hero .hero-meta {
+  text-shadow: 0 1px 8px rgba(0,0,0,.35);
 }
