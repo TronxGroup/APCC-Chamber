@@ -135,23 +135,28 @@ p, li, small { color: var(--apcc-text-2); }
 }
 
 /* ================================
-   HERO – Siempre legible sobre foto
-   (debe ir al FINAL del archivo)
+   HERO – Sólo blanco en esa sección
    ================================ */
-.apcc-hero, .apcc-hero * { color: #fff !important; }
-
-/* Texto */
-.apcc-hero .kicker { color: rgba(255,255,255,.92) !important; letter-spacing: .14em; }
-.apcc-hero h1 { color: #fff !important; }
-.apcc-hero .hero-desc { color: rgba(255,255,255,.96) !important; }
-.apcc-hero .hero-meta { color: rgba(255,255,255,.9) !important; }
-
-/* Evitar que el patcher claro toque el hero */
-.apcc-light .apcc-hero [class*="bg-black"],
-.apcc-light .apcc-hero [class*="bg-neutral-9"],
-.apcc-light .apcc-hero [class*="bg-gray-9"],
-.apcc-light .apcc-hero [class*="bg-zinc-9"] {
-  background-color: inherit !important; /* respeta overlay/gradiente del hero */
+.apcc-hero .kicker { 
+  color: rgba(255,255,255,.92) !important; 
+  letter-spacing: .14em; 
+}
+.apcc-hero h1, 
+.apcc-hero h2, 
+.apcc-hero h3, 
+.apcc-hero h4 { 
+  color: #fff !important; 
+}
+.apcc-hero p, 
+.apcc-hero li, 
+.apcc-hero small { 
+  color: rgba(255,255,255,.95) !important; 
+}
+.apcc-hero .hero-desc { 
+  color: rgba(255,255,255,.96) !important; 
+}
+.apcc-hero .hero-meta { 
+  color: rgba(255,255,255,.9) !important; 
 }
 
 /* Botones outline blancos en el hero */
@@ -161,7 +166,10 @@ p, li, small { color: var(--apcc-text-2); }
 }
 .apcc-hero .hero-outline:hover { border-color: #fff !important; }
 
-/* Sombra suave para legibilidad */
-.apcc-hero h1, .apcc-hero .hero-desc, .apcc-hero .hero-meta {
+/* Sombra suave para legibilidad en textos del hero */
+.apcc-hero h1, 
+.apcc-hero .hero-desc, 
+.apcc-hero .hero-meta {
   text-shadow: 0 1px 8px rgba(0,0,0,.35);
 }
+
