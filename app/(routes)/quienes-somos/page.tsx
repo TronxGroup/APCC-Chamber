@@ -309,10 +309,10 @@ export default function Page() {
         {/* Galería histórica (4 fotos) */}
         <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { src: '/history/workshop.jpg', alt: 'Workshop Asia Pacífico' },
-            { src: '/history/ministro.jpg', alt: 'Misión comercial a China' },
-            { src: '/history/hklaba.jpg', alt: 'Cursos de comercio internacional UC' },
-            { src: '/history/alianza.jpg', alt: 'Alianza APCC con HKLABA' },
+            { src: '/history/history_workshop.jpg', alt: 'Workshop Asia Pacífico' },
+            { src: '/history/history_ministro.jpg', alt: 'Misión comercial a China' },
+            { src: '/history/history_hklaba.jpg', alt: 'Cursos de comercio internacional UC' },
+            { src: '/history/history_alianza.jpg', alt: 'Alianza APCC con HKLABA' },
           ].map((img) => (
             <figure
               key={img.src}
