@@ -1,4 +1,4 @@
-// app/(routes)/page.tsx (o donde corresponda)
+// app/(routes)/page.tsx
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
 };
 
-// ------- Nuevos socios (mock) -------
+// ------- Nuevos socios (tipos + data) -------
 type NewPartner = {
   name: string;
   logo: string;          // ruta en /public
@@ -35,6 +35,8 @@ type NewPartner = {
   linkedin?: string;
   instagram?: string;
   x?: string;            // Twitter/X
+  facebook?: string;
+  youtube?: string;
   blurb: string;
 };
 
@@ -43,8 +45,10 @@ const NEW_PARTNERS: NewPartner[] = [
     name: 'Global 66',
     logo: '/partners/corporate_global66.png',
     website: 'https://global66.com/',
-    linkedin: 'https://www.linkedin.com/company/alpha',
-    instagram: 'https://www.instagram.com/alpha',
+    facebook: 'https://web.facebook.com/soyglobal66/',
+    instagram: 'https://www.instagram.com/global_66/',
+    x: 'https://x.com/SomosGlobal66/',
+    linkedin: 'https://www.linkedin.com/company/global66/',
     blurb: 'Aliado en soluciones financieras y logísticas para importadores y exportadores.',
   },
   {
@@ -60,7 +64,9 @@ const NEW_PARTNERS: NewPartner[] = [
     name: 'Huawei',
     logo: '/partners/corporate_huawei.png',
     website: 'https://www.huawei.com/mx/',
-    linkedin: 'https://www.linkedin.com/company/gamma',
+    facebook: 'https://web.facebook.com/HuaweimobileCL/',
+    youtube: 'https://www.youtube.com/user/HuaweiDeviceChile',
+    instagram: 'https://www.instagram.com/huaweimobilecl/',
     blurb: 'Líder en innovación tecnológica y conectividad, con soluciones industriales para la región andina.',
   },
 ];
@@ -69,55 +75,54 @@ export default function Page() {
   return (
     <>
       {/* HERO */}
-<section
-  id="inicio"
-  className="apcc-hero relative overflow-hidden w-full min-h-[68vh] md:min-h-[76vh]"
->
-  {/* Fondo con imagen full-bleed */}
-  <div className="absolute inset-0">
-    <Image
-      src="/bg_image_apcc_home.png"
-      alt="Fondo APCC"
-      fill
-      priority
-      quality={90}
-      className="object-cover object-center"
-      sizes="100vw"
-    />
-    {/* Overlay gradiente: contraste sin tapar la foto */}
-    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-transparent pointer-events-none" />
-  </div>
-
-  {/* Contenido sobre el fondo */}
-  <div className="relative z-10">
-    <div className="container py-24 lg:py-32">
-      <div className="max-w-4xl">
-        <p className="kicker text-xs tracking-[0.14em] uppercase">
-          Plan 2026–2030
-        </p>
-        <h1 className="mt-2 text-4xl md:text-6xl font-bold leading-tight">
-          El puente confiable entre Chile/LatAm y Asia Pacífico
-        </h1>
-        <p className="mt-4 text-base md:text-lg hero-desc max-w-2xl">
-          La cámara de comercio más enfocada en <strong>resultados</strong> para
-          empresas de Chile y LatAm: inteligencia comercial, networking y acceso
-          directo a mercados.
-        </p>
-
-        <div className="mt-7 flex flex-wrap gap-3">
-          <Link href="/membresias" className="btn btn-primary">Comparar planes</Link>
-          <a href="#beneficios" className="btn btn-outline hero-outline">Ver beneficios</a>
-          <Link href="/contacto" className="btn btn-outline hero-outline">Habla con nosotros</Link>
+      <section
+        id="inicio"
+        className="apcc-hero relative overflow-hidden w-full min-h-[68vh] md:min-h-[76vh]"
+      >
+        {/* Fondo con imagen full-bleed */}
+        <div className="absolute inset-0">
+          <Image
+            src="/bg_image_apcc_home.png"
+            alt="Fondo APCC"
+            fill
+            priority
+            quality={90}
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+          {/* Overlay gradiente: contraste sin tapar la foto */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-transparent pointer-events-none" />
         </div>
 
-        <div className="mt-8 text-sm hero-meta">
-          2 misiones comerciales/año · Webinars mensuales · Networking trimestral
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        {/* Contenido sobre el fondo */}
+        <div className="relative z-10">
+          <div className="container py-24 lg:py-32">
+            <div className="max-w-4xl">
+              <p className="kicker text-xs tracking-[0.14em] uppercase">
+                Plan 2026–2030
+              </p>
+              <h1 className="mt-2 text-4xl md:text-6xl font-bold leading-tight">
+                El puente confiable entre Chile/LatAm y Asia Pacífico
+              </h1>
+              <p className="mt-4 text-base md:text-lg hero-desc max-w-2xl">
+                La cámara de comercio más enfocada en <strong>resultados</strong> para
+                empresas de Chile y LatAm: inteligencia comercial, networking y acceso
+                directo a mercados.
+              </p>
 
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link href="/membresias" className="btn btn-primary">Comparar planes</Link>
+                <a href="#beneficios" className="btn btn-outline hero-outline">Ver beneficios</a>
+                <Link href="/contacto" className="btn btn-outline hero-outline">Habla con nosotros</Link>
+              </div>
+
+              <div className="mt-8 text-sm hero-meta">
+                2 misiones comerciales/año · Webinars mensuales · Networking trimestral
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* PROOF STRIP */}
       <section className="border-y border-neutral-800 bg-neutral-950/40">
@@ -176,43 +181,43 @@ export default function Page() {
       </section>
 
       {/* SUPPORTING ORGANIZATIONS */}
-<section
-  id="supporting-orgs"
-  className="
-    border-y border-neutral-200 dark:border-neutral-800
-    bg-neutral-50 dark:bg-neutral-950
-  "
->
-  <div className="container py-10 md:py-12">
-    <div className="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
-      Supporting Organizations
-    </div>
+      <section
+        id="supporting-orgs"
+        className="
+          border-y border-neutral-200 dark:border-neutral-800
+          bg-neutral-50 dark:bg-neutral-950
+        "
+      >
+        <div className="container py-10 md:py-12">
+          <div className="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
+            Supporting Organizations
+          </div>
 
-    <div
-      className="
-        mt-6
-        grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6
-        gap-x-8 gap-y-8
-        items-center justify-items-center
-      "
-    >
-      {[
-        '/supporters/supporting_logo_1.png',
-        '/supporters/supporting_logo_2.png',
-        '/supporters/supporting_logo_3.png',
-        '/supporters/supporting_logo_4.png',
-        '/supporters/supporting_logo_5.png',
-        '/supporters/supporting_logo_6.png',
-      ].map((src, i) => (
-        <SupportingLogo
-          key={src}
-          src={src}
-          alt={`Logo organización patrocinadora ${i + 1}`}
-        />
-      ))}
-    </div>
-  </div>
-</section>
+          <div
+            className="
+              mt-6
+              grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6
+              gap-x-8 gap-y-8
+              items-center justify-items-center
+            "
+          >
+            {[
+              '/supporters/supporting_logo_1.png',
+              '/supporters/supporting_logo_2.png',
+              '/supporters/supporting_logo_3.png',
+              '/supporters/supporting_logo_4.png',
+              '/supporters/supporting_logo_5.png',
+              '/supporters/supporting_logo_6.png',
+            ].map((src, i) => (
+              <SupportingLogo
+                key={src}
+                src={src}
+                alt={`Logo organización patrocinadora ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* MEMBRESÍAS CON VALOR */}
       <section id="membresias-valor" className="container py-14">
@@ -315,7 +320,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* CTA FINAL */}
+      {/* CTA FINAL + JSON-LD */}
       <section className="container py-16">
         <div className="rounded-2xl border border-neutral-800 bg-neutral-900 p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
@@ -329,22 +334,22 @@ export default function Page() {
             <Link href="/contacto" className="btn btn-secondary">Agendar llamada</Link>
           </div>
         </div>
-      
-{/* Schema.org Organization */}
-<script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: 'Cámara de Comercio Asia Pacífico (APCC)',
-      url: 'https://www.asiapacific-chamber.com/',
-      logo: 'https://www.asiapacific-chamber.com/logo.png',
-      sameAs: ['https://www.linkedin.com/company/asiapacific-chamber'],
-    }),
-  }}
-/>
-</section>
+
+        {/* Schema.org Organization */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Cámara de Comercio Asia Pacífico (APCC)',
+              url: 'https://www.asiapacific-chamber.com/',
+              logo: 'https://www.asiapacific-chamber.com/Logo_apcc_web.png',
+              sameAs: ['https://www.linkedin.com/company/asiapacific-chamber'],
+            }),
+          }}
+        />
+      </section>
     </>
   );
 }
