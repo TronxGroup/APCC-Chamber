@@ -1,198 +1,124 @@
-// app/(routes)/tv/page.tsx
+// app/(routes)/apcc-tv/page.tsx
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'APCC TV — Creando Líderes para Asia',
+  title: 'APCC TV | Cámara de Comercio Asia Pacífico',
   description:
-    'Los mejores episodios del podcast “Creando Líderes para Asia”, conducido por Guillermo Hollzaman. APCC TV: entrevistas y contenidos clave para LatAm–Asia.',
-  openGraph: {
-    title: 'APCC TV — Creando Líderes para Asia',
-    description:
-      'Los mejores episodios del podcast “Creando Líderes para Asia”, conducido por Guillermo Hollzaman.',
-    images: [{ url: '/og/apcc-tv.jpg', width: 1200, height: 630 }],
-    type: 'website',
-  },
-  alternates: { canonical: 'https://www.asiapacific-chamber.com/tv' },
+    'APCC TV: Plataforma audiovisual de la Cámara de Comercio Asia Pacífico. Descubre los mejores episodios del podcast "Creando Líderes para Asia".',
 };
 
 type Video = {
   title: string;
-  url: string; // youtube watch url
-  guest?: string;
-  ep?: string;
+  guest: string;
+  role: string;
+  company: string;
+  url: string;
 };
 
 const VIDEOS: Video[] = [
   {
-    title:
-      'Tecnología educativa para aprender de China | Karina Piña | Podcast APCC EP#17',
-    url: 'https://www.youtube.com/watch?v=WDoQ9IUydq8',
+    title: 'Tecnología educativa para aprender de China',
     guest: 'Karina Piña',
-    ep: 'EP#17',
+    role: 'Directora',
+    company: 'Corporación Cruzando el Pacífico',
+    url: 'https://www.youtube.com/embed/WDoQ9IUydq8',
   },
   {
-    title:
-      'Cómo posicionar tu marca en China | Creando Líderes para Asia — T2E1',
-    url: 'https://www.youtube.com/watch?v=xyopX35IYek',
-    guest: 'Especial branding en China',
-    ep: 'T2E1',
+    title: 'Cómo posicionar tu marca en China',
+    guest: 'Javier Arellano',
+    role: 'B2B2C Operation Manager',
+    company: 'Huawei',
+    url: 'https://www.youtube.com/embed/xyopX35IYek',
   },
   {
-    title:
-      'Hacer negocios con China | Lina Song | Podcast APCC EP#09',
-    url: 'https://www.youtube.com/watch?v=wWC0VLwwd5M',
+    title: 'Hacer negocios con China',
     guest: 'Lina Song',
-    ep: 'EP#09',
+    role: 'General Manager',
+    company: 'Linacuza Intercultural SpA',
+    url: 'https://www.youtube.com/embed/wWC0VLwwd5M',
   },
   {
-    title:
-      'Vino chileno en Asia | Jorge Balduzzi | Podcast APCC EP#19',
-    url: 'https://www.youtube.com/watch?v=on7lKjzxlSY',
+    title: 'Vino chileno en Asia',
     guest: 'Jorge Balduzzi',
-    ep: 'EP#19',
+    role: 'CEO',
+    company: 'Balduzzi Wines',
+    url: 'https://www.youtube.com/embed/on7lKjzxlSY',
   },
   {
-    title:
-      'Déficit de 45.000 programadores/año | Jorge Arriagada | Podcast APCC EP#11',
-    url: 'https://www.youtube.com/watch?v=hJR-tXv6XhE',
+    title: 'Hay un déficit de 45.000 programadores anuales',
     guest: 'Jorge Arriagada',
-    ep: 'EP#11',
+    role: 'CEO',
+    company: 'Macrobots',
+    url: 'https://www.youtube.com/embed/hJR-tXv6XhE',
+  },
+  {
+    title: 'Oportunidades en Hong Kong para empresas Latinoamericanas',
+    guest: 'Dr. Jimmy Chiang',
+    role: 'Associate Director-General',
+    company: 'Invest Hong Kong (InvestHK)',
+    url: 'https://www.youtube.com/embed/hBAjGfsSnBc',
   },
 ];
 
-// Utilidad simple para extraer el ID del video
-function getYouTubeId(url: string) {
-  try {
-    const u = new URL(url);
-    if (u.hostname.includes('youtu.be')) return u.pathname.slice(1);
-    return u.searchParams.get('v') || '';
-  } catch {
-    return '';
-  }
-}
-
-// Crea la URL de embed con loop
-function buildEmbed(url: string) {
-  const id = getYouTubeId(url);
-  const params = new URLSearchParams({
-    rel: '0',
-    modestbranding: '1',
-    color: 'white',
-    // Para que el video "vuelva al comienzo"
-    loop: '1',
-    // YouTube exige playlist=id para que loop funcione en embeds
-    playlist: id,
-  });
-  return `https://www.youtube.com/embed/${id}?${params.toString()}`;
-}
-
 export default function Page() {
   return (
-    <>
+    <section>
       {/* HERO */}
-      <section className="apcc-hero relative overflow-hidden w-full min-h-[56vh] md:min-h-[64vh]">
-        {/* Fondo */}
-        <div className="absolute inset-0">
-          <Image
-            src="/bg_image_apcc_tv.jpg" // colócala en /public o cambia la ruta
-            alt="APCC TV"
-            fill
-            priority
-            quality={90}
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-black/55 md:bg-black/50" />
+      <div className="relative h-[400px] w-full overflow-hidden">
+        <img
+          src="/hero/apcc-tv-banner.jpg" // coloca aquí la imagen oscura que generamos
+          alt="APCC TV Banner"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* overlay oscuro para contraste */}
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
+          <h1 className="text-3xl md:text-5xl font-bold">APCC TV</h1>
+          <p className="mt-3 max-w-2xl text-neutral-200">
+            Creando Líderes para Asia · El podcast oficial de la Cámara de Comercio Asia Pacífico
+          </p>
+          <p className="mt-2 text-sm text-neutral-400">+20 episodios conducidos por Guillermo Hollzaman</p>
         </div>
+      </div>
 
-        {/* Contenido */}
-        <div className="relative z-10">
-          <div className="container py-20 md:py-28">
-            <div className="max-w-3xl">
-              <p className="kicker text-xs tracking-[0.14em] uppercase text-white/90">
-                APCC TV
-              </p>
-              <h1 className="mt-2 text-4xl md:text-6xl font-bold leading-tight text-white">
-                Creando Líderes para Asia
-              </h1>
-              <p className="mt-4 text-base md:text-lg text-white/90">
-                Nuestro podcast con más de 20 episodios, conducido por{' '}
-                <strong className="text-white">Guillermo Hollzaman</strong>. Aquí
-                destacamos 5 imperdibles sobre China, branding, tecnología y
-                expansión internacional.
-              </p>
-              <div className="mt-6 text-sm text-white/80">
-                Disponible en YouTube · Clips y episodios completos
+      {/* VIDEOS */}
+      <div className="container py-16">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-center">Top 6 episodios</h2>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {VIDEOS.map((v, i) => (
+            <div
+              key={i}
+              className="rounded-2xl border border-neutral-800 bg-neutral-900 overflow-hidden flex flex-col"
+            >
+              <div className="aspect-video">
+                <iframe
+                  src={v.url}
+                  title={v.title}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold">{v.title}</h3>
+                <p className="mt-1 text-sm text-neutral-400">
+                  {v.guest} — {v.role}, {v.company}
+                </p>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* LISTA DE VIDEOS */}
-      <section className="container py-12 md:py-16">
-        <div className="grid md:grid-cols-2 gap-6">
-          {VIDEOS.map((v) => {
-            const embed = buildEmbed(v.url);
-            return (
-              <article
-                key={v.title}
-                className="rounded-2xl border border-neutral-800 bg-neutral-900 overflow-hidden"
-              >
-                <div className="aspect-video bg-neutral-950">
-                  <iframe
-                    title={v.title}
-                    src={embed}
-                    className="w-full h-full"
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-                <div className="p-4">
-                  <div className="text-xs uppercase tracking-wider text-neutral-400">
-                    {v.ep ? v.ep : 'Podcast'}
-                    {v.guest ? ` · Invitado(a): ${v.guest}` : ''}
-                  </div>
-                  <h2 className="mt-1 text-lg font-semibold text-white">
-                    {v.title}
-                  </h2>
-                  <div className="mt-3 flex items-center gap-3">
-                    <Link
-                      href={v.url}
-                      target="_blank"
-                      className="btn btn-secondary"
-                    >
-                      Ver en YouTube
-                    </Link>
-                    <Link href="/membresias" className="btn btn-primary">
-                      Hazte socio
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
+          ))}
         </div>
 
-        {/* Nota editorial */}
-        <div className="mt-10 rounded-2xl border border-neutral-800 bg-neutral-900 p-6">
-          <h3 className="text-lg font-semibold text-white">Temporada 2026</h3>
-          <p className="mt-2 text-neutral-300">
-            En <strong>enero de 2026</strong> grabaremos una nueva tanda de episodios
-            que estrenaremos a lo largo de 2026, en <strong>español</strong> y con
-            <strong> subtítulos en inglés y portugués</strong>. Si quieres participar como
-            invitado o partner de contenidos, <strong>solo debes ser socio de la APCC</strong>.
+        {/* CTA */}
+        <div className="mt-16 text-center max-w-3xl mx-auto">
+          <h3 className="text-xl md:text-2xl font-semibold">Temporada 2026</h3>
+          <p className="mt-3 text-neutral-400">
+            En enero 2026 grabaremos nuevos capítulos que estrenaremos durante el año, en español con subtítulos en inglés
+            y portugués. Si quieres participar, solo debes ser socio de la APCC.
           </p>
-          <div className="mt-4">
-            <Link href="/membresias" className="btn btn-primary">
-              Unirme a la APCC
-            </Link>
-          </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
