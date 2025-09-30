@@ -4,13 +4,15 @@ export type SponsorRole = 'Produce' | 'Organiza' | 'Patrocina' | 'Auspicia';
 export type Sponsor = {
   name: string;
   logo: string;                // ruta en /public/sponsors/*
-  role?: SponsorRole;          // Produce | Organiza | Patrocina | Auspicia (opcional)
+  role?: SponsorRole;          // opcional
 };
+
+export type AgendaItem = { time: string; topic: string; speaker?: string };
 
 export type EventItem = {
   slug: string;
   title: string;
-  date: string;                // Ej: "07 Oct 2025" o rango "02–03 Dic 2025" (mostrar)
+  date: string;                // Ej: "07 Oct 2025" o rango "02–03 Dic 2025" (mostrar tal cual)
   time?: string;               // Ej: "17:30–18:30 (CLST)" o "Programa de 2 días"
   mode: 'Webinar' | 'Seminario' | 'Rueda de Negocios' | 'Misión' | 'Foro' | 'Mesa de Trabajo';
   location: string;            // "Online (Zoom)" o dirección
@@ -19,7 +21,8 @@ export type EventItem = {
   guests: string[];            // Entidades invitadas / panelistas
   sponsors?: Sponsor[];        // Logos con rol opcional
   membersOnly?: boolean;       // true si es exclusivo socios
-  agenda?: { time: string; topic: string; speaker?: string }[];
+  agenda?: AgendaItem[];       // usar cuando haya programa por horas
+  description?: string;        // alternativa a agenda: párrafo resumido
 };
 
 export const EVENTS: EventItem[] = [
@@ -34,7 +37,7 @@ export const EVENTS: EventItem[] = [
     location: 'Online (Zoom)',
     poster: '/events/posters/2025-10-webinar-hktdc-toys.jpg',
     summary:
-      'Oportunidades en las ferias de enero 2026 en Hong Kong y Shenzhen. Categorías, agenda y detalles de misión comercial (10–16 ene 2026).',
+      'Oportunidades en las ferias de enero 2026 en Hong Kong y Shenzhen. Categorías y detalles de la misión comercial (10–16 ene 2026).',
     guests: ['HKTDC', 'APCC', 'ITT Travel Boutique'],
     sponsors: [
       { name: 'APCC', logo: '/sponsors/apcc.png', role: 'Produce' },
@@ -112,33 +115,34 @@ export const EVENTS: EventItem[] = [
     ],
   },
 
-  // 4) 02–03 Dic · Foro
-{
-  slug: '2025-12-hong-kong-forum-26',
-  title: '26º Hong Kong Forum (HKLABA · Federation)',
-  date: '02–03 Dic 2025',
-  time: 'Programa de 2 días',
-  mode: 'Foro',
-  location: 'HKCEC – Hong Kong Convention and Exhibition Centre',
-  poster: '/events/posters/2025-12-hk-forum-26.jpg',
-  summary:
-    'Evento anual insignia de la Federation (49 asociaciones, 38 países). Keynotes, paneles, networking y programa de visitas con ejecutivos de Hong Kong y China.',
-  guests: [
-    'HKTDC',
-    'Federation of HK Business Associations Worldwide',
-    'HKLABA',
-  ],
-  sponsors: [
-    { name: 'HKLABA', logo: '/sponsors/hklaba.png', role: 'Produce' },
-    { name: 'Federation of HKBAW', logo: '/sponsors/federation.png', role: 'Organiza' },
-    { name: 'HKTDC', logo: '/sponsors/hktdc.png', role: 'Patrocina' },
-  ],
-  membersOnly: true,
-  description:
-    'Foro exclusivo para socios corporativos. Incluye conferencias magistrales, paneles de discusión, networking con ejecutivos internacionales y visitas para conocer los últimos desarrollos en infraestructura y negocios en Hong Kong.',
-},
-  
+  // 4) 02–03 Dic · Foro (members only con descripción en vez de agenda)
+  {
+    slug: '2025-12-hong-kong-forum-26',
+    title: '26º Hong Kong Forum (HKLABA · Federation)',
+    date: '02–03 Dic 2025',
+    time: 'Programa de 2 días',
+    mode: 'Foro',
+    location: 'HKCEC – Hong Kong Convention and Exhibition Centre',
+    poster: '/events/posters/2025-12-hk-forum-26.jpg',
+    summary:
+      'Evento anual insignia de la Federation (49 asociaciones, 38 países). Keynotes, paneles, networking y visitas con ejecutivos de Hong Kong y China.',
+    guests: [
+      'HKTDC',
+      'Federation of HK Business Associations Worldwide',
+      'HKLABA',
+    ],
+    sponsors: [
+      { name: 'HKLABA', logo: '/sponsors/hklaba.png', role: 'Produce' },
+      { name: 'Federation of HKBAW', logo: '/sponsors/federation.png', role: 'Organiza' },
+      { name: 'HKTDC', logo: '/sponsors/hktdc.png', role: 'Patrocina' },
+    ],
+    membersOnly: true,
+    description:
+      'Foro exclusivo para socios corporativos. Incluye conferencias magistrales, paneles de discusión, sesiones de networking con ejecutivos internacionales y un programa de visitas para conocer los últimos desarrollos en infraestructura y negocios en Hong Kong.',
+  },
+];
 
+// Helpers
 export function getEventBySlug(slug: string) {
   return EVENTS.find((e) => e.slug === slug);
 }
