@@ -137,6 +137,7 @@ export const EVENTS: EventItem[] = [
   description:
     'Foro exclusivo para socios corporativos. Incluye conferencias magistrales, paneles de discusión, networking con ejecutivos internacionales y visitas para conocer los últimos desarrollos en infraestructura y negocios en Hong Kong.',
 },
+  
 
 export function getEventBySlug(slug: string) {
   return EVENTS.find((e) => e.slug === slug);
