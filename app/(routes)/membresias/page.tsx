@@ -99,13 +99,16 @@ export default function Page() {
     <section className="container py-16">
       {/* HERO */}
       <header className="max-w-3xl">
-        <h1 className="text-3xl md:text-4xl font-semibold text-white">Membresías APCC 2026–2030</h1>
-        <p className="mt-3 text-neutral-200">
+        <h1 className="text-3xl md:text-4xl font-semibold text-[var(--apcc-text)]">Membresías APCC 2026–2030</h1>
+        <p className="mt-3 text-[var(--apcc-text-2)]">
           Programas pensados para entregar <strong>valor real y renovable</strong>: inteligencia comercial, networking
           sectorial, business matching y acceso a misiones y ferias en Asia.
         </p>
-        <div className="mt-6 text-sm text-neutral-300">
-          ¿Dudas? <Link href="/join" className="underline underline-offset-4 hover:text-white">Agenda una llamada</Link>.
+        <div className="mt-6 text-sm text-[var(--apcc-text-2)]">
+          ¿Dudas?{' '}
+          <Link href="/join" className="apcc-link underline-offset-4 hover:opacity-90">
+            Agenda una llamada
+          </Link>.
         </div>
       </header>
 
@@ -114,32 +117,29 @@ export default function Page() {
         {PLANS.map((p) => (
           <article
             key={p.id}
-            className={`rounded-2xl border ${p.best ? 'border-red-900' : 'border-neutral-700'} bg-neutral-900 p-6 flex flex-col`}
+            className={`card p-6 flex flex-col ${p.best ? 'border-[var(--apcc-accent)]/40' : ''}`}
           >
-            <div className="text-xs uppercase tracking-wider text-neutral-400">
+            <div className="text-xs uppercase tracking-wider text-neutral-600">
               {p.best ? 'Recomendado' : 'Membresía'}
             </div>
-            <h2 className="mt-1 text-xl font-semibold text-white">{p.name}</h2>
-            <div className="mt-2 text-sm text-neutral-300 min-h-[48px]">{p.blurb}</div>
+            <h2 className="mt-1 text-xl font-semibold text-[var(--apcc-text)]">{p.name}</h2>
+            <div className="mt-2 text-sm text-[var(--apcc-text-2)] min-h-[48px]">{p.blurb}</div>
 
-            <div className="mt-4 text-2xl font-semibold text-white">{p.price}</div>
+            <div className="mt-4 text-2xl font-semibold text-[var(--apcc-text)]">{p.price}</div>
 
             <ul className="mt-4 space-y-2 text-sm">
               {p.features.map((f) => (
                 <li key={f} className="flex gap-2">
                   <span aria-hidden>✓</span>
-                  <span className="text-neutral-200">{f}</span>
+                  <span className="text-[var(--apcc-text-2)]">{f}</span>
                 </li>
               ))}
             </ul>
 
-            {p.note && <div className="mt-4 text-xs text-neutral-300">{p.note}</div>}
+            {p.note && <div className="mt-4 text-xs text-neutral-600">{p.note}</div>}
 
             <div className="mt-6">
-              <Link
-                href={p.ctaHref}
-                className={`btn ${p.best ? 'btn-primary' : 'btn-secondary'}`}
-              >
+              <Link href={p.ctaHref} className="btn btn-primary">
                 {p.ctaLabel}
               </Link>
             </div>
@@ -149,8 +149,10 @@ export default function Page() {
 
       {/* BENEFICIOS TRANSVERSALES */}
       <section className="mt-12">
-        <div className="rounded-2xl border border-neutral-700 bg-neutral-900 p-6">
-          <h3 className="text-lg font-semibold text-white">Beneficios transversales (todos los planes)</h3>
+        <div className="card p-6">
+          <h3 className="text-lg font-semibold text-[var(--apcc-text)]">
+            Beneficios transversales (todos los planes)
+          </h3>
           <ul className="mt-4 grid md:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
             {[
               'Plataforma digital: biblioteca de guías, reportes y acuerdos',
@@ -162,7 +164,7 @@ export default function Page() {
             ].map((x) => (
               <li key={x} className="flex gap-2">
                 <span aria-hidden>•</span>
-                <span className="text-neutral-200">{x}</span>
+                <span className="text-[var(--apcc-text-2)]">{x}</span>
               </li>
             ))}
           </ul>
@@ -171,30 +173,33 @@ export default function Page() {
 
       {/* TABLA COMPARATIVA */}
       <section className="mt-12">
-        <h3 className="text-xl font-semibold text-white">Comparativa rápida</h3>
-        <div className="mt-4 overflow-x-auto rounded-2xl border border-neutral-700">
+        <h3 className="text-xl font-semibold text-[var(--apcc-text)]">Comparativa rápida</h3>
+        <div className="mt-4 overflow-x-auto rounded-2xl border border-[var(--apcc-border)] bg-white">
           <table className="min-w-full text-sm">
-            <thead className="bg-neutral-950/60">
-              <tr className="border-b border-neutral-700">
-                <th className="text-left p-3 text-white">Característica</th>
-                <th className="text-left p-3 text-white">Essential</th>
-                <th className="text-left p-3 text-white">Business</th>
-                <th className="text-left p-3 text-white">Corporate</th>
+            <thead className="bg-neutral-100">
+              <tr className="border-b border-[var(--apcc-border)]">
+                <th className="text-left p-3 text-[var(--apcc-text)]">Característica</th>
+                <th className="text-left p-3 text-[var(--apcc-text)]">Essential</th>
+                <th className="text-left p-3 text-[var(--apcc-text)]">Business</th>
+                <th className="text-left p-3 text-[var(--apcc-text)]">Corporate</th>
               </tr>
             </thead>
             <tbody>
-              {COMPARISON.map((row) => (
-                <tr key={row.feature} className="border-b border-neutral-800">
-                  <td className="p-3 text-neutral-200">{row.feature}</td>
-                  <td className="p-3 text-neutral-300">{row.essential}</td>
-                  <td className="p-3 text-neutral-300">{row.business}</td>
-                  <td className="p-3 text-neutral-300">{row.corporate}</td>
+              {COMPARISON.map((row, i) => (
+                <tr
+                  key={row.feature}
+                  className={i % 2 ? 'bg-neutral-50 border-b border-[var(--apcc-border)]' : 'border-b border-[var(--apcc-border)]'}
+                >
+                  <td className="p-3 text-[var(--apcc-text-2)]">{row.feature}</td>
+                  <td className="p-3 text-[var(--apcc-text-2)]">{row.essential}</td>
+                  <td className="p-3 text-[var(--apcc-text-2)]">{row.business}</td>
+                  <td className="p-3 text-[var(--apcc-text-2)]">{row.corporate}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <div className="mt-4 text-xs text-neutral-300">
+        <div className="mt-4 text-xs text-neutral-600">
           *Agenda y cupos en ferias/misiones sujetos a disponibilidad y calendario oficial.
         </div>
       </section>
@@ -219,25 +224,27 @@ export default function Page() {
             a: 'Sí. Los cupos varían por plan y disponibilidad. En Corporate se pueden coordinar sesiones in-house/corporativas.',
           },
         ].map((item) => (
-          <article key={item.q} className="rounded-2xl border border-neutral-700 bg-neutral-900 p-6">
-            <h4 className="text-sm font-semibold text-white">{item.q}</h4>
-            <p className="mt-2 text-sm text-neutral-300">{item.a}</p>
+          <article key={item.q} className="card p-6">
+            <h4 className="text-sm font-semibold text-[var(--apcc-text)]">{item.q}</h4>
+            <p className="mt-2 text-sm text-[var(--apcc-text-2)]">{item.a}</p>
           </article>
         ))}
       </section>
 
       {/* CTA FINAL */}
       <section className="mt-12">
-        <div className="rounded-2xl border border-neutral-700 bg-neutral-900 p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="card p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
-            <h3 className="text-lg md:text-xl font-semibold text-white">¿Listo para elegir tu membresía?</h3>
-            <p className="mt-2 text-neutral-300 max-w-2xl">
+            <h3 className="text-lg md:text-xl font-semibold text-[var(--apcc-text)]">
+              ¿Listo para elegir tu membresía?
+            </h3>
+            <p className="mt-2 text-[var(--apcc-text-2)] max-w-2xl">
               Te ayudamos a seleccionar el plan ideal según tu sector, volumen y metas con Asia.
             </p>
           </div>
           <div className="flex gap-3">
             <Link href="/join" className="btn btn-primary">Unirme ahora</Link>
-            <Link href="/join" className="btn btn-secondary">Hablar con APCC</Link>
+            <Link href="/join" className="btn btn-outline">Hablar con APCC</Link>
           </div>
         </div>
       </section>
