@@ -103,7 +103,7 @@ export default function Page() {
           <div className="container py-24 lg:py-32">
             <div className="max-w-4xl">
               <p className="kicker text-xs tracking-[0.14em] uppercase text-white drop-shadow">
-                Plan 2026–7240
+                Plan 2026–2030
               </p>
 
               <h1 className="mt-2 text-4xl md:text-6xl font-bold leading-tight text-white drop-shadow">
