@@ -1,6 +1,7 @@
 // app/(routes)/apcc-tv/page.tsx
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'APCC TV | Cámara de Comercio Asia Pacífico',
@@ -14,7 +15,7 @@ type Video = {
   role: string;
   company: string;
   url: string;
-  id: string; // para el loop
+  id: string; // para loop de YouTube
 };
 
 const VIDEOS: Video[] = [
@@ -71,20 +72,28 @@ const VIDEOS: Video[] = [
 export default function Page() {
   return (
     <section>
-      {/* HERO */}
-      <div className="relative h-[400px] w-full overflow-hidden">
-        <img
-          src="/hero/apcc-tv-banner.png"
-          alt="APCC TV Banner"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/60" />
+      {/* HERO (texto blanco garantizado) */}
+      <div className="apcc-hero relative h-[400px] w-full overflow-hidden bg-black">
+        {/* Fondo */}
+        <div className="absolute inset-0">
+          <Image
+            src="/hero/apcc-tv-banner.png"  // asegúrate que exista exactamente con este nombre
+            alt="APCC TV Banner"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
+
+        {/* Contenido */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
           <h1 className="text-3xl md:text-5xl font-bold">APCC TV</h1>
-          <p className="mt-3 max-w-2xl text-neutral-200">
+          <p className="mt-3 max-w-2xl text-white/90">
             Creando Líderes para Asia · El podcast oficial de la Cámara de Comercio Asia Pacífico
           </p>
-          <p className="mt-2 text-sm text-neutral-400">+20 episodios conducidos por Guillermo Hollzaman</p>
+          <p className="mt-2 text-sm text-white/80">+20 episodios conducidos por Guillermo Hollzaman</p>
         </div>
       </div>
 
@@ -93,9 +102,9 @@ export default function Page() {
         <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-center">Top 6 episodios</h2>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {VIDEOS.map((v, i) => (
-            <div
-              key={i}
+          {VIDEOS.map((v) => (
+            <article
+              key={v.id}
               className="rounded-2xl border border-neutral-800 bg-neutral-900 overflow-hidden flex flex-col"
             >
               <div className="aspect-video">
@@ -108,26 +117,23 @@ export default function Page() {
                 />
               </div>
               <div className="p-5">
-                <h3 className="text-lg font-semibold">{v.title}</h3>
-                <p className="mt-1 text-sm text-neutral-300">
+                <h3 className="text-lg font-semibold text-white">{v.title}</h3>
+                <p className="mt-1 text-[15px] text-neutral-200">
                   {v.guest} — {v.role}, {v.company}
                 </p>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
-        {/* CTA DESTACADA */}
-        <div className="mt-16 rounded-2xl bg-white text-black p-10 shadow-lg text-center max-w-3xl mx-auto">
-          <h3 className="text-2xl md:text-3xl font-bold">Temporada 2026</h3>
-          <p className="mt-4 text-lg text-neutral-700">
-            En enero 2026 grabaremos nuevos capítulos que estrenaremos durante el año, en español con subtítulos en inglés
-            y portugués. Si quieres participar, solo debes ser socio de la APCC.
+        {/* NOTA EDITORIAL / CTA */}
+        <div className="mt-16 rounded-2xl bg-white text-black p-8 md:p-10 shadow-lg max-w-3xl mx-auto text-center">
+          <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight">Temporada 2026</h3>
+          <p className="mt-4 text-base md:text-lg text-neutral-700">
+            En enero 2026 grabaremos nuevos capítulos que estrenaremos durante el año, en español con subtítulos en
+            inglés y portugués. Si quieres participar, solo debes ser socio de la APCC.
           </p>
-          <Link
-            href="/membresias"
-            className="mt-6 inline-block btn btn-primary text-white"
-          >
+          <Link href="/membresias" className="mt-6 inline-flex btn btn-primary">
             Hazte socio
           </Link>
         </div>
