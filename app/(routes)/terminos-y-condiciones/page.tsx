@@ -3,15 +3,17 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Términos y Condiciones | APCC',
+  title: 'Términos y Condiciones y Política de Privacidad | APCC',
   description:
-    'Términos y Condiciones del sitio web oficial de la Cámara de Comercio Asia Pacífico (APCC). Revisa aquí la información legal sobre membresías, eventos y uso de datos.',
+    'Términos, condiciones y política de privacidad del sitio web oficial de la Cámara de Comercio Asia Pacífico (APCC). Información legal sobre membresías, eventos, uso de datos y derechos de los usuarios.',
 };
 
 export default function TerminosPage() {
   return (
     <section className="container py-16 text-neutral-200">
-      <h1 className="text-3xl md:text-4xl font-bold">Términos y Condiciones</h1>
+      <h1 className="text-3xl md:text-4xl font-bold">
+        Términos, Condiciones y Política de Privacidad
+      </h1>
       <p className="mt-2 text-sm text-neutral-400">
         Última actualización: <strong>[fecha]</strong>
       </p>
@@ -27,9 +29,13 @@ export default function TerminosPage() {
             asiapacific-chamber.com
           </Link>{' '}
           y sus subdominios relacionados (el <strong>“Sitio”</strong>). Al acceder, navegar o registrarse en el Sitio, usted
-          (el <strong>“Usuario”</strong> o <strong>“Socio”</strong>) acepta expresamente estos <strong>Términos y Condiciones</strong> (los <strong>“T&amp;C”</strong>).
+          (el <strong>“Usuario”</strong> o <strong>“Socio”</strong>) acepta expresamente estos{' '}
+          <strong>Términos y Condiciones</strong> y nuestra <strong>Política de Privacidad</strong>.
         </p>
 
+        {/* ======================
+            TÉRMINOS Y CONDICIONES
+        ====================== */}
         <section>
           <h2 className="text-xl font-semibold mb-2">1. Objeto</h2>
           <p>
@@ -87,17 +93,47 @@ export default function TerminosPage() {
           </p>
         </section>
 
-        <section id="datos-personales">
-          <h2 className="text-xl font-semibold mb-2">7. Confidencialidad y datos personales</h2>
+        <section>
+          <h2 className="text-xl font-semibold mb-2">7. Responsabilidad</h2>
           <p>
-            APCC recopila y trata datos para gestionar membresías, eventos, comunicaciones y facturación, conforme a la{' '}
-            <strong>Ley N° 19.628</strong> (Chile) y normativa internacional aplicable. Podremos utilizar proveedores
-            tecnológicos como <strong>Zoho CRM</strong> y <strong>HubSpot</strong> para operar dichos procesos con estándares
-            adecuados de seguridad.
+            APCC no garantiza resultados específicos derivados de la participación en programas o uso de información. Las
+            decisiones comerciales del Usuario son de su exclusiva responsabilidad. En casos de fuerza mayor (p. ej., pandemias,
+            desastres, restricciones) APCC podrá reprogramar, modificar o cancelar actividades sin responsabilidad adicional.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold mb-2">8. Modificaciones</h2>
+          <p>
+            APCC puede actualizar estos términos en cualquier momento. Las modificaciones serán publicadas en el Sitio y/o
+            comunicadas por correo a los socios.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold mb-2">9. Legislación aplicable y jurisdicción</h2>
+          <p>
+            Estos Términos se rigen por las leyes de la <strong>República de Chile</strong>. Cualquier controversia se someterá a
+            los tribunales ordinarios de la ciudad de <strong>Santiago de Chile</strong>.
+          </p>
+        </section>
+
+        {/* ======================
+            POLÍTICA DE PRIVACIDAD
+        ====================== */}
+        <section id="privacidad">
+          <h2 className="text-xl font-semibold mb-2">10. Política de Privacidad</h2>
+          <p>
+            APCC recopila y trata datos personales de los Usuarios para gestionar membresías, eventos, comunicaciones y
+            facturación, conforme a la <strong>Ley N° 19.628</strong> (Chile) y normativa internacional aplicable.
           </p>
           <p className="mt-2">
-            Para ejercer sus derechos de <strong>acceso, rectificación, actualización o eliminación</strong> de datos, o para
-            cualquier consulta de privacidad, contáctenos en:{' '}
+            Utilizamos proveedores tecnológicos como <strong>Zoho CRM</strong> y <strong>HubSpot</strong> para operar estos
+            procesos, garantizando estándares adecuados de seguridad y confidencialidad.
+          </p>
+          <p className="mt-2">
+            El Usuario tiene derecho a <strong>acceder, rectificar, actualizar o eliminar</strong> sus datos. Para ejercer estos
+            derechos o realizar consultas de privacidad, escríbanos a:{' '}
             <a
               href="mailto:info@asiapacific-chamber.com"
               className="underline underline-offset-4 hover:text-white"
@@ -107,37 +143,13 @@ export default function TerminosPage() {
             .
           </p>
           <p className="mt-2 text-neutral-400">
-            Nota: Al enviar formularios en el Sitio, usted autoriza el tratamiento de sus datos para los fines declarados y la
-            recepción de comunicaciones relacionadas a su membresía y actividades de APCC. Puede solicitar la desuscripción en
-            cualquier momento a través del mismo correo indicado.
+            Nota: Al enviar formularios en el Sitio, el Usuario autoriza el tratamiento de sus datos para los fines declarados y
+            la recepción de comunicaciones relacionadas a su membresía y actividades de APCC. Puede solicitar la desuscripción en
+            cualquier momento.
           </p>
         </section>
 
-        <section>
-          <h2 className="text-xl font-semibold mb-2">8. Responsabilidad</h2>
-          <p>
-            APCC no garantiza resultados específicos derivados de la participación en programas o uso de información. Las
-            decisiones comerciales del Usuario son de su exclusiva responsabilidad. En casos de fuerza mayor (p. ej., pandemias,
-            desastres, restricciones) APCC podrá reprogramar, modificar o cancelar actividades sin responsabilidad adicional.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold mb-2">9. Modificaciones</h2>
-          <p>
-            APCC puede actualizar estos T&amp;C en cualquier momento. Las modificaciones serán publicadas en el Sitio y/o
-            comunicadas por correo a los socios.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold mb-2">10. Legislación aplicable y jurisdicción</h2>
-          <p>
-            Estos T&amp;C se rigen por las leyes de la <strong>República de Chile</strong>. Cualquier controversia se someterá a
-            los tribunales ordinarios de la ciudad de <strong>Santiago de Chile</strong>.
-          </p>
-        </section>
-
+        {/* CONTACTO */}
         <section>
           <h2 className="text-xl font-semibold mb-2">11. Contacto</h2>
           <p>
@@ -155,7 +167,9 @@ export default function TerminosPage() {
 
       {/* CTA: volver al home */}
       <div className="mt-12">
-        <Link href="/" className="btn btn-primary">← Volver al inicio</Link>
+        <Link href="/" className="btn btn-primary">
+          ← Volver al inicio
+        </Link>
       </div>
     </section>
   );
