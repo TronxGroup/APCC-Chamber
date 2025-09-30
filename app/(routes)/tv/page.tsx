@@ -74,7 +74,7 @@ export default function Page() {
       {/* HERO */}
       <div className="relative h-[400px] w-full overflow-hidden">
         <img
-          src="/hero/apcc-tv-banner.jpg"
+          src="/hero/apcc-tv-banner.png"
           alt="APCC TV Banner"
           className="absolute inset-0 w-full h-full object-cover"
         />
