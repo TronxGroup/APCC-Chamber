@@ -7,6 +7,28 @@ export const metadata: Metadata = {
     'Escríbenos para membresías, servicios, prensa o alianzas. APCC — Cámara de Comercio Asia Pacífico.',
 };
 
+// =======================
+// Config rápida a editar
+// =======================
+const CONTACT = {
+  email: 'info@asiapacific-chamber.com',
+  // 👉 ACTUALIZA AQUÍ el número definitivo (E.164 y legible):
+  phoneE164: '+56920080031',          // para href tel:
+  phoneNice: '+56 9 2008 0031',       // cómo se ve
+  street: 'Costanera Sur 2710',
+  city: 'Las Condes',
+  region: 'Región Metropolitana',
+  country: 'Chile',
+  postalCode: '75000502',
+};
+
+const SOCIAL = {
+  linkedin: 'https://www.linkedin.com/company/asiapacific-chamber',
+  // 👉 Si tienes estos, reemplaza los placeholders:
+  instagram: 'https://www.instagram.com/asiapacific.chamber', // <— cambia si es otro
+  x: 'https://x.com/asiapacific_cc',                           // <— cambia si es otro
+};
+
 export default function Page() {
   return (
     <section className="container py-16">
@@ -23,35 +45,37 @@ export default function Page() {
       <section className="mt-8 grid md:grid-cols-3 gap-4">
         <div className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5">
           <div className="text-xs uppercase tracking-wider text-neutral-500">Email</div>
-          <Link href="mailto:info@asiapacific-chamber.com" className="mt-1 block text-neutral-200 hover:underline">
-            info@asiapacific-chamber.com
+          <Link href={`mailto:${CONTACT.email}`} className="mt-1 block text-neutral-200 hover:underline">
+            {CONTACT.email}
           </Link>
         </div>
+
         <div className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5">
           <div className="text-xs uppercase tracking-wider text-neutral-500">Teléfono</div>
-          <Link href="tel:+56920080031" className="mt-1 block text-neutral-200 hover:underline">
-            +56 9 2008 0031
+          <Link href={`tel:${CONTACT.phoneE164}`} className="mt-1 block text-neutral-200 hover:underline">
+            {CONTACT.phoneNice}
           </Link>
         </div>
+
         <div className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5">
           <div className="text-xs uppercase tracking-wider text-neutral-500">Oficinas</div>
-          <div className="mt-1 text-neutral-200">Santiago, Chile · Alianzas en Perú y Bolivia</div>
+          <div className="mt-1 text-neutral-200">
+            {CONTACT.street}, {CONTACT.city} · {CONTACT.region}, {CONTACT.country}
+            <div className="text-neutral-400 text-xs mt-1">C.P. {CONTACT.postalCode}</div>
+          </div>
         </div>
       </section>
 
-      {/* FORMULARIO */}
+      {/* FORMULARIO + INFO */}
       <section className="mt-10 grid lg:grid-cols-3 gap-8">
+        {/* FORM */}
         <div className="lg:col-span-2 rounded-2xl border border-neutral-800 bg-neutral-900 p-6 md:p-8">
           <h2 className="text-xl font-semibold">Envíanos un mensaje</h2>
           <p className="mt-2 text-sm text-neutral-400">
             Cuéntanos tu objetivo y cómo podemos ayudarte.
           </p>
 
-          {/* 
-            👉 Reemplaza `action` por tu endpoint real (Formspree, Getform o tu API):
-            - Formspree: https://formspree.io/f/XXXXXXXX
-            - API propia: /api/contacto (necesita handler)
-          */}
+          {/* 👉 Reemplaza `action` por tu endpoint real: Formspree / Getform / API propia */}
           <form
             action="https://formspree.io/f/XXXXXXXX"
             method="POST"
@@ -60,13 +84,18 @@ export default function Page() {
             {/* Honeypot anti-spam */}
             <input type="text" name="company" className="hidden" tabIndex={-1} autoComplete="off" />
 
-            {/* Motivo */}
+            {/* Metadatos para el envío */}
+            <input type="hidden" name="_subject" value="Contacto APCC — Nuevo mensaje" />
+            <input type="hidden" name="_redirect" value="/gracias" />
+
+            {/* Motivo y País */}
             <div className="grid md:grid-cols-2 gap-4">
               <label className="grid gap-1">
                 <span className="text-sm text-neutral-300">Motivo</span>
                 <select
                   name="motivo"
                   required
+                  aria-label="Motivo de contacto"
                   className="rounded-xl border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-red-900/50"
                 >
                   <option value="">Selecciona una opción</option>
@@ -84,6 +113,7 @@ export default function Page() {
                   type="text"
                   name="pais"
                   placeholder="Chile, Perú, Bolivia, etc."
+                  aria-label="País"
                   className="rounded-xl border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-red-900/50"
                 />
               </label>
@@ -97,6 +127,7 @@ export default function Page() {
                   type="text"
                   name="nombre"
                   required
+                  aria-label="Nombre completo"
                   className="rounded-xl border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-red-900/50"
                 />
               </label>
@@ -105,6 +136,7 @@ export default function Page() {
                 <input
                   type="text"
                   name="empresa"
+                  aria-label="Empresa"
                   className="rounded-xl border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-red-900/50"
                 />
               </label>
@@ -118,6 +150,7 @@ export default function Page() {
                   type="email"
                   name="email"
                   required
+                  aria-label="Email"
                   className="rounded-xl border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-red-900/50"
                 />
               </label>
@@ -126,7 +159,8 @@ export default function Page() {
                 <input
                   type="tel"
                   name="telefono"
-                  placeholder="+56 9 ..."
+                  placeholder={CONTACT.phoneNice}
+                  aria-label="Teléfono"
                   className="rounded-xl border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-red-900/50"
                 />
               </label>
@@ -139,6 +173,7 @@ export default function Page() {
                 name="mensaje"
                 rows={5}
                 required
+                aria-label="Mensaje"
                 placeholder="Cuéntanos brevemente tu objetivo, plazos y presupuesto estimado."
                 className="rounded-xl border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-red-900/50"
               />
@@ -160,7 +195,7 @@ export default function Page() {
         {/* INFO LATERAL */}
         <aside className="rounded-2xl border border-neutral-800 bg-neutral-900 p-6 md:p-8">
           <h3 className="text-lg font-semibold">Horarios y RRSS</h3>
-          <ul className="mt-3 space-y-2 text-sm text-neutral-400">
+          <ul className="mt-3 space-y-2 text-sm text-neutral-300">
             <li>Lunes a viernes · 09:00–18:00 (GMT-3)</li>
             <li>Atención híbrida (online y presencial)</li>
           </ul>
@@ -168,13 +203,13 @@ export default function Page() {
           <div className="mt-5">
             <div className="text-sm text-neutral-300 font-medium">Redes</div>
             <div className="mt-2 flex flex-wrap gap-3 text-sm">
-              <Link href="https://www.linkedin.com" target="_blank" className="text-neutral-300 hover:text-white underline">
+              <Link href={SOCIAL.linkedin} target="_blank" className="text-neutral-300 hover:text-white underline">
                 LinkedIn
               </Link>
-              <Link href="https://www.instagram.com" target="_blank" className="text-neutral-300 hover:text-white underline">
+              <Link href={SOCIAL.instagram} target="_blank" className="text-neutral-300 hover:text-white underline">
                 Instagram
               </Link>
-              <Link href="https://x.com" target="_blank" className="text-neutral-300 hover:text-white underline">
+              <Link href={SOCIAL.x} target="_blank" className="text-neutral-300 hover:text-white underline">
                 X (Twitter)
               </Link>
             </div>
@@ -197,7 +232,9 @@ export default function Page() {
         <div className="aspect-[16/6] bg-neutral-950">
           <iframe
             title="Mapa APCC"
-            src="https://www.google.com/maps?q=Santiago+Chile&output=embed"
+            src={`https://www.google.com/maps?q=${encodeURIComponent(
+              `${CONTACT.street}, ${CONTACT.city}, ${CONTACT.region}, ${CONTACT.country} ${CONTACT.postalCode}`
+            )}&output=embed`}
             className="w-full h-full"
             loading="lazy"
           />
@@ -209,7 +246,7 @@ export default function Page() {
         <div className="rounded-2xl border border-neutral-800 bg-neutral-900 p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
             <h3 className="text-xl md:text-2xl font-semibold">¿Listo para acelerar con Asia?</h3>
-            <p className="mt-2 text-neutral-400 max-w-2xl">
+            <p className="mt-2 text-neutral-300 max-w-2xl">
               Únete a la Red Asia Pacífico y participa en misiones, matching, mesas y formación ejecutiva.
             </p>
           </div>
@@ -219,6 +256,31 @@ export default function Page() {
           </div>
         </div>
       </section>
+
+      {/* JSON-LD Organization */}
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'Cámara de Comercio Asia Pacífico (APCC)',
+            url: 'https://www.asiapacific-chamber.com/',
+            email: CONTACT.email,
+            telephone: CONTACT.phoneE164,
+            sameAs: [SOCIAL.linkedin, SOCIAL.instagram, SOCIAL.x],
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: CONTACT.street,
+              addressLocality: CONTACT.city,
+              addressRegion: CONTACT.region,
+              postalCode: CONTACT.postalCode,
+              addressCountry: CONTACT.country,
+            },
+          }),
+        }}
+      />
     </section>
   );
 }
