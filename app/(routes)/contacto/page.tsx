@@ -13,20 +13,20 @@ export const metadata: Metadata = {
 const CONTACT = {
   email: 'info@asiapacific-chamber.com',
   // 👉 ACTUALIZA AQUÍ el número definitivo (E.164 y legible):
-  phoneE164: '+56920080031',          // para href tel:
-  phoneNice: '+56 9 2008 0031',       // cómo se ve
-  street: 'Costanera Sur 2710',
-  city: 'Las Condes',
+  phoneE164: '+56975769493',          // para href tel:
+  phoneNice: '+56 9 7576 9493',       // cómo se ve
+  street: 'Fidel Oteiza 1916',
+  city: 'Providencia',
   region: 'Región Metropolitana',
   country: 'Chile',
-  postalCode: '75000502',
+  postalCode: '7500502',
 };
 
 const SOCIAL = {
   linkedin: 'https://www.linkedin.com/company/asiapacific-chamber',
   // 👉 Si tienes estos, reemplaza los placeholders:
-  instagram: 'https://www.instagram.com/asiapacific.chamber', // <— cambia si es otro
-  x: 'https://x.com/asiapacific_cc',                           // <— cambia si es otro
+  instagram: 'https://www.instagram.com/apcc.chamber', // <— cambia si es otro
+  x: 'https://x.com/APCC_Chamber',                           // <— cambia si es otro
 };
 
 export default function Page() {
