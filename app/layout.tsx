@@ -166,7 +166,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <NavLink href="/recursos">Recursos</NavLink>
               <NavLink href="/directorio">Directorio</NavLink>
               <NavLink href="/hklaba">HKLABA</NavLink>
-              <NavLink href="/apccskills">APCC Skills</NavLink>
+              <NavLink href="/skills">APCC Skills</NavLink>
               <NavLink href="/terminos-y-condiciones">Términos</NavLink>
             </div>
 
