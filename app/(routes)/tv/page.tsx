@@ -1,5 +1,6 @@
 // app/(routes)/apcc-tv/page.tsx
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'APCC TV | Cámara de Comercio Asia Pacífico',
@@ -13,6 +14,7 @@ type Video = {
   role: string;
   company: string;
   url: string;
+  id: string; // para el loop
 };
 
 const VIDEOS: Video[] = [
@@ -22,6 +24,7 @@ const VIDEOS: Video[] = [
     role: 'Directora',
     company: 'Corporación Cruzando el Pacífico',
     url: 'https://www.youtube.com/embed/WDoQ9IUydq8',
+    id: 'WDoQ9IUydq8',
   },
   {
     title: 'Cómo posicionar tu marca en China',
@@ -29,6 +32,7 @@ const VIDEOS: Video[] = [
     role: 'B2B2C Operation Manager',
     company: 'Huawei',
     url: 'https://www.youtube.com/embed/xyopX35IYek',
+    id: 'xyopX35IYek',
   },
   {
     title: 'Hacer negocios con China',
@@ -36,6 +40,7 @@ const VIDEOS: Video[] = [
     role: 'General Manager',
     company: 'Linacuza Intercultural SpA',
     url: 'https://www.youtube.com/embed/wWC0VLwwd5M',
+    id: 'wWC0VLwwd5M',
   },
   {
     title: 'Vino chileno en Asia',
@@ -43,6 +48,7 @@ const VIDEOS: Video[] = [
     role: 'CEO',
     company: 'Balduzzi Wines',
     url: 'https://www.youtube.com/embed/on7lKjzxlSY',
+    id: 'on7lKjzxlSY',
   },
   {
     title: 'Hay un déficit de 45.000 programadores anuales',
@@ -50,6 +56,7 @@ const VIDEOS: Video[] = [
     role: 'CEO',
     company: 'Macrobots',
     url: 'https://www.youtube.com/embed/hJR-tXv6XhE',
+    id: 'hJR-tXv6XhE',
   },
   {
     title: 'Oportunidades en Hong Kong para empresas Latinoamericanas',
@@ -57,6 +64,7 @@ const VIDEOS: Video[] = [
     role: 'Associate Director-General',
     company: 'Invest Hong Kong (InvestHK)',
     url: 'https://www.youtube.com/embed/hBAjGfsSnBc',
+    id: 'hBAjGfsSnBc',
   },
 ];
 
@@ -66,11 +74,10 @@ export default function Page() {
       {/* HERO */}
       <div className="relative h-[400px] w-full overflow-hidden">
         <img
-          src="/hero/apcc-tv-banner.jpg" // coloca aquí la imagen oscura que generamos
+          src="/hero/apcc-tv-banner.jpg"
           alt="APCC TV Banner"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        {/* overlay oscuro para contraste */}
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
           <h1 className="text-3xl md:text-5xl font-bold">APCC TV</h1>
@@ -93,7 +100,7 @@ export default function Page() {
             >
               <div className="aspect-video">
                 <iframe
-                  src={v.url}
+                  src={`${v.url}?loop=1&playlist=${v.id}`}
                   title={v.title}
                   className="w-full h-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -102,7 +109,7 @@ export default function Page() {
               </div>
               <div className="p-5">
                 <h3 className="text-lg font-semibold">{v.title}</h3>
-                <p className="mt-1 text-sm text-neutral-400">
+                <p className="mt-1 text-sm text-neutral-300">
                   {v.guest} — {v.role}, {v.company}
                 </p>
               </div>
@@ -110,13 +117,19 @@ export default function Page() {
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="mt-16 text-center max-w-3xl mx-auto">
-          <h3 className="text-xl md:text-2xl font-semibold">Temporada 2026</h3>
-          <p className="mt-3 text-neutral-400">
+        {/* CTA DESTACADA */}
+        <div className="mt-16 rounded-2xl bg-white text-black p-10 shadow-lg text-center max-w-3xl mx-auto">
+          <h3 className="text-2xl md:text-3xl font-bold">Temporada 2026</h3>
+          <p className="mt-4 text-lg text-neutral-700">
             En enero 2026 grabaremos nuevos capítulos que estrenaremos durante el año, en español con subtítulos en inglés
             y portugués. Si quieres participar, solo debes ser socio de la APCC.
           </p>
+          <Link
+            href="/membresias"
+            className="mt-6 inline-block btn btn-primary text-white"
+          >
+            Hazte socio
+          </Link>
         </div>
       </div>
     </section>
