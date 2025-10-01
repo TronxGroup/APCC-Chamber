@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Cámara de Comercio Asia Pacífico – APCC',
   description: 'Membresías, eventos, misiones comerciales y recursos.',
   metadataBase: new URL('https://asiapacific-chamber.com'),
-  icons: { icon: '/favicon.ico' },
+  icons: { icon: '/apcc_favicon.png' },
 };
 
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
