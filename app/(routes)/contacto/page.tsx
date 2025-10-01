@@ -33,7 +33,7 @@ export default function Page() {
         <h1 className="text-3xl md:text-4xl font-semibold">Contacto</h1>
         <p className="mt-3 text-neutral-300">
           ¿Hablemos? Si buscas <strong>membresías, servicios, prensa</strong> o <strong>alianzas</strong>,
-          déjanos tus datos y te responderemos a la brevedad.
+          déjanos tus datos y tt responderemos a la brevedad.
         </p>
       </header>
 
