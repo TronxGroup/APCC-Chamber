@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Script from 'next/script';
+import { useCallback } from 'react';
 
 export const metadata: Metadata = {
   title: 'Contacto',
@@ -12,7 +14,6 @@ export const metadata: Metadata = {
 // =======================
 const CONTACT = {
   email: 'info@asiapacific-chamber.com',
-  // 👉 ACTUALIZA AQUÍ el número definitivo (E.164 y legible):
   phoneE164: '+56975769493',          // para href tel:
   phoneNice: '+56 9 7576 9493',       // cómo se ve
   street: 'Fidel Oteiza 1916',
@@ -24,14 +25,115 @@ const CONTACT = {
 
 const SOCIAL = {
   linkedin: 'https://www.linkedin.com/company/asiapacific-chamber',
-  // 👉 Si tienes estos, reemplaza los placeholders:
-  instagram: 'https://www.instagram.com/apcc.chamber', // <— cambia si es otro
-  x: 'https://x.com/APCC_Chamber',                           // <— cambia si es otro
+  instagram: 'https://www.instagram.com/apcc.chamber',
+  x: 'https://x.com/APCC_Chamber',
 };
 
 export default function Page() {
+  // Handler que delega la validación a las funciones de Zoho ya cargadas vía <Script>
+  const handleZohoSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
+    const w = window as any;
+    const okEmail = w?.validateEmail6988454000000688025?.();
+    if (!okEmail) {
+      e.preventDefault();
+      return;
+    }
+    const okCaptcha = w?.reCaptchaAlert6988454000000688025?.();
+    if (!okCaptcha) {
+      e.preventDefault();
+      return;
+    }
+    const okMandatory = w?.checkMandatory6988454000000688025?.();
+    if (!okMandatory) {
+      e.preventDefault();
+      return;
+    }
+    // si todas pasan, Zoho permite enviar el form normal
+  }, []);
+
   return (
     <section className="container py-16">
+      {/* Carga reCAPTCHA v2 de Google (Zoho lo requiere) */}
+      <Script src="https://www.google.com/recaptcha/api.js" async defer />
+
+      {/* Script de utilidades/validaciones adaptado desde el embed de Zoho */}
+      <Script id="zoho-w2l-helpers" strategy="afterInteractive">
+        {`
+          function addAriaSelected6988454000000688025(){
+            var optionElem = event.target;
+            var previousSelectedOption = optionElem.querySelector('[aria-selected=true]');
+            if(previousSelectedOption){ previousSelectedOption.removeAttribute('aria-selected'); }
+            optionElem.querySelectorAll('option')[ optionElem.selectedIndex ].ariaSelected = 'true';
+          }
+          function rccallback6988454000000688025 (){
+            var rec = document.getElementById('recap6988454000000688025');
+            if(rec){ rec.setAttribute('captcha-verified', true); }
+            var err = document.getElementById('recapErr6988454000000688025');
+            if(err && err.style.visibility === 'visible'){ err.style.visibility = 'hidden'; }
+          }
+          function reCaptchaAlert6988454000000688025 (){
+            var recap = document.getElementById('recap6988454000000688025');
+            if(recap && recap.getAttribute('captcha-verified') == 'false'){
+              var err = document.getElementById('recapErr6988454000000688025');
+              if(err){ err.style.visibility = 'visible'; }
+              return false;
+            }
+            return true;
+          }
+          function validateEmail6988454000000688025 (){
+            var form = document.getElementById('webform6988454000000688025');
+            if(!form) return true;
+            var emailFld = form.querySelectorAll('[ftype=email]');
+            for(var i=0;i<emailFld.length;i++){
+              var emailVal = emailFld[i].value;
+              if((emailVal.replace(/^\\s+|\\s+$/g,'' )).length != 0 ){
+                var atpos = emailVal.indexOf('@');
+                var dotpos = emailVal.lastIndexOf('.');
+                if( atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= emailVal.length ){
+                  alert('Introduzca una dirección de correo electrónico válida.');
+                  emailFld[i].focus();
+                  return false;
+                }
+              }
+            }
+            return true;
+          }
+          function checkMandatory6988454000000688025 (){
+            var form = document.getElementById('webform6988454000000688025');
+            if(!form) return true;
+            var mndFileds = [ 'First Name', 'Last Name', 'Email', 'Country', 'LEADCF1' ];
+            var fldLangVal = [ 'Nombre', 'Apellido', 'Correo electrónico', 'País', 'Motivo' ];
+            for(var i=0;i<mndFileds.length;i++){
+              var fieldObj = form.elements[mndFileds[i]];
+              if(fieldObj){
+                if(((fieldObj.value).replace(/^\\s+|\\s+$/g,'' )).length == 0 ){
+                  if(fieldObj.type == 'file'){ alert('Seleccione un archivo para cargar.'); fieldObj.focus(); return false; }
+                  alert(fldLangVal[i] + ' no puede estar vacío.');
+                  fieldObj.focus();
+                  return false;
+                }else if(fieldObj.nodeName == 'SELECT'){
+                  if(fieldObj.options[fieldObj.selectedIndex].value == '-None-'){
+                    alert(fldLangVal[i] + ' no puede ser nulo.');
+                    fieldObj.focus();
+                    return false;
+                  }
+                }else if(fieldObj.type == 'checkbox'){
+                  if(fieldObj.checked == false){
+                    alert('Por favor acepte ' + fldLangVal[i]);
+                    fieldObj.focus();
+                    return false;
+                  }
+                }
+              }
+            }
+            // Deshabilitar botón para evitar doble envío
+            var btn = form.querySelector('.crmWebToEntityForm .formsubmit');
+            if(btn){ btn.setAttribute('disabled', true); }
+            return true;
+          }
+        `}
+      </Script>
+
       {/* HERO */}
       <header className="max-w-3xl">
         <h1 className="text-3xl md:text-4xl font-semibold">Contacto</h1>
@@ -68,42 +170,57 @@ export default function Page() {
 
       {/* FORMULARIO + INFO */}
       <section className="mt-10 grid lg:grid-cols-3 gap-8">
-        {/* FORM */}
+        {/* FORM (igual diseño, mapeado a campos de Zoho) */}
         <div className="lg:col-span-2 rounded-2xl border border-neutral-800 bg-neutral-900 p-6 md:p-8">
           <h2 className="text-xl font-semibold">Envíanos un mensaje</h2>
           <p className="mt-2 text-sm text-neutral-400">
             Cuéntanos tu objetivo y cómo podemos ayudarte.
           </p>
 
-          {/* 👉 Reemplaza `action` por tu endpoint real: Formspree / Getform / API propia */}
           <form
-            action="https://formspree.io/f/XXXXXXXX"
+            id="webform6988454000000688025"
+            name="WebToLeads6988454000000688025"
+            action="https://crm.zoho.com/crm/WebToLeadForm"
             method="POST"
+            encType="application/x-www-form-urlencoded"
+            acceptCharset="UTF-8"
+            onSubmit={handleZohoSubmit}
             className="mt-6 grid gap-4"
           >
-            {/* Honeypot anti-spam */}
+            {/* Honeypots anti-spam */}
             <input type="text" name="company" className="hidden" tabIndex={-1} autoComplete="off" />
+            <input type="text" name="aG9uZXlwb3Q" className="hidden" tabIndex={-1} autoComplete="off" />
 
-            {/* Metadatos para el envío */}
-            <input type="hidden" name="_subject" value="Contacto APCC — Nuevo mensaje" />
-            <input type="hidden" name="_redirect" value="/gracias" />
+            {/* Campos ocultos obligatorios de Zoho */}
+            <input type="hidden" name="xnQsjsdp" value="3963f510af508276f037504e02de6603ec0d97b0efa9196dfe90dab643317778" />
+            <input type="hidden" name="xmIwtLD" value="80f21f169a810e92ce644b894b2cbb43ebe34ef3d14e2d4544051e1cdd5d42f78d1e0a05a132ad359868821f984e50fe" />
+            <input type="hidden" name="actionType" value="TGVhZHM=" />
+            <input type="hidden" name="zc_gad" id="zc_gad" value="" />
+            <input
+              type="hidden"
+              name="returnURL"
+              value="https://www.asiapacific-chamber.com/gracias-contacto"
+            />
 
             {/* Motivo y País */}
             <div className="grid md:grid-cols-2 gap-4">
               <label className="grid gap-1">
                 <span className="text-sm text-neutral-300">Motivo</span>
                 <select
-                  name="motivo"
+                  name="LEADCF1"
+                  id="LEADCF1"
                   required
                   aria-label="Motivo de contacto"
+                  onChange={() => (window as any).addAriaSelected6988454000000688025?.()}
                   className="rounded-xl border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-red-900/50"
+                  defaultValue=""
                 >
                   <option value="">Selecciona una opción</option>
-                  <option value="membresias">Quiero ser socio</option>
-                  <option value="servicios">Servicios APCC</option>
-                  <option value="prensa">Prensa y vocerías</option>
-                  <option value="alianzas">Alianzas</option>
-                  <option value="otros">Otros</option>
+                  <option value="Quiero ser socio">Quiero ser socio</option>
+                  <option value="Servicios APCC">Servicios APCC</option>
+                  <option value="Prensa y vocerías">Prensa y vocerías</option>
+                  <option value="Alianzas">Alianzas</option>
+                  <option value="Otros">Otros</option>
                 </select>
               </label>
 
@@ -111,9 +228,11 @@ export default function Page() {
                 <span className="text-sm text-neutral-300">País</span>
                 <input
                   type="text"
-                  name="pais"
+                  name="Country"
+                  id="Country"
                   placeholder="Chile, Perú, Bolivia, etc."
                   aria-label="País"
+                  required
                   className="rounded-xl border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-red-900/50"
                 />
               </label>
@@ -122,45 +241,69 @@ export default function Page() {
             {/* Identificación */}
             <div className="grid md:grid-cols-2 gap-4">
               <label className="grid gap-1">
-                <span className="text-sm text-neutral-300">Nombre completo</span>
+                <span className="text-sm text-neutral-300">Nombre</span>
                 <input
                   type="text"
-                  name="nombre"
+                  name="First Name"
+                  id="First_Name"
                   required
-                  aria-label="Nombre completo"
+                  aria-label="Nombre"
+                  maxLength={40}
                   className="rounded-xl border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-red-900/50"
                 />
               </label>
               <label className="grid gap-1">
-                <span className="text-sm text-neutral-300">Empresa</span>
+                <span className="text-sm text-neutral-300">Apellido</span>
                 <input
                   type="text"
-                  name="empresa"
-                  aria-label="Empresa"
+                  name="Last Name"
+                  id="Last_Name"
+                  required
+                  aria-label="Apellido"
+                  maxLength={80}
                   className="rounded-xl border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-red-900/50"
                 />
               </label>
             </div>
+
+            {/* Empresa */}
+            <label className="grid gap-1">
+              <span className="text-sm text-neutral-300">Empresa</span>
+              <input
+                type="text"
+                name="Company"
+                id="Company"
+                aria-label="Empresa"
+                maxLength={200}
+                className="rounded-xl border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-red-900/50"
+              />
+            </label>
 
             {/* Contacto */}
             <div className="grid md:grid-cols-2 gap-4">
               <label className="grid gap-1">
                 <span className="text-sm text-neutral-300">Email</span>
                 <input
-                  type="email"
-                  name="email"
+                  type="text"
+                  name="Email"
+                  id="Email"
                   required
                   aria-label="Email"
+                  maxLength={100}
+                  // Zoho usa ftype=email para su validador
+                  {...{ ftype: 'email' } as any}
                   className="rounded-xl border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-red-900/50"
                 />
               </label>
               <label className="grid gap-1">
                 <span className="text-sm text-neutral-300">Teléfono</span>
                 <input
-                  type="tel"
-                  name="telefono"
+                  type="text"
+                  name="Mobile"
+                  id="Mobile"
                   placeholder={CONTACT.phoneNice}
                   aria-label="Teléfono"
+                  maxLength={30}
                   className="rounded-xl border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-red-900/50"
                 />
               </label>
@@ -170,23 +313,44 @@ export default function Page() {
             <label className="grid gap-1">
               <span className="text-sm text-neutral-300">Mensaje</span>
               <textarea
-                name="mensaje"
+                name="LEADCF3"
+                id="LEADCF3"
                 rows={5}
-                required
                 aria-label="Mensaje"
                 placeholder="Cuéntanos brevemente tu objetivo, plazos y presupuesto estimado."
                 className="rounded-xl border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-red-900/50"
               />
             </label>
 
-            {/* Consentimiento */}
+            {/* Consentimiento (UX igual, no mapea a campo Zoho en tu embed; si lo necesitas, dime qué campo usar y lo conecto) */}
             <label className="mt-1 inline-flex items-start gap-2 text-sm text-neutral-400">
-              <input type="checkbox" name="consent" required className="mt-1 accent-red-700" />
+              <input type="checkbox" required className="mt-1 accent-red-700" />
               Autorizo a APCC a contactarme y tratar mis datos con fines comerciales y de soporte conforme a su política de privacidad.
             </label>
 
+            {/* reCAPTCHA v2 (sitekey del embed de Zoho) */}
+            <div className="mt-2">
+              <div
+                className="g-recaptcha"
+                data-sitekey="6LdJ-torAAAAAAWS2ka_CKPgNysAeDn-UXZZi_Gw"
+                data-theme="light"
+                data-callback="rccallback6988454000000688025"
+                id="recap6988454000000688025"
+                data-testid="recaptcha"
+                // atributo que su script consulta
+                {...{ 'captcha-verified': 'false' } as any}
+              />
+              <div id="recapErr6988454000000688025" style={{ fontSize: 12, color: 'red', visibility: 'hidden' }}>
+                Error en validación de Captcha. Si no es un robot, inténtelo de nuevo.
+              </div>
+            </div>
+
+            {/* Metadatos de origen/brand hacia Zoho (ocultos, como en tu embed) */}
+            <input type="hidden" name="LEADCF5" id="LEADCF5" value="APCC" />
+            <input type="hidden" name="LEADCF9" id="LEADCF9" value="asiapacific-chamber.com/contacto" />
+
             <div className="mt-4 flex flex-wrap gap-3">
-              <button type="submit" className="btn btn-primary">Enviar</button>
+              <button type="submit" className="btn btn-primary formsubmit">Enviar</button>
               <Link href="/membresias" className="btn btn-secondary">Ver membresías</Link>
             </div>
           </form>
