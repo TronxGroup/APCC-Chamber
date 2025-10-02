@@ -265,7 +265,7 @@ export default function Page() {
             Membresías con valor
           </h2>
           <p className="mt-2 text-[var(--apcc-text-2)]">
-            Ser socio APCC es pertenecer a la <strong>Red Asia Pacífico</strong>{' '}
+            Ser socio APCC es pertenecer a la <strong>Red de negocios Asia Pacífico</strong>{' '}
             y acceder a beneficios exclusivos.
           </p>
         </div>
