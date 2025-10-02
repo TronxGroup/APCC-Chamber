@@ -205,7 +205,7 @@ export default function Page() {
             {
               tag: 'Internacionalización',
               title: 'Misiones Comerciales a Asia',
-              desc: 'Dos viajes anuales a ferias y hubs estratégicos (Hong Kong, China, APAC) con agenda curada y reuniones 1:1.',
+              desc: 'Dos viajes anuales a ferias y hubs estratégicos (Hong Kong, China, APAC) con agenda personalizada y reuniones 1:1.',
             },
             {
               tag: 'Conexiones',
