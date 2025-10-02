@@ -373,7 +373,7 @@ export default function Page() {
             Nuevos socios corporativos
           </h2>
           <p className="mt-2 text-[var(--apcc-text-2)]">
-            ¡Bienvenidos a la Red Asia Pacífico! Conoce a quienes se suman este
+            ¡Bienvenidos a la Red de Negocios Asia Pacífico! Conoce a quienes se suman este
             mes.
           </p>
         </div>
@@ -417,8 +417,8 @@ export default function Page() {
               ¿Listo para acelerar tu negocio con Asia?
             </h3>
             <p className="mt-2 text-[var(--apcc-text-2)] max-w-2xl">
-              Conecta con proveedores confiables, participa en misiones
-              comerciales y aprovecha la Red Asia Pacífico.
+              Conecta con socios confiables, participa en misiones
+              comerciales y aprovecha la Red de Negocios Asia Pacífico.
             </p>
           </div>
           <div className="flex gap-3">
