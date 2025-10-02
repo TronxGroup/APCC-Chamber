@@ -5,6 +5,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import '../styles/globals.css';
 
+// Header con hamburguesa (cliente)
+import Header from '@/components/Header';
+
 export const metadata: Metadata = {
   title: 'Cámara de Comercio Asia Pacífico – APCC',
   description: 'Membresías, eventos, misiones comerciales y recursos.',
@@ -28,29 +31,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es" className="scroll-smooth">
       {/* apcc-light activa el “patcher” global */}
       <body className="apcc-light bg-[var(--apcc-bg)] text-[var(--apcc-text)]">
-        {/* HEADER */}
-        <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 border-b border-[var(--apcc-border)]">
-          <nav className="container h-16 flex items-center justify-between">
-            <Link href="/" className="flex items-center" aria-label="Ir al inicio APCC">
-              <Image
-                src="/Logo_apcc_web.png"
-                alt="Cámara de Comercio Asia Pacífico — APCC"
-                width={140}
-                height={40}
-                className="h-10 w-auto object-contain"
-                priority
-              />
-            </Link>
-            <div className="hidden md:flex items-center gap-6">
-              <NavLink href="/quienes-somos">Quiénes somos</NavLink>
-              <NavLink href="/membresias">Membresías</NavLink>
-              <NavLink href="/eventos">Eventos</NavLink>
-              <NavLink href="/noticias">Noticias</NavLink>
-              <NavLink href="/contacto">Contacto</NavLink>
-              <Link href="/join" className="btn btn-primary">Hazte socio</Link>
-            </div>
-          </nav>
-        </header>
+        {/* HEADER (con hamburguesa en móvil) */}
+        <Header />
 
         {/* MAIN: sin container para permitir secciones full-bleed */}
         <main>{children}</main>
