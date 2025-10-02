@@ -117,24 +117,33 @@ export default function Page() {
       </section>
 
       {/* Ejes del Plan 2026–2030 */}
-      <section className="mt-12">
-        <h2 className="text-2xl md:text-3xl font-semibold text-[var(--apcc-text)]">Ejes 2026–2030</h2>
-        <div className="mt-6 grid md:grid-cols-3 gap-4">
-          {[
-            { k: 'Inteligencia Comercial', v: 'Reportes sectoriales, guías, radar de ferias y alertas de proveedores verificados.' },
-            { k: 'Networking & Mesas', v: 'Roundtables por industria, ruedas de negocios y vínculos con HKLABA.' },
-            { k: 'Misiones & Ferias', v: 'Dos misiones anuales a Asia con agendas curadas y seguimiento post-visita.' },
-          ].map((x) => (
-            <div key={x.k} className="card p-6">
-              <div className="text-sm font-semibold text-[var(--apcc-text)]">{x.k}</div>
-              <p className="mt-2 text-sm text-[var(--apcc-text-2)]">{x.v}</p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-6 text-sm">
-          <Link href="/membresias" className="btn btn-primary">Conoce las membresías</Link>
-        </div>
-      </section>
+<section className="mt-12">
+  <h2 className="text-2xl md:text-3xl font-semibold text-[var(--apcc-text)]">Ejes 2026–2030</h2>
+  <div className="mt-6 grid md:grid-cols-3 gap-4">
+    {[
+      { 
+        k: 'Estrategia & Inteligencia Comercial', 
+        v: 'Formulación de estrategias de internacionalización, prospectiva de mercados y productos, reportes sectoriales, guías prácticas, radar de ferias y alertas de proveedores verificados.' 
+      },
+      { 
+        k: 'Networking & Mesas', 
+        v: 'Roundtables por industria, ruedas de negocios y vínculos con HKLABA, generando espacios de confianza, conocimiento y experiencias entre Asia y Latinoamérica.' 
+      },
+      { 
+        k: 'Misiones & Ferias', 
+        v: 'Dos misiones anuales a Asia con agendas diseñadas a medida, participación en hubs estratégicos y seguimiento post-visita para capitalizar contactos y acuerdos.' 
+      },
+    ].map((x) => (
+      <div key={x.k} className="card p-6">
+        <div className="text-sm font-semibold text-[var(--apcc-text)]">{x.k}</div>
+        <p className="mt-2 text-sm text-[var(--apcc-text-2)]">{x.v}</p>
+      </div>
+    ))}
+  </div>
+  <div className="mt-6 text-sm">
+    <Link href="/membresias" className="btn btn-primary">Conoce las membresías</Link>
+  </div>
+</section>
 
       {/* DIRECTORIO */}
       <section className="mt-12">
