@@ -5,13 +5,16 @@ import Link from 'next/link';
 import Image from 'next/image';
 import '../styles/globals.css';
 
-// Header con hamburguesa (cliente)
+// Header (cliente) con menú hamburguesa
 import Header from '@/components/Header';
 
 export const metadata: Metadata = {
-  title: 'Cámara de Comercio Asia Pacífico – APCC',
-  description: 'Membresías, eventos, misiones comerciales y recursos.',
   metadataBase: new URL('https://asiapacific-chamber.com'),
+  title: {
+    default: 'Cámara de Comercio Asia Pacífico – APCC',
+    template: '%s | Cámara de Comercio Asia Pacífico – APCC',
+  },
+  description: 'Membresías, eventos, misiones comerciales y recursos.',
   icons: { icon: '/apcc_favicon.png' },
 };
 
@@ -149,7 +152,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   title="YouTube"
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                    <path d="M23.5 6.2s-.2-1.7-.8-2.4c-.8-.8-1.7-.8-2.1-.9C16.8 2.6 12 2.6 12 2.6h-.1s-4.8 0-8.6.3c-.5.1-1.4.1-2.2.9-.6.6-.8 2.4-.8 2.4S0 8.1 0 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.7.8 2.4c.8.8 1.9.8 2.4.9 1.7.2 7.2.3 7.2.3s4.8 0 8.6-.3c.5-.1 1.4-.1 2.2-.9.6-.6.8-2.4.8-2.4s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8ZM9.6 14.3V7.7l6.2 3.3-6.2 3.3Z"/>
+                    <path d="M23.5 6.2s-.2-1.7-.8-2.4c-.8-.8-1.7-.8-2.1-.9C16.8 2.6 12 2.6 12 2.6h-.1s-4.8 0-8.6.3c-.5.1-1.4.1-2.2.9-.6.6-.8 2.4-.8 2.4s.2 1.9.2 3.8V10c0-1.9-.2-3.8-.2-3.8ZM9.6 14.3V7.7l6.2 3.3-6.2 3.3Z"/>
                   </svg>
                 </a>
               </div>
