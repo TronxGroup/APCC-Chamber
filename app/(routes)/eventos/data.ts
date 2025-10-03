@@ -94,7 +94,7 @@ export const EVENTS: EventItem[] = [
       'Auditorio, Costanera Sur 2710, 7550006 Las Condes, Región Metropolitana, Chile',
     poster: '/events/posters/2025-11-seminario-hk-asia.jpg',
     summary:
-      'Panorama de negocios, financiamiento y acceso a mercados en Hong Kong/China/APAC. Casos y herramientas prácticas para empresas chilenas.',
+      'Panorama de negocios, financiamiento y acceso a mercados en Hong Kong/China/Asia-Pacífico. Casos y herramientas prácticas para empresas chilenas.',
     guests: ['HKTDC', 'APCC', 'Scotiabank'],
     sponsors: [
       { name: 'APCC', logo: '/sponsors/apcc.png', role: 'Produce' },
