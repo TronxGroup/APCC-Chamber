@@ -27,7 +27,8 @@ export default function Page() {
         <h1 className="mt-3 text-3xl md:text-4xl font-semibold">
           HKLABA: Puente oficial de América Latina con Hong Kong
         </h1>
-        <p className="mt-3 text-neutral-400">
+        {/* Texto principal más oscuro sobre fondo claro */}
+        <p className="mt-3 text-neutral-800">
           Desde 2019, la <strong>Cámara de Comercio Asia Pacífico (APCC)</strong> integra a la{' '}
           <strong>Hong Kong – Latin America Business Association (HKLABA)</strong>, consolidando una
           alianza única que conecta a nuestra región con la{' '}
@@ -48,10 +49,12 @@ export default function Page() {
       {/* BENEFICIOS */}
       <section className="mt-12">
         <h2 className="text-2xl md:text-3xl font-semibold">Beneficios exclusivos para socios APCC</h2>
-        <p className="mt-2 text-neutral-500 max-w-3xl">
+        {/* Intro más oscura (fondo claro) */}
+        <p className="mt-2 text-neutral-800 max-w-3xl">
           Al integrarte a APCC obtienes automáticamente acceso a HKLABA y, con ello, a la Federation
           y sus beneficios globales:
         </p>
+
         <div className="mt-6 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
             {
@@ -83,12 +86,15 @@ export default function Page() {
               key={t}
               className="rounded-2xl border border-neutral-800 bg-neutral-900 p-6"
             >
-              <div className="text-lg font-semibold">{t}</div>
-              <p className="mt-2 text-sm text-neutral-500">{d}</p>
+              <div className="text-lg font-semibold text-white">{t}</div>
+              {/* En tarjeta oscura, subimos contraste del texto */}
+              <p className="mt-2 text-sm text-neutral-300">{d}</p>
             </article>
           ))}
         </div>
-        <p className="mt-4 text-xs text-neutral-600">
+
+        {/* Nota al pie en fondo claro → más oscura */}
+        <p className="mt-4 text-xs text-neutral-700">
           *Todos los beneficios están sujetos a términos y condiciones de la Federation y sus
           partners internacionales.
         </p>
@@ -123,11 +129,11 @@ export default function Page() {
               key={title}
               className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5"
             >
-              <div className="text-xs uppercase tracking-wider text-neutral-600">
+              <div className="text-xs uppercase tracking-wider text-neutral-400">
                 Paso {idx + 1}
               </div>
-              <div className="mt-1 font-semibold">{title}</div>
-              <p className="mt-1 text-neutral-500">{desc}</p>
+              <div className="mt-1 font-semibold text-white">{title}</div>
+              <p className="mt-1 text-neutral-300">{desc}</p>
             </li>
           ))}
         </ol>
@@ -144,13 +150,13 @@ export default function Page() {
       {/* TEXTO INSTITUCIONAL */}
       <section className="mt-12">
         <div className="rounded-2xl border border-neutral-800 bg-neutral-900 p-6 md:p-8">
-          <p className="text-neutral-400">
+          <p className="text-neutral-300">
             Gracias a esta integración, <strong>HKLABA</strong> es la única voz oficial de América
             Latina dentro de la Federation. Esto fortalece la misión de la APCC de impulsar la
             internacionalización, facilitar exportaciones e incrementar la presencia de nuestros
             socios en Hong Kong y Asia–Pacífico.
           </p>
-          <p className="mt-3 text-neutral-400">
+          <p className="mt-3 text-neutral-300">
             <strong>Un solo ecosistema. Una visión compartida:</strong> conectar América Latina con
             Asia mediante una red empresarial global.
           </p>
@@ -187,8 +193,8 @@ export default function Page() {
               key={q}
               className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5"
             >
-              <summary className="font-medium cursor-pointer text-neutral-300">{q}</summary>
-              <p className="mt-2 text-sm text-neutral-500">{a}</p>
+              <summary className="font-medium cursor-pointer text-neutral-200">{q}</summary>
+              <p className="mt-2 text-sm text-neutral-300">{a}</p>
             </details>
           ))}
         </div>
@@ -198,10 +204,10 @@ export default function Page() {
       <section className="mt-12">
         <div className="rounded-2xl border border-neutral-800 bg-neutral-900 p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
-            <h3 className="text-xl md:text-2xl font-semibold">
+            <h3 className="text-xl md:text-2xl font-semibold text-white">
               Integra tu empresa al ecosistema HKLABA con APCC
             </h3>
-            <p className="mt-2 text-neutral-500 max-w-2xl">
+            <p className="mt-2 text-neutral-300 max-w-2xl">
               Conviértete en parte de la red empresarial que conecta a América Latina con Hong Kong
               y 38 países alrededor del mundo. Te acompañamos en cada paso para aprovechar tus
               beneficios, participar en el Hong Kong Forum y consolidar tu expansión internacional.
