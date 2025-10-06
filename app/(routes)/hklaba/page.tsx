@@ -98,7 +98,7 @@ export default function Page() {
 <section className="mt-12 rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-950">
   <div className="aspect-[16/6] w-full bg-neutral-900">
     <img
-      src="/news/2025-sitio-web-apcc-hklaba-map.jpg"
+      src="/2025-sitio-web-apcc-hklaba-map.jpg"
       alt="Federation of Hong Kong Business Associations Worldwide"
       className="w-full h-full object-cover"
       loading="lazy"
