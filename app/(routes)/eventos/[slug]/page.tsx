@@ -1,9 +1,8 @@
-// app/(routes)/eventos/[slug]/page.tsx
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getEventBySlug } from '../data';
-import EventSignupForm from '@/components/EventSignupForm'; // ← form reutilizable
+import EventSignupForm from '@/components/EventSignupForm';
 
 function Badge({ children }: { children: React.ReactNode }) {
   return <span className="badge badge--accent">{children}</span>;
@@ -40,6 +39,9 @@ export default function EventDetailPage({ params }: PageProps) {
   const ev = getEventBySlug(params.slug);
   if (!ev) return notFound();
 
+  // 🔒 CUPOS COMPLETOS (solo este evento)
+  const isFull = ev.slug === '2025-10-mesa-logistica-comercio-asia';
+
   const joinUrl = 'https://join.asiapacific-chamber.com';
 
   const jsonLd = {
@@ -53,7 +55,6 @@ export default function EventDetailPage({ params }: PageProps) {
         : 'https://schema.org/OfflineEventAttendanceMode',
     eventStatus: 'https://schema.org/EventScheduled',
     image: ev.poster ? [ev.poster] : [],
-    // Ideal: ISO date (ej: 2025-10-07T17:30:00-03:00). Si no, usamos el campo existente:
     startDate: ev.date,
     location:
       ev.location.toLowerCase().includes('online')
@@ -92,6 +93,7 @@ export default function EventDetailPage({ params }: PageProps) {
             <div className="absolute left-3 top-3 flex gap-2">
               <Badge>{ev.mode}</Badge>
               {ev.membersOnly && <Badge>Socios APCC</Badge>}
+              {isFull && <Badge>Cupos completos</Badge>}
             </div>
           </div>
         </div>
@@ -110,8 +112,19 @@ export default function EventDetailPage({ params }: PageProps) {
           <p className="mt-4 text-[var(--apcc-text-2)]">{ev.summary}</p>
 
           <div className="mt-5 flex flex-wrap gap-3">
-            <Link href="#inscripcion" className="btn btn-primary">Inscribirme</Link>
-            <Link href="/membresias" className="btn btn-outline">Quiero ser socio</Link>
+            {isFull ? (
+              <>
+                <span className="btn btn-primary pointer-events-none opacity-60" aria-disabled="true">
+                  Cupos completos
+                </span>
+                <Link href="/eventos" className="btn btn-outline">Ver otros eventos</Link>
+              </>
+            ) : (
+              <>
+                <Link href="#inscripcion" className="btn btn-primary">Inscribirme</Link>
+                <Link href="/membresias" className="btn btn-outline">Quiero ser socio</Link>
+              </>
+            )}
           </div>
 
           {/* Invitados */}
@@ -158,27 +171,53 @@ export default function EventDetailPage({ params }: PageProps) {
         </section>
       )}
 
-      {/* FORMULARIO DE INSCRIPCIÓN */}
+      {/* FORMULARIO */}
       <div id="inscripcion" className="scroll-mt-24">
-        <EventSignupForm
-          event={{
-            slug: ev.slug,
-            title: ev.title,
-            date: ev.date,
-            membersOnly: ev.membersOnly,
-          }}
-        />
+        {isFull ? (
+          <div className="card p-6">
+            <h3 className="text-lg font-semibold text-[var(--apcc-text)]">Cupos completos</h3>
+            <p className="mt-2 text-sm text-[var(--apcc-text-2)]">
+              Gracias por tu interés. Los cupos para este evento se han completado.
+              Te invitamos a revisar el calendario de próximos eventos o unirte como socio APCC.
+            </p>
+            <div className="mt-4 flex gap-3">
+              <Link href="/eventos" className="btn btn-outline">Ver próximos eventos</Link>
+              <Link href="/membresias" className="btn btn-primary">Ver membresías</Link>
+            </div>
+          </div>
+        ) : (
+          <EventSignupForm
+            event={{
+              slug: ev.slug,
+              title: ev.title,
+              date: ev.date,
+              membersOnly: ev.membersOnly,
+            }}
+          />
+        )}
       </div>
 
       {/* CTA inferior */}
       <section className="mt-10 card p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
-          <h3 className="text-lg font-semibold text-[var(--apcc-text)]">¿Listo para asegurar tu cupo?</h3>
-          <p className="mt-1 text-sm text-[var(--apcc-text-2)]">Acceso y materiales exclusivos para socios APCC.</p>
+          <h3 className="text-lg font-semibold text-[var(--apcc-text)]">
+            {isFull ? '¡Gracias por tu interés!' : '¿Listo para asegurar tu cupo?'}
+          </h3>
+          <p className="mt-1 text-sm text-[var(--apcc-text-2)]">
+            {isFull
+              ? 'Este evento ya no tiene cupos disponibles. Revisa nuestras actividades próximas.'
+              : 'Acceso y materiales exclusivos para socios APCC.'}
+          </p>
         </div>
         <div className="flex gap-3">
           <Link href="/membresias" className="btn btn-outline">Ver membresías</Link>
-          <Link href="#inscripcion" className="btn btn-primary">Inscribirme</Link>
+          {isFull ? (
+            <span className="btn btn-primary pointer-events-none opacity-60" aria-disabled="true">
+              Cupos completos
+            </span>
+          ) : (
+            <Link href="#inscripcion" className="btn btn-primary">Inscribirme</Link>
+          )}
         </div>
       </section>
     </section>
