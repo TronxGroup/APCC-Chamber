@@ -2,6 +2,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'APCC Skills — Curso Oficial: Importa desde China con Éxito',
@@ -15,8 +16,7 @@ type Module = { title: string; description: string; duration: string; lessons: L
 const MODULES: Module[] = [
   {
     title: 'Módulo I: Bienvenida',
-    description:
-      'Razones para elegir China, barreras comunes y cómo superarlas.',
+    description: 'Razones para elegir China, barreras comunes y cómo superarlas.',
     duration: '55 minutos',
     lessons: [
       { title: 'Lección 1.1: Introducción al curso' },
@@ -101,8 +101,50 @@ const MODULES: Module[] = [
 ];
 
 export default function Page() {
+  // Video de demo
+  const videoId = 'UM-LHpCjk4I';
+
   return (
     <section className="container py-16">
+      {/* Carga de la API de YouTube y script para pausar al terminar */}
+      <Script src="https://www.youtube.com/iframe_api" strategy="afterInteractive" />
+      <Script id="yt-demo-handler" strategy="afterInteractive">
+        {`
+          // Evita recrear el player si ya existe (navegación cliente)
+          if (typeof window !== 'undefined') {
+            window.__APCC_DEMO_INIT__ = window.__APCC_DEMO_INIT__ || false;
+          }
+          function onYouTubeIframeAPIReady(){
+            if (window.__APCC_DEMO_INIT__) return;
+            window.__APCC_DEMO_INIT__ = true;
+            const player = new YT.Player('yt-demo', {
+              videoId: '${videoId}',
+              playerVars: {
+                rel: 0,
+                modestbranding: 1,
+                playsinline: 1,
+                controls: 1,
+                // No autoplay; el usuario decide
+                enablejsapi: 1,
+              },
+              events: {
+                onStateChange: (e) => {
+                  // Al terminar (estado 0), volver al segundo 0 y pausar
+                  if (e.data === YT.PlayerState.ENDED) {
+                    e.target.seekTo(0, true);
+                    e.target.pauseVideo();
+                  }
+                }
+              }
+            });
+          }
+          // Si la API ya cargó antes de este script:
+          if (typeof YT !== 'undefined' && YT.Player && !window.__APCC_DEMO_INIT__) {
+            onYouTubeIframeAPIReady();
+          }
+        `}
+      </Script>
+
       {/* HERO */}
       <header className="max-w-4xl">
         <p className="kicker text-xs tracking-[0.14em] uppercase text-neutral-500">
@@ -128,7 +170,9 @@ export default function Page() {
           <div className="rounded-xl border border-neutral-200 bg-white p-4">
             <div className="text-xs uppercase tracking-wider text-neutral-500">Precio</div>
             <div className="mt-1 text-lg font-semibold">$197.000 CLP</div>
-            <div className="text-xs text-[var(--apcc-accent)]">Lanzamiento -70% · Mar 2025: $59.100</div>
+            <div className="text-xs text-[var(--apcc-accent)]">
+              Lanzamiento −69,5% · Oct 2025: <strong>$59.990</strong>
+            </div>
           </div>
           <div className="rounded-xl border border-neutral-200 bg-white p-4">
             <div className="text-xs uppercase tracking-wider text-neutral-500">Modalidad</div>
@@ -151,12 +195,9 @@ export default function Page() {
 
       {/* VIDEO DEMO */}
       <section className="mt-12">
-        <div className="rounded-2xl overflow-hidden border border-neutral-200 bg-white aspect-video grid place-items-center">
-          {/* Reemplaza el iframe con el video real de YouTube */}
-          <div className="text-center p-6">
-            <div className="text-sm text-neutral-600">Espacio para video demo</div>
-            <div className="mt-2 text-neutral-500 text-xs">Inserta aquí tu iframe de YouTube</div>
-          </div>
+        <div className="rounded-2xl overflow-hidden border border-neutral-200 bg-white aspect-video">
+          {/* Contenedor donde YouTube API monta el reproductor */}
+          <div id="yt-demo" className="h-full w-full" />
         </div>
       </section>
 
@@ -257,7 +298,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* TESTIMONIOS (breves) */}
+      {/* TESTIMONIOS */}
       <section className="mt-12">
         <h2 className="text-2xl md:text-3xl font-semibold">Lo que dicen nuestros alumnos</h2>
         <div className="mt-6 grid md:grid-cols-3 gap-4 text-sm">
@@ -312,7 +353,7 @@ export default function Page() {
         </ul>
       </section>
 
-      {/* LOGOS – Con la participación de */}
+      {/* LOGOS */}
       <section className="mt-12">
         <div className="text-xs uppercase tracking-widest text-neutral-500">
           Con la participación de
