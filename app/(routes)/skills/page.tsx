@@ -264,19 +264,19 @@ export default function Page() {
             {
               name: 'Daniel Birke',
               role: 'Empresario · Comercial Globex',
-              photo: '/skills/teachers/daniel-birke.jpg',
+              photo: '/skills/teachers/daniel_apcc_skills.jpg',
               bio: 'Más de 10 años enseñando en APCC. Importador activo: viaja, compra y negocia en China. Casos reales aplicables a Chile y Perú.',
             },
             {
               name: 'Francisco Orellana',
               role: 'Consultor · Verificación de proveedores',
-              photo: '/skills/teachers/francisco-orellana.jpg',
+              photo: '/skills/teachers/fco_apcc_skills.jpg',
               bio: '20+ años en comercio internacional. Experto en due diligence de empresas en China/Asia. Vivió 2 años en Japón.',
             },
             {
               name: 'Rodrigo Lama',
               role: 'Chief Business Officer · Global66',
-              photo: '/skills/teachers/rodrigo-lama.jpg',
+              photo: '/skills/teachers/rodrigo_apcc_skills.jpg',
               bio: 'Emprendedor e e-commerce regional. Experto en pagos internacionales y optimización de transferencias.',
             },
           ].map((t) => (
