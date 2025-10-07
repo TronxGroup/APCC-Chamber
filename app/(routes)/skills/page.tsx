@@ -157,7 +157,7 @@ export default function Page() {
           Crea tu camino como importador seguro, eficiente y rentable. El curso
           100% online del área <strong>APCC Skills</strong> reúne más de{' '}
           <strong>20 años de experiencia</strong> formando a{' '}
-          <strong>8.000+</strong> alumnos. Versión actualizada, material descargable
+          <strong>9.000+</strong> alumnos junto a la Universidad Católica. Versión actualizada, material descargable
           y ejemplos reales para que aprendas a tu ritmo.
         </p>
 
