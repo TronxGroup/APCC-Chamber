@@ -171,7 +171,7 @@ export default function Page() {
             <div className="text-xs uppercase tracking-wider text-neutral-500">Precio</div>
             <div className="mt-1 text-lg font-semibold">$197.000 CLP</div>
             <div className="text-xs text-[var(--apcc-accent)]">
-              Lanzamiento −69,5% · Oct 2025: <strong>$59.990</strong>
+              Lanzamiento −70% · Oct 2025: <strong>$59.100</strong>
             </div>
           </div>
           <div className="rounded-xl border border-neutral-200 bg-white p-4">
