@@ -1,4 +1,3 @@
-// components/ApccTvGrid.tsx
 'use client';
 
 import Script from 'next/script';
@@ -17,7 +16,7 @@ declare global {
 export default function ApccTvGrid({ videos }: Props) {
   const playersRef = useRef<Record<string, any>>({});
 
-  // Agrupa por tema y ordena alfabéticamente por tema y por título
+  // Agrupa por tema y ordena alfabéticamente por tema y título
   const grouped = useMemo(() => {
     const map = new Map<string, Video[]>();
     for (const v of videos) {
@@ -29,6 +28,7 @@ export default function ApccTvGrid({ videos }: Props) {
       .map(([tema, arr]) => [tema, arr.sort((x, y) => x.title.localeCompare(y.title, 'es'))] as const);
   }, [videos]);
 
+  // Inicializa los reproductores
   const initPlayers = () => {
     if (!window.YT || !window.YT.Player) return;
     videos.forEach((v) => {
@@ -109,9 +109,9 @@ export default function ApccTvGrid({ videos }: Props) {
                     />
                   </div>
                   <div className="p-5">
-                    <h4 className="text-lg font-semibold text-neutral-900">${v.title}</h4>
+                    <h4 className="text-lg font-semibold text-neutral-900">{v.title}</h4>
                     <p className="mt-1 text-[15px] text-neutral-700">
-                      ${v.guest} — ${v.role}, ${v.company}
+                      {v.guest} — {v.role}, {v.company}
                     </p>
                   </div>
                 </article>
@@ -128,7 +128,9 @@ export default function ApccTvGrid({ videos }: Props) {
           En enero 2026 grabaremos nuevos capítulos que estrenaremos durante el año, en español con subtítulos en
           inglés y portugués. Si quieres participar, solo debes ser socio de la APCC.
         </p>
-        <a href="/membresias" className="mt-6 inline-flex btn btn-primary">Hazte socio</a>
+        <a href="/membresias" className="mt-6 inline-flex btn btn-primary">
+          Hazte socio
+        </a>
       </div>
     </div>
   );
