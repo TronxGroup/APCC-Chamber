@@ -1,7 +1,7 @@
 'use client';
 
 import Script from 'next/script';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import type { Video } from '@/types/apcc-tv';
 
 type Props = { videos: Video[] };
@@ -16,15 +16,11 @@ declare global {
 export default function ApccTvGrid({ videos }: Props) {
   const playersRef = useRef<Record<string, any>>({});
 
-  // Orden simple (por título). Si prefieres por tema, cambia el sort.
-  const sorted = useMemo(
-    () => [...videos].sort((a, b) => a.title.localeCompare(b.title, 'es')),
-    [videos]
-  );
+  // 👉 No ordenamos: usamos el orden del array tal cual viene desde page.tsx
 
   const initPlayers = () => {
     if (!window.YT || !window.YT.Player) return;
-    sorted.forEach((v) => {
+    videos.forEach((v) => {
       const domId = `yt-${v.id}`;
       if (playersRef.current[v.id]) return;
       const player = new window.YT.Player(domId, {
@@ -38,6 +34,7 @@ export default function ApccTvGrid({ videos }: Props) {
         },
         events: {
           onStateChange: (e: any) => {
+            // Al terminar, volver al inicio y pausar
             if (e.data === window.YT.PlayerState.ENDED) {
               try {
                 e.target.seekTo(0, true);
@@ -66,7 +63,7 @@ export default function ApccTvGrid({ videos }: Props) {
       playersRef.current = {};
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sorted]);
+  }, [videos]);
 
   return (
     <div className="container py-16">
@@ -74,9 +71,9 @@ export default function ApccTvGrid({ videos }: Props) {
 
       <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-center">Episodios destacados</h2>
 
-      {/* ✅ 2 columnas globales (1 en móvil, 2 desde sm=640px) */}
+      {/* ✅ 2 columnas globales (1 en móvil, 2 en escritorio) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-        {sorted.map((v) => (
+        {videos.map((v) => (
           <article
             key={v.id}
             className="rounded-2xl border border-neutral-200 bg-white overflow-hidden flex flex-col shadow-sm hover:shadow-md transition-shadow"
