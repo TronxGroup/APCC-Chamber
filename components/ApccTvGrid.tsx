@@ -16,7 +16,7 @@ declare global {
 export default function ApccTvGrid({ videos }: Props) {
   const playersRef = useRef<Record<string, any>>({});
 
-  // Agrupa por tema y ordena
+  // Agrupa por tema y ordena alfabéticamente
   const grouped = useMemo(() => {
     const map = new Map<string, Video[]>();
     for (const v of videos) {
@@ -28,6 +28,7 @@ export default function ApccTvGrid({ videos }: Props) {
       .map(([tema, arr]) => [tema, arr.sort((x, y) => x.title.localeCompare(y.title, 'es'))] as const);
   }, [videos]);
 
+  // Inicializa reproductores de YouTube
   const initPlayers = () => {
     if (!window.YT || !window.YT.Player) return;
     videos.forEach((v) => {
@@ -44,6 +45,7 @@ export default function ApccTvGrid({ videos }: Props) {
         },
         events: {
           onStateChange: (e: any) => {
+            // Al terminar, volver al inicio y pausar
             if (e.data === window.YT.PlayerState.ENDED) {
               try {
                 e.target.seekTo(0, true);
@@ -85,8 +87,8 @@ export default function ApccTvGrid({ videos }: Props) {
           <section key={tema}>
             <h3 className="text-xl md:text-2xl font-bold mb-6 text-center md:text-left">{tema}</h3>
 
-            {/* 🟢 2 columnas en pantallas medianas hacia arriba */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* ✅ 2 columnas desde sm */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               {arr.map((v) => (
                 <article
                   key={v.id}
