@@ -21,8 +21,8 @@ type Person = {
 const PRESIDENTS: Person[] = [
   {
     name: 'Álvaro Echeverría',
-    role: 'Presidente',
-    period: '2022 — presente',
+    role: 'Director General',
+    period: '2023 — presente',
     photo: '/team/director_alvaro_echeverria.jpg',
     bio: 'Liderazgo estratégico de la Cámara, relaciones institucionales y supervisión del Plan 2026–2030.',
   },
