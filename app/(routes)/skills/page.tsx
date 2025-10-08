@@ -354,23 +354,52 @@ export default function Page() {
       </section>
 
       {/* LOGOS */}
-      <section className="mt-12">
-        <div className="text-xs uppercase tracking-widest text-neutral-500">
-          Con la participación de
+<section className="mt-12">
+  <div className="text-xs uppercase tracking-widest text-neutral-500">
+    Con la participación de
+  </div>
+
+  <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-6 items-center justify-items-center">
+    {[
+      { src: '/partners/corporate_global66.png', alt: 'Global66', href: 'https://www.global66.com' },
+      { src: '/partners/comercial_globex.png', alt: 'Comercial Globex', href: 'https://www.tiendaglobex.cl/' },
+      { src: '/sponsors/hklaba.png', alt: 'HKLABA', href: 'https://www.hklaba.com/' },
+      { src: '/sponsors/apcc.png', alt: 'APCC' }, // sin link
+    ].map((l) =>
+      l.href ? (
+        <Link
+          key={l.alt}
+          href={l.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={l.alt}
+          className="h-12 w-full grid place-items-center rounded-md border border-neutral-200 bg-white p-2 transition hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-400"
+        >
+          <Image
+            src={l.src}
+            alt={l.alt}
+            width={200}
+            height={48}
+            className="h-10 w-auto object-contain"
+          />
+        </Link>
+      ) : (
+        <div
+          key={l.alt}
+          className="h-12 w-full grid place-items-center rounded-md border border-neutral-200 bg-white p-2"
+        >
+          <Image
+            src={l.src}
+            alt={l.alt}
+            width={200}
+            height={48}
+            className="h-10 w-auto object-contain"
+          />
         </div>
-        <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-6 items-center justify-items-center">
-          {[
-            { src: '/partners/corporate_global66.png', alt: 'Global66' },
-            { src: '/sponsors/hklaba.png', alt: 'HKLABA' },
-            { src: '/partners/comercial_globex.png', alt: 'Comercial Globex' },
-            { src: '/sponsors/apcc.png', alt: 'APCC' },
-          ].map((l) => (
-            <div key={l.alt} className="h-12 w-full grid place-items-center rounded-md border border-neutral-200 bg-white p-2">
-              <Image src={l.src} alt={l.alt} width={200} height={48} className="h-10 w-auto object-contain" />
-            </div>
-          ))}
-        </div>
-      </section>
+      )
+    )}
+  </div>
+</section>
 
       {/* CTA FINAL */}
       <section className="mt-12">
