@@ -99,7 +99,7 @@ export default function Page() {
 
       {/* VIDEOS */}
       <div className="container py-16">
-        <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-center">Top 6 episodios</h2>
+        <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-center">Episodios destacados</h2>
 
         <div className="grid md:grid-cols-2 gap-8">
           {VIDEOS.map((v) => (
