@@ -16,7 +16,7 @@ declare global {
 export default function ApccTvGrid({ videos }: Props) {
   const playersRef = useRef<Record<string, any>>({});
 
-  // Agrupa por tema y ordena alfabéticamente por tema y título
+  // Agrupa por tema y ordena
   const grouped = useMemo(() => {
     const map = new Map<string, Video[]>();
     for (const v of videos) {
@@ -28,7 +28,6 @@ export default function ApccTvGrid({ videos }: Props) {
       .map(([tema, arr]) => [tema, arr.sort((x, y) => x.title.localeCompare(y.title, 'es'))] as const);
   }, [videos]);
 
-  // Inicializa los reproductores
   const initPlayers = () => {
     if (!window.YT || !window.YT.Player) return;
     videos.forEach((v) => {
@@ -81,15 +80,17 @@ export default function ApccTvGrid({ videos }: Props) {
 
       <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-center">Episodios por tema</h2>
 
-      <div className="space-y-14">
+      <div className="space-y-20">
         {grouped.map(([tema, arr]) => (
           <section key={tema}>
-            <h3 className="text-xl md:text-2xl font-bold mb-6">{tema}</h3>
-            <div className="grid md:grid-cols-2 gap-8">
+            <h3 className="text-xl md:text-2xl font-bold mb-6 text-center md:text-left">{tema}</h3>
+
+            {/* 🟢 2 columnas en pantallas medianas hacia arriba */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {arr.map((v) => (
                 <article
                   key={v.id}
-                  className="rounded-2xl border border-neutral-200 md:border-neutral-300 bg-white overflow-hidden flex flex-col"
+                  className="rounded-2xl border border-neutral-200 bg-white overflow-hidden flex flex-col shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="aspect-video bg-black">
                     <div
@@ -108,6 +109,7 @@ export default function ApccTvGrid({ videos }: Props) {
                       }}
                     />
                   </div>
+
                   <div className="p-5">
                     <h4 className="text-lg font-semibold text-neutral-900">{v.title}</h4>
                     <p className="mt-1 text-[15px] text-neutral-700">
@@ -122,7 +124,7 @@ export default function ApccTvGrid({ videos }: Props) {
       </div>
 
       {/* CTA */}
-      <div className="mt-16 rounded-2xl bg-white text-black p-8 md:p-10 shadow-lg max-w-3xl mx-auto text-center">
+      <div className="mt-20 rounded-2xl bg-white text-black p-8 md:p-10 shadow-lg max-w-3xl mx-auto text-center">
         <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight">Temporada 2026</h3>
         <p className="mt-4 text-base md:text-lg text-neutral-700">
           En enero 2026 grabaremos nuevos capítulos que estrenaremos durante el año, en español con subtítulos en
