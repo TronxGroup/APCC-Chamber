@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Directorio de Socios',
 };
 
-// ===== Iconos inline (evitamos dependencia de "lucide-react") =====
+// ===== Iconos inline (sin dependencias externas) =====
 type IconProps = React.SVGProps<SVGSVGElement>;
 const Icon = ({ children, ...props }: IconProps) => (
   <svg
@@ -31,7 +31,6 @@ const GlobeIcon = (props: IconProps) => (
     <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
   </Icon>
 );
-
 const LinkedinIcon = (props: IconProps) => (
   <Icon {...props}>
     <rect x="2" y="2" width="20" height="20" rx="3" />
@@ -41,7 +40,6 @@ const LinkedinIcon = (props: IconProps) => (
     <path d="M12 12.5c1.1-1.2 3.8-1.2 3.8 1.7V16" />
   </Icon>
 );
-
 const InstagramIcon = (props: IconProps) => (
   <Icon {...props}>
     <rect x="3" y="3" width="18" height="18" rx="5" />
@@ -49,14 +47,12 @@ const InstagramIcon = (props: IconProps) => (
     <circle cx="17.5" cy="6.5" r="0.8" />
   </Icon>
 );
-
 const YoutubeIcon = (props: IconProps) => (
   <Icon {...props}>
     <rect x="3" y="7" width="18" height="10" rx="3" />
     <path d="M10 10l4 2-4 2z" />
   </Icon>
 );
-
 const XIcon = (props: IconProps) => (
   <Icon {...props}>
     <path d="M4 4l16 16" />
@@ -64,14 +60,12 @@ const XIcon = (props: IconProps) => (
     <path d="M4 20l10.5-10.5" />
   </Icon>
 );
-
 const MailIcon = (props: IconProps) => (
   <Icon {...props}>
     <rect x="3" y="5" width="18" height="14" rx="2" />
     <path d="M3 7l9 6 9-6" />
   </Icon>
 );
-
 const PhoneIcon = (props: IconProps) => (
   <Icon {...props}>
     <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.12 1h2a2 2 0 0 1 2 1.72c.13.98.36 1.93.68 2.84a2 2 0 0 1-.45 2.11L7 8a16 16 0 0 0 6 6l.33-.35a2 2 0 0 1 2.1-.46c.92.32 1.86.55 2.83.68A2 2 0 0 1 22 16.92z" />
@@ -157,15 +151,17 @@ export default function Page() {
   return (
     <section className="container py-16">
       <header className="max-w-3xl">
-        <h1 className="text-3xl md:text-4xl font-semibold text-neutral-50">Directorio de Socios</h1>
-        <p className="mt-3 text-neutral-200">
+        <h1 className="text-3xl md:text-4xl font-semibold text-neutral-900 dark:text-neutral-50">
+          Directorio de Socios
+        </h1>
+        <p className="mt-3 text-neutral-700 dark:text-neutral-200">
           Conoce a las empresas que forman parte de la Red Asia Pacífico. Este directorio es exclusivo para
           socios <strong>Business</strong> y <strong>Corporate</strong> (Essential tiene visibilidad básica).
         </p>
 
         {/* Aviso idiomas / acceso */}
-        <div className="mt-4 rounded-xl border border-neutral-800 bg-neutral-900 p-4">
-          <p className="text-sm text-neutral-200">
+        <div className="mt-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 p-4">
+          <p className="text-sm text-neutral-800 dark:text-neutral-200">
             <strong>Nuevo:</strong> El directorio completo estará disponible en <strong>inglés</strong> y{' '}
             <strong>chino</strong> desde <strong>enero 2026</strong>. El acceso completo será exclusivo para
             planes <strong>Business</strong> y <strong>Corporate</strong>.
@@ -184,9 +180,9 @@ export default function Page() {
         {MEMBERS.map((m) => (
           <article
             key={m.name}
-            className="rounded-2xl border border-neutral-800 bg-neutral-900 p-6 flex flex-col"
+            className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 flex flex-col"
           >
-            <div className="h-16 flex items-center justify-center bg-neutral-950 rounded-xl">
+            <div className="h-16 flex items-center justify-center bg-neutral-50 dark:bg-neutral-950 rounded-xl">
               <Image
                 src={m.logo}
                 alt={m.name}
@@ -196,15 +192,17 @@ export default function Page() {
               />
             </div>
 
-            <h3 className="mt-4 text-lg font-semibold text-neutral-50">{m.name}</h3>
-            <p className="mt-1 text-sm text-neutral-200">{m.blurb}</p>
+            {/* TÍTULO VISIBLE EN FONDO BLANCO */}
+            <h3 className="mt-4 text-lg font-semibold text-neutral-900 dark:text-neutral-50">{m.name}</h3>
 
-            <div className="mt-3 text-xs text-neutral-300">
+            <p className="mt-1 text-sm text-neutral-700 dark:text-neutral-200">{m.blurb}</p>
+
+            <div className="mt-3 text-xs text-neutral-600 dark:text-neutral-300">
               {m.sector} · {m.country}
             </div>
 
             <div className="mt-2 text-xs">
-              <span className="inline-flex items-center rounded-full border border-red-900/60 bg-red-900/20 px-2 py-0.5 text-[11px] font-medium text-red-200">
+              <span className="inline-flex items-center rounded-full border border-red-200 bg-red-50 px-2 py-0.5 text-[11px] font-medium text-red-700 dark:border-red-900/60 dark:bg-red-900/20 dark:text-red-200">
                 {m.plan}
               </span>
             </div>
@@ -216,7 +214,7 @@ export default function Page() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${m.name} — Sitio web`}
-                className="inline-flex items-center gap-1 text-neutral-200 hover:text-white underline"
+                className="inline-flex items-center gap-1 text-neutral-700 hover:text-neutral-900 underline dark:text-neutral-200 dark:hover:text-white"
               >
                 <GlobeIcon className="h-4 w-4" />
                 Sitio web
@@ -228,7 +226,7 @@ export default function Page() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${m.name} — LinkedIn`}
-                  className="inline-flex items-center gap-1 text-neutral-200 hover:text-white"
+                  className="inline-flex items-center gap-1 text-neutral-700 hover:text-neutral-900 dark:text-neutral-200 dark:hover:text-white"
                 >
                   <LinkedinIcon className="h-4 w-4" />
                   LinkedIn
@@ -241,7 +239,7 @@ export default function Page() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${m.name} — Instagram`}
-                  className="inline-flex items-center gap-1 text-neutral-200 hover:text-white"
+                  className="inline-flex items-center gap-1 text-neutral-700 hover:text-neutral-900 dark:text-neutral-200 dark:hover:text-white"
                 >
                   <InstagramIcon className="h-4 w-4" />
                   Instagram
@@ -254,7 +252,7 @@ export default function Page() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${m.name} — YouTube`}
-                  className="inline-flex items-center gap-1 text-neutral-200 hover:text-white"
+                  className="inline-flex items-center gap-1 text-neutral-700 hover:text-neutral-900 dark:text-neutral-200 dark:hover:text-white"
                 >
                   <YoutubeIcon className="h-4 w-4" />
                   YouTube
@@ -267,7 +265,7 @@ export default function Page() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${m.name} — X`}
-                  className="inline-flex items-center gap-1 text-neutral-200 hover:text-white"
+                  className="inline-flex items-center gap-1 text-neutral-700 hover:text-neutral-900 dark:text-neutral-200 dark:hover:text-white"
                 >
                   <XIcon className="h-4 w-4" />
                   X
@@ -276,17 +274,17 @@ export default function Page() {
             </div>
 
             {/* Contacto */}
-            <div className="mt-4 rounded-lg bg-neutral-950 border border-neutral-800 p-3 text-sm">
-              <div className="text-neutral-200">
+            <div className="mt-4 rounded-lg bg-neutral-50 border border-neutral-200 p-3 text-sm dark:bg-neutral-950 dark:border-neutral-800">
+              <div className="text-neutral-800 dark:text-neutral-200">
                 <strong>Contacto:</strong>{' '}
                 {m.contactName || 'Por confirmar'}
                 {m.contactRole ? ` — ${m.contactRole}` : ' — Por confirmar'}
               </div>
-              <div className="mt-1 flex flex-wrap gap-4 text-neutral-200">
+              <div className="mt-1 flex flex-wrap gap-4 text-neutral-800 dark:text-neutral-200">
                 <div className="inline-flex items-center gap-1">
                   <MailIcon className="h-4 w-4" />
                   {m.contactEmail ? (
-                    <a href={`mailto:${m.contactEmail}`} className="underline hover:text-white">
+                    <a href={`mailto:${m.contactEmail}`} className="underline hover:text-neutral-900 dark:hover:text-white">
                       {m.contactEmail}
                     </a>
                   ) : (
@@ -304,10 +302,10 @@ export default function Page() {
       </div>
 
       {/* CTA FINAL */}
-      <div className="mt-12 rounded-2xl border border-neutral-800 bg-neutral-900 p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div className="mt-12 rounded-2xl border border-neutral-200 bg-white p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 dark:border-neutral-800 dark:bg-neutral-900">
         <div>
-          <h3 className="text-lg font-semibold text-neutral-50">¿Quieres aparecer en el Directorio?</h3>
-          <p className="mt-2 text-sm text-neutral-200">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">¿Quieres aparecer en el Directorio?</h3>
+          <p className="mt-2 text-sm text-neutral-700 dark:text-neutral-200">
             El Directorio de Socios es una vitrina exclusiva en América Latina y Asia. Muestra tu marca y conecta con potenciales aliados.
           </p>
         </div>
