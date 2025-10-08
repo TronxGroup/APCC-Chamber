@@ -1,15 +1,87 @@
+// app/(routes)/directorio/page.tsx
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Globe, Linkedin, Instagram, Youtube, Twitter, Mail, Phone } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Directorio de Socios',
 };
 
+// ===== Iconos inline (evitamos dependencia de "lucide-react") =====
+type IconProps = React.SVGProps<SVGSVGElement>;
+const Icon = ({ children, ...props }: IconProps) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={1.8}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    {...props}
+  >
+    {children}
+  </svg>
+);
+
+const GlobeIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <circle cx="12" cy="12" r="10" />
+    <path d="M2 12h20" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+  </Icon>
+);
+
+const LinkedinIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <rect x="2" y="2" width="20" height="20" rx="3" />
+    <path d="M8 11v5" />
+    <path d="M8 8h.01" />
+    <path d="M12 12.5V16" />
+    <path d="M12 12.5c1.1-1.2 3.8-1.2 3.8 1.7V16" />
+  </Icon>
+);
+
+const InstagramIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <rect x="3" y="3" width="18" height="18" rx="5" />
+    <circle cx="12" cy="12" r="3.5" />
+    <circle cx="17.5" cy="6.5" r="0.8" />
+  </Icon>
+);
+
+const YoutubeIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <rect x="3" y="7" width="18" height="10" rx="3" />
+    <path d="M10 10l4 2-4 2z" />
+  </Icon>
+);
+
+const XIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <path d="M4 4l16 16" />
+    <path d="M20 4L9.5 14.5" />
+    <path d="M4 20l10.5-10.5" />
+  </Icon>
+);
+
+const MailIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <rect x="3" y="5" width="18" height="14" rx="2" />
+    <path d="M3 7l9 6 9-6" />
+  </Icon>
+);
+
+const PhoneIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.12 1h2a2 2 0 0 1 2 1.72c.13.98.36 1.93.68 2.84a2 2 0 0 1-.45 2.11L7 8a16 16 0 0 0 6 6l.33-.35a2 2 0 0 1 2.1-.46c.92.32 1.86.55 2.83.68A2 2 0 0 1 22 16.92z" />
+  </Icon>
+);
+
+// ===== Tipado y datos =====
 type Member = {
   name: string;
-  logo: string; // ruta dentro de /public (ej: /partners/macrobots.png)
+  logo: string; // ruta en /public
   sector: string;
   country: string;
   plan: 'Essential' | 'Business' | 'Corporate';
@@ -19,7 +91,7 @@ type Member = {
     linkedin?: string;
     instagram?: string;
     youtube?: string;
-    x?: string; // Twitter/X
+    x?: string;
   };
   contactName?: string;
   contactRole?: string;
@@ -37,7 +109,6 @@ const MEMBERS: Member[] = [
     website: 'https://www.macrobots.com/',
     blurb:
       'Empresa de Automatización de Procesos, especialista en robots informáticos (RPA) y servicios de ingeniería.',
-    // RRSS no provistas, se pueden agregar luego
     contactName: 'Por confirmar',
     contactRole: 'Por confirmar',
     contactEmail: 'contacto@macrobots.com',
@@ -92,7 +163,7 @@ export default function Page() {
           socios <strong>Business</strong> y <strong>Corporate</strong> (Essential tiene visibilidad básica).
         </p>
 
-        {/* Aviso de idiomas y acceso */}
+        {/* Aviso idiomas / acceso */}
         <div className="mt-4 rounded-xl border border-neutral-800 bg-neutral-900 p-4">
           <p className="text-sm text-neutral-200">
             <strong>Nuevo:</strong> El directorio completo estará disponible en <strong>inglés</strong> y{' '}
@@ -111,7 +182,10 @@ export default function Page() {
       {/* GRID DE SOCIOS */}
       <div className="mt-10 grid sm:grid-cols-2 md:grid-cols-3 gap-6">
         {MEMBERS.map((m) => (
-          <article key={m.name} className="rounded-2xl border border-neutral-800 bg-neutral-900 p-6 flex flex-col">
+          <article
+            key={m.name}
+            className="rounded-2xl border border-neutral-800 bg-neutral-900 p-6 flex flex-col"
+          >
             <div className="h-16 flex items-center justify-center bg-neutral-950 rounded-xl">
               <Image
                 src={m.logo}
@@ -144,7 +218,7 @@ export default function Page() {
                 aria-label={`${m.name} — Sitio web`}
                 className="inline-flex items-center gap-1 text-neutral-200 hover:text-white underline"
               >
-                <Globe className="h-4 w-4" />
+                <GlobeIcon className="h-4 w-4" />
                 Sitio web
               </Link>
 
@@ -156,7 +230,7 @@ export default function Page() {
                   aria-label={`${m.name} — LinkedIn`}
                   className="inline-flex items-center gap-1 text-neutral-200 hover:text-white"
                 >
-                  <Linkedin className="h-4 w-4" />
+                  <LinkedinIcon className="h-4 w-4" />
                   LinkedIn
                 </Link>
               )}
@@ -169,7 +243,7 @@ export default function Page() {
                   aria-label={`${m.name} — Instagram`}
                   className="inline-flex items-center gap-1 text-neutral-200 hover:text-white"
                 >
-                  <Instagram className="h-4 w-4" />
+                  <InstagramIcon className="h-4 w-4" />
                   Instagram
                 </Link>
               )}
@@ -182,7 +256,7 @@ export default function Page() {
                   aria-label={`${m.name} — YouTube`}
                   className="inline-flex items-center gap-1 text-neutral-200 hover:text-white"
                 >
-                  <Youtube className="h-4 w-4" />
+                  <YoutubeIcon className="h-4 w-4" />
                   YouTube
                 </Link>
               )}
@@ -195,7 +269,7 @@ export default function Page() {
                   aria-label={`${m.name} — X`}
                   className="inline-flex items-center gap-1 text-neutral-200 hover:text-white"
                 >
-                  <Twitter className="h-4 w-4" />
+                  <XIcon className="h-4 w-4" />
                   X
                 </Link>
               )}
@@ -205,11 +279,12 @@ export default function Page() {
             <div className="mt-4 rounded-lg bg-neutral-950 border border-neutral-800 p-3 text-sm">
               <div className="text-neutral-200">
                 <strong>Contacto:</strong>{' '}
-                {m.contactName || 'Por confirmar'}{m.contactRole ? ` — ${m.contactRole}` : ' — Por confirmar'}
+                {m.contactName || 'Por confirmar'}
+                {m.contactRole ? ` — ${m.contactRole}` : ' — Por confirmar'}
               </div>
               <div className="mt-1 flex flex-wrap gap-4 text-neutral-200">
                 <div className="inline-flex items-center gap-1">
-                  <Mail className="h-4 w-4" />
+                  <MailIcon className="h-4 w-4" />
                   {m.contactEmail ? (
                     <a href={`mailto:${m.contactEmail}`} className="underline hover:text-white">
                       {m.contactEmail}
@@ -219,7 +294,7 @@ export default function Page() {
                   )}
                 </div>
                 <div className="inline-flex items-center gap-1">
-                  <Phone className="h-4 w-4" />
+                  <PhoneIcon className="h-4 w-4" />
                   <span>{m.contactPhone || 'Por confirmar'}</span>
                 </div>
               </div>
