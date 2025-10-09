@@ -10,6 +10,21 @@ function Badge({ children }: { children: React.ReactNode }) {
 
 type PageProps = { params: { slug: string } };
 
+// —————————————————————————————
+// Estado por slug exacto
+function resolveStatus(slug: string) {
+  switch (slug) {
+    case '2025-10-webinar-ferias-hktdc-toys-baby-stationery':
+      return 'finalized' as const; // TOY → finalizado
+    case '2025-10-mesa-logistica-comercio-asia':
+    case '2025-11-seminario-oportunidades-desafios-asia':
+      return 'full' as const; // Mesa de Trabajo + Seminario → cupos completos
+    default:
+      return null;
+  }
+}
+// —————————————————————————————
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const ev = getEventBySlug(params.slug);
   if (!ev) return { title: 'Evento no encontrado | APCC' };
@@ -39,8 +54,9 @@ export default function EventDetailPage({ params }: PageProps) {
   const ev = getEventBySlug(params.slug);
   if (!ev) return notFound();
 
-  // 🔒 CUPOS COMPLETOS (solo este evento)
-  const isFull = ev.slug === '2025-10-mesa-logistica-comercio-asia';
+  const status = resolveStatus(ev.slug);
+  const isFull = status === 'full';
+  const isFinalized = status === 'finalized';
 
   const joinUrl = 'https://join.asiapacific-chamber.com';
 
@@ -53,6 +69,7 @@ export default function EventDetailPage({ params }: PageProps) {
       ev.mode === 'Webinar'
         ? 'https://schema.org/OnlineEventAttendanceMode'
         : 'https://schema.org/OfflineEventAttendanceMode',
+    // Nota: sin estado "finalizado" en schema; mantenemos Scheduled.
     eventStatus: 'https://schema.org/EventScheduled',
     image: ev.poster ? [ev.poster] : [],
     startDate: ev.date,
@@ -94,6 +111,7 @@ export default function EventDetailPage({ params }: PageProps) {
               <Badge>{ev.mode}</Badge>
               {ev.membersOnly && <Badge>Socios APCC</Badge>}
               {isFull && <Badge>Cupos completos</Badge>}
+              {isFinalized && <Badge>Finalizado</Badge>}
             </div>
           </div>
         </div>
@@ -107,15 +125,21 @@ export default function EventDetailPage({ params }: PageProps) {
             {ev.time && <div><span className="text-[var(--apcc-text-2)]">Horario:</span> {ev.time}</div>}
             <div><span className="text-[var(--apcc-text-2)]">Modalidad:</span> {ev.mode}</div>
             <div><span className="text-[var(--apcc-text-2)]">Ubicación:</span> {ev.location}</div>
+            {isFinalized && (
+              <div className="text-[var(--apcc-text)] font-medium mt-1">Estado: Finalizado</div>
+            )}
+            {isFull && (
+              <div className="text-[var(--apcc-text)] font-medium mt-1">Estado: Cupos completos</div>
+            )}
           </div>
 
           <p className="mt-4 text-[var(--apcc-text-2)]">{ev.summary}</p>
 
           <div className="mt-5 flex flex-wrap gap-3">
-            {isFull ? (
+            {isFull || isFinalized ? (
               <>
                 <span className="btn btn-primary pointer-events-none opacity-60" aria-disabled="true">
-                  Cupos completos
+                  {isFinalized ? 'Finalizado' : 'Cupos completos'}
                 </span>
                 <Link href="/eventos" className="btn btn-outline">Ver otros eventos</Link>
               </>
@@ -173,12 +197,15 @@ export default function EventDetailPage({ params }: PageProps) {
 
       {/* FORMULARIO */}
       <div id="inscripcion" className="scroll-mt-24">
-        {isFull ? (
+        {isFull || isFinalized ? (
           <div className="card p-6">
-            <h3 className="text-lg font-semibold text-[var(--apcc-text)]">Cupos completos</h3>
+            <h3 className="text-lg font-semibold text-[var(--apcc-text)]">
+              {isFinalized ? 'Evento finalizado' : 'Cupos completos'}
+            </h3>
             <p className="mt-2 text-sm text-[var(--apcc-text-2)]">
-              Gracias por tu interés. Los cupos para este evento se han completado.
-              Te invitamos a revisar el calendario de próximos eventos o unirte como socio APCC.
+              {isFinalized
+                ? 'Gracias por tu interés. Este evento ya finalizó. Te invitamos a revisar el calendario de próximos eventos o unirte como socio APCC.'
+                : 'Gracias por tu interés. Los cupos para este evento se han completado. Te invitamos a revisar el calendario de próximos eventos o unirte como socio APCC.'}
             </p>
             <div className="mt-4 flex gap-3">
               <Link href="/eventos" className="btn btn-outline">Ver próximos eventos</Link>
@@ -201,19 +228,21 @@ export default function EventDetailPage({ params }: PageProps) {
       <section className="mt-10 card p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <h3 className="text-lg font-semibold text-[var(--apcc-text)]">
-            {isFull ? '¡Gracias por tu interés!' : '¿Listo para asegurar tu cupo?'}
+            {isFinalized ? '¡Gracias por participar!' : isFull ? '¡Gracias por tu interés!' : '¿Listo para asegurar tu cupo?'}
           </h3>
           <p className="mt-1 text-sm text-[var(--apcc-text-2)]">
-            {isFull
+            {isFinalized
+              ? 'Este evento ya finalizó. Revisa nuestras actividades próximas.'
+              : isFull
               ? 'Este evento ya no tiene cupos disponibles. Revisa nuestras actividades próximas.'
               : 'Acceso y materiales exclusivos para socios APCC.'}
           </p>
         </div>
         <div className="flex gap-3">
           <Link href="/membresias" className="btn btn-outline">Ver membresías</Link>
-          {isFull ? (
+          {isFull || isFinalized ? (
             <span className="btn btn-primary pointer-events-none opacity-60" aria-disabled="true">
-              Cupos completos
+              {isFinalized ? 'Finalizado' : 'Cupos completos'}
             </span>
           ) : (
             <Link href="#inscripcion" className="btn btn-primary">Inscribirme</Link>
