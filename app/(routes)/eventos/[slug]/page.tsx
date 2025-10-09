@@ -12,17 +12,17 @@ type PageProps = { params: { slug: string } };
 
 // —————————————————————————————
 // Estado por slug exacto
-// - TOYS (07 Oct): Finalizado
-// - Mesa Logística (21 Oct): Cupos completos
-// - Seminario (07 Nov): ACTIVADO (sin restricción)
+// - TOYS (07 Oct): Finalizado (sin formulario)
+// - Mesa Logística (21 Oct): Cupos completos (sin formulario)
+// - Seminario (07 Nov): ACTIVADO (con formulario)
 function resolveStatus(slug: string) {
   switch (slug) {
     case '2025-10-webinar-ferias-hktdc-toys-baby-stationery':
-      return 'finalized' as const; // TOY → finalizado
+      return 'finalized' as const;
     case '2025-10-mesa-logistica-comercio-asia':
-      return 'full' as const; // Mesa de Trabajo → cupos completos
+      return 'full' as const;
     default:
-      return null; // Seminario y el resto: activos
+      return null; // seminario activo
   }
 }
 // —————————————————————————————
@@ -71,7 +71,6 @@ export default function EventDetailPage({ params }: PageProps) {
       ev.mode === 'Webinar'
         ? 'https://schema.org/OnlineEventAttendanceMode'
         : 'https://schema.org/OfflineEventAttendanceMode',
-    // Nota: sin estado "finalizado" explícito en schema; usamos Scheduled.
     eventStatus: 'https://schema.org/EventScheduled',
     image: ev.poster ? [ev.poster] : [],
     startDate: ev.date,
@@ -227,7 +226,7 @@ export default function EventDetailPage({ params }: PageProps) {
       </div>
 
       {/* CTA inferior */}
-      <section className="mt-10 card p-6 flex felx-col md:flex-row items-start md:items-center justify-between gap-4">
+      <section className="mt-10 card p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <h3 className="text-lg font-semibold text-[var(--apcc-text)]">
             {isFinalized ? '¡Gracias por participar!' : isFull ? '¡Gracias por tu interés!' : '¿Listo para asegurar tu cupo?'}
