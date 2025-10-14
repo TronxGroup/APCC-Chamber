@@ -22,7 +22,7 @@ function resolveStatus(slug: string) {
     case '2025-10-mesa-logistica-comercio-asia':
       return 'full' as const;
     default:
-      return null; // seminario activo
+      return null; // activo con formulario
   }
 }
 // —————————————————————————————
@@ -162,10 +162,10 @@ export default function EventDetailPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* Auspiciadores */}
+          {/* Patrocinadores */}
           {ev.sponsors && ev.sponsors.length > 0 && (
             <div className="mt-6">
-              <div className="text-xs uppercase tracking-wider text-[var(--apcc-muted)]">Auspiciadores</div>
+              <div className="text-xs uppercase tracking-wider text-[var(--apcc-muted)]">Patrocinadores</div>
               <div className="mt-2 flex flex-wrap items-center gap-3">
                 {ev.sponsors.map((s) => (
                   <div key={s.name} className="h-9 px-3 rounded-xl border border-[var(--apcc-border)] bg-white grid place-items-center">
