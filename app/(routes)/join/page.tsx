@@ -64,7 +64,7 @@ export default function JoinPage({ searchParams }: JoinSearch) {
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/0" />
 
         <div className="relative container pt-14 pb-10 z-10">
           <div className="grid lg:grid-cols-2 gap-8 items-end">
