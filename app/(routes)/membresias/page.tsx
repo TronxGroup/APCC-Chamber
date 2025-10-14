@@ -3,9 +3,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Membresías',
+  title: 'Membresías | Cámara de Comercio Asia Pacífico – APCC',
   description:
-    'Membresías APCC 2026–2030: Essential, Business y Corporate. Beneficios reales: misiones, roundtables, business matching, networking e inteligencia comercial.',
+    'Membresías APCC 2026–2030: Essential, Business y Corporate. Beneficios prácticos para crecer con Asia: misiones, networking, business matching, roundtables e inteligencia comercial.',
 };
 
 type Plan = {
@@ -25,58 +25,59 @@ const PLANS: Plan[] = [
     id: 'essential',
     name: 'Essential',
     price: '$200.000 CLP / año',
-    blurb: 'Pensada para PYMEs y nuevos importadores que comienzan con Asia.',
+    blurb:
+      'Para PYMEs e importadores que dan sus primeros pasos con Asia y necesitan guía y comunidad.',
     features: [
       'Certificado oficial de socio',
-      'Webinars mensuales (tendencias, aduanas, logística, financiamiento)',
-      'Boletín con oportunidades Asia–Pacífico',
+      'Webinars mensuales aplicados (tendencias, aduanas, logística, financiamiento)',
+      'Boletín con oportunidades Asia–Pacífico (proveedores, ferias, alertas)',
       '1 participación anual en mesa gremial',
       'Descuentos en cursos y seminarios',
-      'Acceso a biblioteca digital de guías y reportes',
-      'Acceso a grupos segmentados (WhatsApp/Slack)',
+      'Acceso a biblioteca digital (guías, plantillas y checklists)',
+      'Acceso a grupos segmentados (WhatsApp/Slack) por rubro',
     ],
-    ctaHref: '/join?plan=Essential',
+    ctaHref: '/join?plan=Essential&utm_source=site&utm_medium=membresias&utm_campaign=signup',
     ctaLabel: 'Unirme a Essential',
-    note: 'Ideal para iniciar y validar oportunidades con Asia.',
+    note: 'Ideal para validar oportunidades y estructurar tus primeros negocios con Asia.',
   },
   {
     id: 'business',
     name: 'Business',
     price: '$500.000 CLP / año',
     blurb:
-      'Para empresas consolidadas en importación/exportación que buscan networking y prioridad en agenda.',
+      'Para empresas con flujo de importación/exportación que buscan networking curado y prioridad en agenda.',
     best: true,
     features: [
       'Todos los beneficios de “Essential”',
-      'Inclusión en directorio oficial (web y catálogos digitales)',
+      'Inclusión en directorio oficial (web + catálogos digitales)',
       'Networking exclusivo trimestral (desayunos / rondas de negocio)',
-      '1 asesoría anual en comercio exterior',
+      '1 asesoría anual en comercio exterior (ruta, costos, riesgos)',
       'Prioridad en misiones comerciales a China y Hong Kong',
       'Derecho preferente a exponer en seminarios de la cámara',
-      'Cobertura comunicacional en medios de la cámara',
+      'Cobertura comunicacional en los medios de la cámara',
     ],
-    ctaHref: '/join?plan=Business',
+    ctaHref: '/join?plan=Business&utm_source=site&utm_medium=membresias&utm_campaign=signup',
     ctaLabel: 'Elegir Business',
-    note: 'La opción recomendada para PYMEs con flujo estable.',
+    note: 'Recomendado para PYMEs con operaciones activas y metas de expansión.',
   },
   {
     id: 'corporate',
     name: 'Corporate',
     price: '$1.000.000 CLP / año',
     blurb:
-      'Para corporativos y grupos empresariales que requieren posicionamiento internacional y agenda a medida.',
+      'Para corporativos y grupos empresariales que requieren posicionamiento internacional y agenda tailor-made.',
     features: [
       'Todos los beneficios de “Business”',
       'Logo destacado en web, newsletters y eventos',
       '2 asesorías estratégicas/año (marketing internacional, financiamiento, partners en Asia)',
       'Acceso directo a HKLABA y cámaras aliadas (Perú y Bolivia)',
       'Participación garantizada en misiones comerciales (mín. 2/año)',
-      'Invitación VIP a foros internacionales (p.ej., Hong Kong Forum)',
+      'Invitación VIP a foros internacionales (ej: Hong Kong Forum)',
       'Copatrocinio de seminarios/webinars con visibilidad de marca',
     ],
-    ctaHref: '/join?plan=Corporate',
+    ctaHref: '/join?plan=Corporate&utm_source=site&utm_medium=membresias&utm_campaign=signup',
     ctaLabel: 'Hablar con APCC',
-    note: 'Hecha para impacto regional y equipos comerciales.',
+    note: 'Diseñada para impacto regional, visibilidad y equipos comerciales.',
   },
 ];
 
@@ -99,14 +100,16 @@ export default function Page() {
     <section className="container py-16">
       {/* HERO */}
       <header className="max-w-3xl">
-        <h1 className="text-3xl md:text-4xl font-semibold text-[var(--apcc-text)]">Membresías APCC 2026–2030</h1>
+        <h1 className="text-3xl md:text-4xl font-semibold text-[var(--apcc-text)]">
+          Membresías APCC 2026–2030
+        </h1>
         <p className="mt-3 text-[var(--apcc-text-2)]">
-          Programas pensados para entregar <strong>valor real y renovable</strong>: inteligencia comercial, networking
-          sectorial, business matching y acceso a misiones y ferias en Asia.
+          Programas diseñados para entregar <strong>valor práctico y renovable</strong>: inteligencia comercial,
+          networking sectorial, business matching y acceso a misiones y ferias en Asia.
         </p>
         <div className="mt-6 text-sm text-[var(--apcc-text-2)]">
           ¿Dudas?{' '}
-          <Link href="/join" className="apcc-link underline-offset-4 hover:opacity-90">
+          <Link href="/join" className="apcc-link underline-offset-4 hover:opacity-90" aria-label="Agendar una llamada con APCC">
             Agenda una llamada
           </Link>.
         </div>
@@ -139,7 +142,7 @@ export default function Page() {
             {p.note && <div className="mt-4 text-xs text-neutral-600">{p.note}</div>}
 
             <div className="mt-6">
-              <Link href={p.ctaHref} className="btn btn-primary">
+              <Link href={p.ctaHref} className="btn btn-primary" aria-label={`${p.ctaLabel} plan ${p.name}`}>
                 {p.ctaLabel}
               </Link>
             </div>
@@ -155,8 +158,8 @@ export default function Page() {
           </h3>
           <ul className="mt-4 grid md:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
             {[
-              'Plataforma digital: biblioteca de guías, reportes y acuerdos',
-              'Grupos segmentados (importadores, exportadores, startups, logística)',
+              'Plataforma digital: biblioteca de guías, reportes, acuerdos y plantillas',
+              'Grupos segmentados por industria (importadores, exportadores, startups, logística)',
               'Cobertura comunicacional en medios y redes de la cámara',
               'Trato directo con gerencias (gremial, comercial, comunicaciones)',
               'Eventos: mínimo 1 webinar/mes + 1 evento presencial/trimestre',
@@ -243,8 +246,20 @@ export default function Page() {
             </p>
           </div>
           <div className="flex gap-3">
-            <Link href="/join" className="btn btn-primary">Unirme ahora</Link>
-            <Link href="/join" className="btn btn-outline">Hablar con APCC</Link>
+            <Link
+              href="/join?utm_source=site&utm_medium=membresias&utm_campaign=cta_footer"
+              className="btn btn-primary"
+              aria-label="Unirme ahora a una membresía APCC"
+            >
+              Unirme ahora
+            </Link>
+            <Link
+              href="/join?utm_source=site&utm_medium=membresias&utm_campaign=cta_footer"
+              className="btn btn-outline"
+              aria-label="Hablar con APCC para resolver dudas de membresías"
+            >
+              Hablar con APCC
+            </Link>
           </div>
         </div>
       </section>
