@@ -54,77 +54,91 @@ export default function JoinPage({ searchParams }: JoinSearch) {
 
   return (
     <section className="min-h-screen bg-neutral-950 text-neutral-100">
-      {/* HERO con imagen de fondo */}
-<div className="relative text-white">
-  <Image
-    src="/bg_image_apcc_join.png"
-    alt="Fondo Join APCC"
-    fill
-    priority
-    sizes="100vw"
-    className="object-cover -z-10"
-  />
+      {/* HERO (texto blanco, sin oscurecer) */}
+<section
+  id="join-hero"
+  className="relative overflow-hidden w-full min-h-[68vh] md:min-h-[76vh] text-white"
+>
+  {/* Fondo con imagen full-bleed */}
+  <div className="absolute inset-0">
+    <Image
+      src="/bg_image_apcc_join.png"
+      alt="Fondo Join APCC"
+      fill
+      priority
+      quality={90}
+      className="object-cover object-center"
+      sizes="100vw"
+    />
+    {/* Overlay transparente: no oscurece */}
+    <div className="absolute inset-0 bg-black/0 pointer-events-none" />
+  </div>
 
-  {/* Altura mínima para que se vea el fondo aunque el contenido sea corto */}
-  <div className="relative container pt-14 pb-10 z-10 min-h-[60vh]">
-    <div className="grid lg:grid-cols-2 gap-8 items-end">
-      <div>
-        <span className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-red-300">
-          <Shield className="w-4 h-4 text-red-300" /> Membresías APCC 2026–2030
-        </span>
-        <h1 className="mt-2 text-3xl md:text-5xl font-semibold leading-tight text-white">
-          Valor real para importar, exportar y <span className="text-red-300">cerrar negocios</span> con Asia
-        </h1>
-        <p className="mt-4 text-neutral-100 max-w-2xl">
-          Conecta tu empresa con oportunidades concretas: inteligencia comercial, networking sectorial, business
-          matching y acceso a misiones y ferias en Asia. ¿Dudas?{' '}
-          <Link href="#form" className="underline underline-offset-4 text-red-300 hover:text-red-200">
-            Agenda una llamada
-          </Link>.
-        </p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <a href="#form" className="btn btn-primary bg-red-500 hover:bg-red-600 border-none text-white">
-            Unirme ahora
-          </a>
-          <a href="#planes" className="btn btn-secondary border border-red-400 text-red-300 hover:bg-red-400/10">
-            Ver planes
-          </a>
+  {/* Contenido sobre el fondo */}
+  <div className="relative z-10">
+    <div className="container py-24 lg:py-32">
+      <div className="grid lg:grid-cols-2 gap-8 items-end">
+        <div className="max-w-4xl">
+          <span className="kicker text-xs tracking-[0.14em] uppercase text-white/90 drop-shadow">
+            Membresías APCC 2026–2030
+          </span>
+
+          <h1 className="mt-2 text-4xl md:text-5xl font-bold leading-tight text-white drop-shadow">
+            Valor real para importar, exportar y <span className="text-red-300">cerrar negocios</span> con Asia
+          </h1>
+
+          <p className="mt-4 text-base md:text-lg max-w-2xl text-white/95 drop-shadow">
+            Conecta tu empresa con oportunidades concretas: inteligencia comercial, networking sectorial,
+            business matching y acceso a misiones y ferias en Asia. ¿Dudas?{' '}
+            <Link href="#form" className="underline underline-offset-4 text-red-300 hover:text-red-200">
+              Agenda una llamada
+            </Link>.
+          </p>
+
+          <div className="mt-7 flex flex-wrap gap-3">
+            <a href="#form" className="btn btn-primary bg-red-500 hover:bg-red-600 border-none text-white">
+              Unirme ahora
+            </a>
+            <a href="#planes" className="btn btn-outline hero-outline border border-red-400 text-red-300 hover:bg-red-400/10">
+              Ver planes
+            </a>
+          </div>
+
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm text-white/90 drop-shadow">
+            <div className="rounded-xl border border-white/20 bg-white/10 p-3 flex items-center gap-2">
+              <Calendar className="h-4 w-4 text-red-300" />1 webinar/mes
+            </div>
+            <div className="rounded-xl border border-white/20 bg-white/10 p-3 flex items-center gap-2">
+              <Check className="h-4 w-4 text-red-300" />Mesas sectoriales
+            </div>
+            <div className="rounded-xl border border-white/20 bg-white/10 p-3 flex items-center gap-2">
+              <Rocket className="h-4 w-4 text-red-300" />Misiones a Asia
+            </div>
+            <div className="rounded-xl border border-white/20 bg-white/10 p-3 flex items-center gap-2">
+              <Shield className="h-4 w-4 text-red-300" />Partners verificados
+            </div>
+          </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm text-neutral-100">
-          <div className="rounded-xl border border-white/25 bg-white/10 p-3 flex items-center gap-2">
-            <Calendar className="h-4 w-4 text-red-300" />1 webinar/mes
+        {/* Tarjeta sticky con resumen y CTA */}
+        <div className="lg:justify-self-end w-full lg:max-w-md">
+          <div className="sticky top-6 rounded-2xl border border-white/15 bg-white/10 backdrop-blur p-6">
+            <h2 className="text-lg font-semibold text-white drop-shadow">Resumen rápido</h2>
+            <ul className="mt-3 text-sm text-white/95 space-y-2">
+              <li className="flex gap-2"><Check className="h-4 w-4 text-red-300" /> Inteligencia y reportes por industria</li>
+              <li className="flex gap-2"><Check className="h-4 w-4 text-red-300" /> Networking y rondas de negocio organizadas</li>
+              <li className="flex gap-2"><Check className="h-4 w-4 text-red-300" /> Acceso a misiones y ferias en Asia</li>
+            </ul>
+            <a href="#form" className="mt-5 btn btn-primary w-full text-center bg-red-500 hover:bg-red-600 border-none text-white">
+              Comenzar inscripción
+            </a>
+            <p className="mt-3 text-xs text-white/80">Tiempo estimado: 2 minutos</p>
           </div>
-          <div className="rounded-xl border border-white/25 bg-white/10 p-3 flex items-center gap-2">
-            <Check className="h-4 w-4 text-red-300" />Mesas sectoriales
-          </div>
-          <div className="rounded-xl border border-white/25 bg-white/10 p-3 flex items-center gap-2">
-            <Rocket className="h-4 w-4 text-red-300" />Misiones a Asia
-          </div>
-          <div className="rounded-xl border border-white/25 bg-white/10 p-3 flex items-center gap-2">
-            <Shield className="h-4 w-4 text-red-300" />Partners verificados
-          </div>
-        </div>
-      </div>
-
-      {/* Tarjeta sticky con resumen y CTA */}
-      <div className="lg:justify-self-end w-full lg:max-w-md">
-        <div className="sticky top-6 rounded-2xl border border-white/15 bg-white/10 backdrop-blur p-6">
-          <h2 className="text-lg font-semibold text-white">Resumen rápido</h2>
-          <ul className="mt-3 text-sm text-neutral-100 space-y-2">
-            <li className="flex gap-2"><Check className="h-4 w-4 text-red-300" /> Inteligencia y reportes por industria</li>
-            <li className="flex gap-2"><Check className="h-4 w-4 text-red-300" /> Networking y rondas de negocio organizadas</li>
-            <li className="flex gap-2"><Check className="h-4 w-4 text-red-300" /> Acceso a misiones y ferias en Asia</li>
-          </ul>
-          <a href="#form" className="mt-5 btn btn-primary w-full text-center bg-red-500 hover:bg-red-600 border-none text-white">
-            Comenzar inscripción
-          </a>
-          <p className="mt-3 text-xs text-neutral-200">Tiempo estimado: 2 minutos</p>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
       {/* PLANES */}
       <div id="planes" className="container pb-6">
