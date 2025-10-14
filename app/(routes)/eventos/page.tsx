@@ -37,7 +37,7 @@ export default function Page() {
             const isFull = ev.slug === '2025-10-mesa-logistica-comercio-asia';
             return (
               <article key={ev.slug} className="group relative card overflow-hidden flex flex-col">
-                <Link href={`/eventos/${ev.slug}`} className="absolute inset-0 z-[1]" aria-label={`Ver detalle: ${ev.title}`} />
+                <Link href={`/eventos/${ev.slug}`} className="absolute inset-0 z-[1]"} aria-label={`Ver detalle: ${ev.title}`} />
 
                 <div className="relative h-72 bg-[var(--apcc-bg)]">
                   <img
@@ -70,7 +70,7 @@ export default function Page() {
 
                   {ev.sponsors && ev.sponsors.length > 0 && (
                     <div className="mt-4">
-                      <div className="text-xs uppercase tracking-wider text-[var(--apcc-muted)]">Auspiciadores</div>
+                      <div className="text-xs uppercase tracking-wider text-[var(--apcc-muted)]">Patrocinadores</div>
                       <div className="mt-2 flex flex-wrap items-center gap-3">
                         {ev.sponsors.map((s) => (
                           <div key={s.name} className="h-8 px-3 rounded-xl border border-[var(--apcc-border)] bg-white grid place-items-center">
