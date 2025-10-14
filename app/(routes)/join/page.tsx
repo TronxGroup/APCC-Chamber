@@ -98,7 +98,7 @@ export default function JoinPage({ searchParams }: JoinSearch) {
                 <h2 className="text-lg font-semibold">Resumen rápido</h2>
                 <ul className="mt-3 text-sm text-neutral-200 space-y-2">
                   <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5"/> Inteligencia y reportes por industria</li>
-                  <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5"/> Networking y rondas de negocio curadas</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5"/> Networking y rondas de negocio conectadas estratégicamente</li>
                   <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5"/> Acceso a misiones y ferias en Asia</li>
                 </ul>
                 <a href="#form" className="mt-5 btn btn-primary w-full text-center">Comenzar inscripción</a>
