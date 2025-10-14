@@ -65,7 +65,7 @@ export default function EventSignupForm({ event }: Props) {
           </div>
           <div>
             <label htmlFor="Company" className="block text-sm font-medium text-[var(--apcc-text)]">Empresa</label>
-            <input id="Company" name="Company" type="text" maxLength={200}
+            <input id="Company" name="Company" type="text" required maxLength={200}
               placeholder="Nombre de la empresa"
               className="block w-full rounded-xl border border-[var(--apcc-border)] bg-white px-3.5 py-2.5 text-[var(--apcc-text)] placeholder-[var(--apcc-muted)] shadow-sm focus:outline-none focus:ring-4 focus:ring-sky-100 focus:border-sky-400" />
           </div>
