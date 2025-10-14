@@ -112,7 +112,7 @@ export default function EventSignupForm({ event }: Props) {
           // @ts-ignore
           return checkMandatory6988454000000695198();
         }}
-        style={{ backgroundColor: 'white', color: 'black', maxWidth: 600 }}
+        style={{ backgroundColor: 'white', color: 'black', maxWidth: 960 }}
       >
         {/* ===== Hidden Zoho (nuevos tokens) ===== */}
         <input type="text" style={{ display: 'none' }} name="xnQsjsdp" value="b9f0416e3973b64fa9d8632e16c63be5ae302dbf82a8f6ab4fd336a05d385fac" readOnly />
