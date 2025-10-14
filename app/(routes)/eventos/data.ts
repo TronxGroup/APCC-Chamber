@@ -1,26 +1,25 @@
-// app/(routes)/eventos/data.ts
 export type SponsorRole = 'Produce' | 'Organiza' | 'Patrocina' | 'Auspicia';
 
 export type Sponsor = {
-  name: string;
-  logo: string;                // ruta en /public/sponsors/*
-  role?: SponsorRole;          // Produce | Organiza | Patrocina | Auspicia (opcional)
+  name: string;               // ruta en /public/sponsors/*
+  logo: string;
+  role?: SponsorRole;         // Produce | Organiza | Patrocina | Auspicia (opcional)
 };
 
 export type EventItem = {
   slug: string;
   title: string;
-  date: string;                // Ej: "07 Oct 2025" o rango "02–03 Dic 2025" (mostrar)
-  time?: string;               // Ej: "17:30–18:30 (CLST)" o "Programa de 2 días"
+  date: string;               // Ej: "07 Oct 2025" o rango "02–03 Dic 2025" (mostrar)
+  time?: string;              // Ej: "17:30–18:30 (CLST)" o "Programa de 2 días"
   mode: 'Webinar' | 'Seminario' | 'Rueda de Negocios' | 'Misión' | 'Foro' | 'Mesa de Trabajo';
-  location: string;            // "Online (Zoom)" o dirección
-  poster: string;              // ruta en /public/events/posters/*
-  summary: string;             // breve, 1–2 líneas
-  guests: string[];            // Entidades invitadas / panelistas
-  sponsors?: Sponsor[];        // Logos con rol opcional
-  membersOnly?: boolean;       // true si es exclusivo socios
+  location: string;           // "Online (Zoom)" o dirección
+  poster: string;             // ruta en /public/events/posters/*
+  summary: string;            // breve, 1–2 líneas
+  guests: string[];           // Entidades invitadas / panelistas
+  sponsors?: Sponsor[];       // Logos con rol opcional
+  membersOnly?: boolean;      // true si es exclusivo socios
   agenda?: { time: string; topic: string; speaker?: string }[];
-  description?: string;        // texto más largo (opcional) para páginas de detalle
+  description?: string;       // texto más largo (opcional) para páginas de detalle
 };
 
 export const EVENTS: EventItem[] = [
@@ -137,6 +136,32 @@ export const EVENTS: EventItem[] = [
     membersOnly: true,
     description:
       'Foro exclusivo para socios corporativos. Incluye conferencias magistrales, paneles de discusión, sesiones de networking con ejecutivos internacionales y un programa de visitas para conocer los últimos desarrollos en infraestructura y negocios en Hong Kong.',
+  },
+
+  // 5) 12–15 Ene 2026 · Misión Comercial (NUEVO)
+  {
+    slug: '2026-01-mision-baby-stationery-toys',
+    title:
+      'Misión comercial: Baby Products, Stationery and School Supplies & Toys and Games',
+    date: '12–15 Ene 2026',
+    // sin horario específico
+    mode: 'Misión',
+    location: 'Presencial',
+    poster: '/events/posters/2026-01-mision-baby-stationery-toys.jpg',
+    summary:
+      'Reúne a empresas del sector infantil, escolar y de entretenimiento para conectar con fabricantes, distribuidores y marcas internacionales. Oportunidad clave para explorar tendencias, generar alianzas y ampliar redes en mercados globales.',
+    guests: ['HKTDC', 'APCC', 'HKLABA'],
+    sponsors: [
+      { name: 'HKTDC', logo: '/sponsors/hktdc.png', role: 'Organiza' },
+      { name: 'APCC', logo: '/sponsors/apcc.png', role: 'Patrocina' },
+      { name: 'HKLABA', logo: '/sponsors/hklaba.png', role: 'Patrocina' },
+      { name: 'Empresas SURA', logo: '/sponsors/sura.png', role: 'Patrocina' },
+      { name: 'Global66', logo: '/sponsors/global66.png', role: 'Patrocina' },
+      { name: 'Huawei', logo: '/sponsors/huawei.png', role: 'Patrocina' },
+    ],
+    // agenda: [] // (opcional, cuando definan bloques horarios)
+    description:
+      'Misión comercial presencial orientada a empresas interesadas en productos para bebés, papelería, útiles escolares, juguetes y juegos. Incluye visitas a ferias y reuniones B2B.',
   },
 ]; // ← IMPORTANTE: cerrar el arreglo
 
