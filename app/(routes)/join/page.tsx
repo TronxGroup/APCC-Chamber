@@ -124,12 +124,25 @@ export default function JoinPage({ searchParams }: JoinSearch) {
         <div className="lg:justify-self-end w-full lg:max-w-md">
           <div className="sticky top-6 rounded-2xl border border-white/15 bg-white/10 backdrop-blur p-6">
             <h2 className="text-lg font-semibold text-white drop-shadow">Resumen rápido</h2>
-            <ul className="mt-3 text-sm text-white/95 space-y-2">
-              <li className="flex gap-2"><Check className="h-4 w-4 text-red-300" /> Inteligencia y reportes por industria</li>
-              <li className="flex gap-2"><Check className="h-4 w-4 text-red-300" /> Networking y rondas de negocio organizadas</li>
-              <li className="flex gap-2"><Check className="h-4 w-4 text-red-300" /> Acceso a misiones y ferias en Asia</li>
+            {/* Forzamos blanco con la clase hero-desc definida en globals */}
+            <ul className="mt-3 text-sm space-y-2 hero-desc">
+              <li className="flex gap-2">
+                <Check className="h-4 w-4 text-red-300" />
+                <span>Inteligencia y reportes por industria</span>
+              </li>
+              <li className="flex gap-2">
+                <Check className="h-4 w-4 text-red-300" />
+                <span>Networking y rondas de negocio organizadas</span>
+              </li>
+              <li className="flex gap-2">
+                <Check className="h-4 w-4 text-red-300" />
+                <span>Acceso a misiones y ferias en Asia</span>
+              </li>
             </ul>
-            <a href="#form" className="mt-5 btn btn-primary w-full text-center bg-red-500 hover:bg-red-600 border-none text-white">
+            <a
+              href="#form"
+              className="mt-5 btn btn-primary w-full text-center bg-red-500 hover:bg-red-600 border-none text-white"
+            >
               Comenzar inscripción
             </a>
             <p className="mt-3 text-xs text-white/80">Tiempo estimado: 2 minutos</p>
