@@ -70,7 +70,7 @@ const PLANS: Plan[] = [
       'Todos los beneficios de “Business”',
       'Logo destacado en web, newsletters y eventos',
       '2 asesorías estratégicas/año (marketing internacional, financiamiento, partners en Asia)',
-      'Acceso directo a HKLABA y cámaras aliadas (Perú y Bolivia)',
+      'Acceso directo a HKLABA y cámaras aliadas',
       'Participación garantizada en misiones comerciales (mín. 2/año)',
       'Invitación VIP a foros internacionales (ej: Hong Kong Forum)',
       'Copatrocinio de seminarios/webinars con visibilidad de marca',
