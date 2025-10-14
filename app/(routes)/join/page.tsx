@@ -57,7 +57,7 @@ export default function JoinPage({ searchParams }: JoinSearch) {
       {/* HERO (texto blanco, sin oscurecer) */}
 <section
   id="join-hero"
-  className="relative overflow-hidden w-full min-h-[68vh] md:min-h-[76vh] text-white"
+  className="apcc-hero relative overflow-hidden w-full min-h-[68vh] md:min-h-[76vh] text-white"
 >
   {/* Fondo con imagen full-bleed */}
   <div className="absolute inset-0">
@@ -70,8 +70,8 @@ export default function JoinPage({ searchParams }: JoinSearch) {
       className="object-cover object-center"
       sizes="100vw"
     />
-    {/* Overlay transparente: no oscurece */}
-    <div className="absolute inset-0 bg-black/0 pointer-events-none" />
+    {/* Overlay transparente real (no lo pisa el patcher) */}
+    <div className="absolute inset-0 bg-transparent pointer-events-none" />
   </div>
 
   {/* Contenido sobre el fondo */}
