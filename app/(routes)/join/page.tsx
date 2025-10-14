@@ -7,7 +7,7 @@ import JoinFormZoho from './JoinFormZoho';
 export const metadata: Metadata = {
   title: 'Únete a la Cámara | APCC',
   description:
-    'Membresías APCC 2026–2030: Essential, Business, Corporate. Inteligencia comercial, networking, business matching y acceso a misiones y ferias en Asia.',
+    'Membresías APCC 2026–2030: Essential, Business y Corporate. Conecta con Asia mediante inteligencia comercial, networking, business matching y acceso a misiones y ferias.',
   openGraph: { title: 'Únete a la Cámara | APCC', type: 'website' },
   twitter: { card: 'summary_large_image', title: 'Únete a la Cámara | APCC' },
 };
@@ -23,28 +23,28 @@ const Rocket  = (p: SVGProps<SVGSVGElement>) => (<svg {...baseIcon} {...p}><path
 const PLANS = [
   { id: 'Essential', name: 'Essential', price: '$200.000 CLP / año', badge: undefined as undefined | 'Recomendado', bullets: [
     'Certificado oficial de socio',
-    'Webinars mensuales (tendencias, aduanas, logística, financiamiento)',
-    'Boletín con oportunidades Asia–Pacífico',
+    'Webinars mensuales aplicados (tendencias, aduanas, logística y financiamiento)',
+    'Boletín con oportunidades Asia–Pacífico (proveedores, ferias y alertas)',
     '1 participación anual en mesa gremial',
     'Descuentos en cursos y seminarios',
-    'Acceso a biblioteca digital de guías y reportes',
-    'Acceso a grupos segmentados (WhatsApp/Slack)'], foot: 'Ideal para iniciar y validar oportunidades con Asia.' },
+    'Acceso a biblioteca digital con guías, plantillas y checklists',
+    'Acceso a grupos segmentados (WhatsApp/Slack) por industria'], foot: 'Ideal para iniciar y validar tus primeras oportunidades con Asia.' },
   { id: 'Business', name: 'Business', price: '$500.000 CLP / año', badge: 'Recomendado' as const, bullets: [
     'Todos los beneficios de “Essential”',
     'Inclusión en directorio oficial (web y catálogos digitales)',
-    'Networking exclusivo trimestral (desayunos / rondas de negocio)',
-    '1 asesoría anual en comercio exterior',
+    'Networking exclusivo trimestral (desayunos y rondas de negocio)',
+    '1 asesoría anual en comercio exterior (ruta, costos y riesgos)',
     'Prioridad en misiones comerciales a China y Hong Kong',
-    'Derecho preferente a exponer en seminarios de la cámara',
-    'Cobertura comunicacional en medios de la cámara'], foot: 'La opción recomendada para PYMEs con flujo estable.' },
+    'Derecho preferente a exponer en seminarios de la Cámara',
+    'Cobertura comunicacional en los medios de la Cámara'], foot: 'La opción recomendada para PYMEs con operación activa y metas de expansión.' },
   { id: 'Corporate', name: 'Corporate', price: '$1.000.000 CLP / año', badge: undefined as undefined | 'Recomendado', bullets: [
     'Todos los beneficios de “Business”',
     'Logo destacado en web, newsletters y eventos',
-    '2 asesorías estratégicas/año (marketing internacional, financiamiento, partners en Asia)',
+    '2 asesorías estratégicas/año (marketing internacional, financiamiento y partners en Asia)',
     'Acceso directo a HKLABA y cámaras aliadas (Perú y Bolivia)',
     'Participación garantizada en misiones comerciales (mín. 2/año)',
     'Invitación VIP a foros internacionales (p.ej., Hong Kong Forum)',
-    'Copatrocinio de seminarios/webinars con visibilidad de marca'], foot: 'Hecha para impacto regional y equipos comerciales.' },
+    'Copatrocinio de seminarios/webinars con visibilidad de marca'], foot: 'Hecha para impacto regional, posicionamiento y equipos comerciales.' },
 ] as const;
 
 type JoinSearch = { searchParams?: Record<string, string | string[] | undefined> };
@@ -76,8 +76,9 @@ export default function JoinPage({ searchParams }: JoinSearch) {
                 Valor real para importar, exportar y <span className="text-red-300">cerrar negocios</span> con Asia
               </h1>
               <p className="mt-4 text-neutral-200 max-w-2xl">
-                Inteligencia comercial, networking sectorial, business matching y acceso a misiones y ferias en Asia.
-                ¿Dudas? <Link href="#form" className="underline underline-offset-4 hover:text-neutral-100">Agenda una llamada</Link>.
+                Conecta tu empresa con oportunidades concretas: inteligencia comercial, networking sectorial, business
+                matching y acceso a misiones y ferias en Asia. ¿Dudas?{' '}
+                <Link href="#form" className="underline underline-offset-4 hover:text-neutral-100">Agenda una llamada</Link>.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <a href="#form" className="btn btn-primary">Unirme ahora</a>
@@ -97,7 +98,7 @@ export default function JoinPage({ searchParams }: JoinSearch) {
                 <h2 className="text-lg font-semibold">Resumen rápido</h2>
                 <ul className="mt-3 text-sm text-neutral-200 space-y-2">
                   <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5"/> Inteligencia y reportes por industria</li>
-                  <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5"/> Networking & rondas de negocio</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5"/> Networking y rondas de negocio curadas</li>
                   <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5"/> Acceso a misiones y ferias en Asia</li>
                 </ul>
                 <a href="#form" className="mt-5 btn btn-primary w-full text-center">Comenzar inscripción</a>
