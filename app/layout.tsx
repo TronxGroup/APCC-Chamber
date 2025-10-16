@@ -32,8 +32,51 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className="scroll-smooth">
+      <head>
+        {/* =========================
+            Google Tag Manager (HEAD)
+            ID: GTM-TQBHPQJ8
+           ========================= */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TQBHPQJ8');`,
+          }}
+        />
+
+        {/* =========================
+            Google tag (GA4 gtag.js)
+            Measurement ID: G-JF5HP85J9Y
+           ========================= */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-JF5HP85J9Y" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-JF5HP85J9Y');`,
+          }}
+        />
+      </head>
+
       {/* apcc-light activa el “patcher” global */}
       <body className="apcc-light bg-[var(--apcc-bg)] text-[var(--apcc-text)]">
+        {/* =========================
+            Google Tag Manager (noscript)
+            Debe ir inmediatamente tras <body>
+           ========================= */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TQBHPQJ8"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+
         {/* HEADER (con hamburguesa en móvil) */}
         <Header />
 
