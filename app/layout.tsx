@@ -46,20 +46,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-TQBHPQJ8');`,
           }}
         />
-
-        {/* =========================
-            Google tag (GA4 gtag.js)
-            Measurement ID: G-JF5HP85J9Y
-           ========================= */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-JF5HP85J9Y" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-JF5HP85J9Y');`,
-          }}
-        />
       </head>
 
       {/* apcc-light activa el “patcher” global */}
