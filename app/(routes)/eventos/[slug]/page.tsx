@@ -1,3 +1,4 @@
+// app/(routes)/eventos/[slug]/page.tsx
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -13,16 +14,15 @@ type PageProps = { params: { slug: string } };
 // —————————————————————————————
 // Estado por slug exacto
 // - TOYS (07 Oct): Finalizado (sin formulario)
-// - Mesa Logística (21 Oct): Cupos completos (sin formulario)
-// - Seminario (07 Nov): ACTIVADO (con formulario)
+// - Mesa Logística (21 Oct): ACTIVO (con formulario)
+// - Resto: ACTIVO (con formulario)
 function resolveStatus(slug: string) {
   switch (slug) {
     case '2025-10-webinar-ferias-hktdc-toys-baby-stationery':
       return 'finalized' as const;
-    case '2025-10-mesa-logistica-comercio-asia':
-      return 'full' as const;
+    // Nota: la mesa YA NO está como "full"
     default:
-      return null; // activo con formulario
+      return null as const; // activo con formulario
   }
 }
 // —————————————————————————————
@@ -57,11 +57,12 @@ export default function EventDetailPage({ params }: PageProps) {
   if (!ev) return notFound();
 
   const status = resolveStatus(ev.slug);
-  const isFull = status === 'full';
+  const isFull = status === 'full';         // no se usa para la mesa
   const isFinalized = status === 'finalized';
 
   const joinUrl = 'https://join.asiapacific-chamber.com';
 
+  // (Opcional) Si quieres mejorar SEO, ideal que startDate sea ISO 8601
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Event',
@@ -71,9 +72,11 @@ export default function EventDetailPage({ params }: PageProps) {
       ev.mode === 'Webinar'
         ? 'https://schema.org/OnlineEventAttendanceMode'
         : 'https://schema.org/OfflineEventAttendanceMode',
-    eventStatus: 'https://schema.org/EventScheduled',
+    eventStatus: isFinalized
+      ? 'https://schema.org/EventCancelled' // o EventCompleted (según cómo prefieras etiquetarlo)
+      : 'https://schema.org/EventScheduled',
     image: ev.poster ? [ev.poster] : [],
-    startDate: ev.date,
+    startDate: ev.date, // ⚠️ considera llevarlo a ISO (p.ej. "2025-10-21T09:30:00-03:00")
     location:
       ev.location.toLowerCase().includes('online')
         ? { '@type': 'VirtualLocation', url: joinUrl }
