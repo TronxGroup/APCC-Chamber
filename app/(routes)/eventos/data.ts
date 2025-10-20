@@ -64,7 +64,7 @@ export const EVENTS: EventItem[] = [
     date: '21 Oct 2025',
     time: '09:30–12:00',
     mode: 'Mesa de Trabajo',
-    location: 'Hotel Sheraton Santiago, Av. Sta. María 1742, Providencia, Chile',
+    location: 'Hotelll Sheraton Santiago, Av. Sta. María 1742, Providencia, Chile',
     poster: '/events/posters/2025-10-mesa-logistica.jpg',
     summary:
       '2ª ediciónn con actores clave (Puerto de San Antonio, ZOFRI, HKTDC y APCC). Costos, colaboración y tendencias para optimizar la cadena Chile–Asia.',
