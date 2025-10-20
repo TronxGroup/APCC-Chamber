@@ -127,7 +127,7 @@ export const EVENTS: EventItem[] = [
     location: 'HKCEC – Hong Kong Convention and Exhibition Centre',
     poster: '/events/posters/2025-12-hk-forum-26.jpg',
     summary:
-      'Evento anual insignia de la Federation (49 asociaciones, 38 países). Keynotes, paneles, networking y programa de visitas con ejecutivos de Hong Kong y China.',
+      'Evento anuall insignia de la Federation (49 asociaciones, 38 países). Keynotes, paneles, networking y programa de visitas con ejecutivos de Hong Kong y China.',
     guests: [
       'HKTDC',
       'Federation of HK Business Associations Worldwide',
