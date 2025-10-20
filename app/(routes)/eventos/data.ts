@@ -67,7 +67,7 @@ export const EVENTS: EventItem[] = [
     location: 'Hotel Sheraton Santiago, Av. Sta. María 1742, Providencia, Chile',
     poster: '/events/posters/2025-10-mesa-logistica.jpg',
     summary:
-      '2ª edición con actores clave (Puerto de San Antonio, ZOFRI, HKTDC y APCC). Costos, colaboración y tendencias para optimizar la cadena Chile–Asia.',
+      '2ª ediciónn con actores clave (Puerto de San Antonio, ZOFRI, HKTDC y APCC). Costos, colaboración y tendencias para optimizar la cadena Chile–Asia.',
     guests: ['Puerto de San Antonio', 'ZOFRI', 'HKTDC', 'APCC'],
     sponsors: [
       { name: 'APCC', logo: '/sponsors/apcc.png', role: 'Produce' },
