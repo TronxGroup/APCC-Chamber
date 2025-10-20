@@ -11,18 +11,20 @@ function Badge({ children }: { children: React.ReactNode }) {
 
 type PageProps = { params: { slug: string } };
 
+// 👉 Define el tipo de estado permitido
+type EventStatus = 'finalized' | 'full' | null;
+
 // —————————————————————————————
 // Estado por slug exacto
 // - TOYS (07 Oct): Finalizado (sin formulario)
 // - Mesa Logística (21 Oct): ACTIVO (con formulario)
 // - Resto: ACTIVO (con formulario)
-function resolveStatus(slug: string) {
+function resolveStatus(slug: string): EventStatus {
   switch (slug) {
     case '2025-10-webinar-ferias-hktdc-toys-baby-stationery':
-      return 'finalized' as const;
-    // Nota: la mesa YA NO está como "full"
+      return 'finalized';
     default:
-      return null as const; // activo con formulario
+      return null; // activo con formulario
   }
 }
 // —————————————————————————————
@@ -57,12 +59,11 @@ export default function EventDetailPage({ params }: PageProps) {
   if (!ev) return notFound();
 
   const status = resolveStatus(ev.slug);
-  const isFull = status === 'full';         // no se usa para la mesa
+  const isFull = status === 'full';
   const isFinalized = status === 'finalized';
 
   const joinUrl = 'https://join.asiapacific-chamber.com';
 
-  // (Opcional) Si quieres mejorar SEO, ideal que startDate sea ISO 8601
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Event',
@@ -73,10 +74,10 @@ export default function EventDetailPage({ params }: PageProps) {
         ? 'https://schema.org/OnlineEventAttendanceMode'
         : 'https://schema.org/OfflineEventAttendanceMode',
     eventStatus: isFinalized
-      ? 'https://schema.org/EventCancelled' // o EventCompleted (según cómo prefieras etiquetarlo)
+      ? 'https://schema.org/EventCompleted'
       : 'https://schema.org/EventScheduled',
     image: ev.poster ? [ev.poster] : [],
-    startDate: ev.date, // ⚠️ considera llevarlo a ISO (p.ej. "2025-10-21T09:30:00-03:00")
+    startDate: ev.date, // Considera formatear a ISO 8601 si quieres SEO más fino
     location:
       ev.location.toLowerCase().includes('online')
         ? { '@type': 'VirtualLocation', url: joinUrl }
@@ -90,27 +91,18 @@ export default function EventDetailPage({ params }: PageProps) {
 
   return (
     <section className="container py-10">
-      {/* JSON-LD */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      {/* Breadcrumb */}
       <nav className="text-sm text-[var(--apcc-text-2)] mb-4">
         <Link href="/eventos" className="apcc-link hover:opacity-90">Eventos</Link>
         <span className="mx-2">/</span>
         <span className="text-[var(--apcc-muted)]">{ev.title}</span>
       </nav>
 
-      {/* Hero */}
       <header className="grid lg:grid-cols-[420px,1fr] gap-6 items-start">
-        {/* Afiche */}
         <div className="card overflow-hidden">
           <div className="relative h-[560px] bg-[var(--apcc-bg)]">
-            <img
-              src={ev.poster}
-              alt={`Afiche ${ev.title}`}
-              className="h-full w-full object-cover"
-              loading="eager"
-            />
+            <img src={ev.poster} alt={`Afiche ${ev.title}`} className="h-full w-full object-cover" loading="eager" />
             <div className="absolute left-3 top-3 flex gap-2">
               <Badge>{ev.mode}</Badge>
               {ev.membersOnly && <Badge>Socios APCC</Badge>}
@@ -120,7 +112,6 @@ export default function EventDetailPage({ params }: PageProps) {
           </div>
         </div>
 
-        {/* Info principal */}
         <div>
           <h1 className="text-3xl md:text-4xl font-semibold text-[var(--apcc-text)]">{ev.title}</h1>
 
@@ -129,12 +120,8 @@ export default function EventDetailPage({ params }: PageProps) {
             {ev.time && <div><span className="text-[var(--apcc-text-2)]">Horario:</span> {ev.time}</div>}
             <div><span className="text-[var(--apcc-text-2)]">Modalidad:</span> {ev.mode}</div>
             <div><span className="text-[var(--apcc-text-2)]">Ubicación:</span> {ev.location}</div>
-            {isFinalized && (
-              <div className="text-[var(--apcc-text)] font-medium mt-1">Estado: Finalizado</div>
-            )}
-            {isFull && (
-              <div className="text-[var(--apcc-text)] font-medium mt-1">Estado: Cupos completos</div>
-            )}
+            {isFinalized && <div className="text-[var(--apcc-text)] font-medium mt-1">Estado: Finalizado</div>}
+            {isFull && <div className="text-[var(--apcc-text)] font-medium mt-1">Estado: Cupos completos</div>}
           </div>
 
           <p className="mt-4 text-[var(--apcc-text-2)]">{ev.summary}</p>
@@ -155,7 +142,6 @@ export default function EventDetailPage({ params }: PageProps) {
             )}
           </div>
 
-          {/* Invitados */}
           {ev.guests?.length > 0 && (
             <div className="mt-6">
               <div className="text-xs uppercase tracking-wider text-[var(--apcc-muted)]">Invitados</div>
@@ -165,7 +151,6 @@ export default function EventDetailPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* Patrocinadores */}
           {ev.sponsors && ev.sponsors.length > 0 && (
             <div className="mt-6">
               <div className="text-xs uppercase tracking-wider text-[var(--apcc-muted)]">Patrocinadores</div>
@@ -181,7 +166,6 @@ export default function EventDetailPage({ params }: PageProps) {
         </div>
       </header>
 
-      {/* Agenda */}
       {ev.agenda && ev.agenda.length > 0 && (
         <section className="mt-10">
           <h2 className="text-xl font-semibold text-[var(--apcc-text)]">Agenda</h2>
@@ -199,7 +183,6 @@ export default function EventDetailPage({ params }: PageProps) {
         </section>
       )}
 
-      {/* FORMULARIO */}
       <div id="inscripcion" className="scroll-mt-24">
         {isFull || isFinalized ? (
           <div className="card p-6">
@@ -228,7 +211,6 @@ export default function EventDetailPage({ params }: PageProps) {
         )}
       </div>
 
-      {/* CTA inferior */}
       <section className="mt-10 card p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <h3 className="text-lg font-semibold text-[var(--apcc-text)]">
