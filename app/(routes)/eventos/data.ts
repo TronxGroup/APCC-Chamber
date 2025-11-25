@@ -39,7 +39,7 @@ export type EventItem = {
 // ------------------------------------------------------------
 
 export const EVENTS: EventItem[] = [
-  // 1) 12–15 Ene 2026 · Misión (PRÓXIMO)
+  // 1) 12–15 Ene 2026 · Misión (PRÓXIMO · INSCRIPCIONES ABIERTAS)
   {
     slug: '2026-01-mision-baby-stationery-toys',
     title:
@@ -63,7 +63,7 @@ export const EVENTS: EventItem[] = [
       'Misión comercial para empresas interesadas en productos para bebés, papelería, útiles escolares, juguetes y juegos. Incluye visitas a ferias y reuniones B2B.',
   },
 
-  // 2) 10 Dic 2025 · Desayuno (REALIZADO)
+  // 2) 10 Dic 2025 · Desayuno (REALIZADO · FINALIZADO)
   {
     slug: '2025-12-desayuno-negocios-turismo-huawei',
     title: 'Reunión Desayuno de Negocios Sector Turismo Empresarial',
@@ -98,7 +98,7 @@ export const EVENTS: EventItem[] = [
       'Encuentro junto a Huawei para explorar nuevas oportunidades comerciales entre China y América Latina y fortalecer lazos globales.',
   },
 
-  // 3) 02–03 Dic 2025 · Foro (SOCIOS, REALIZADO)
+  // 3) 02–03 Dic 2025 · Foro (SOCIOS · INSCRIPCIONES ABIERTAS)
   {
     slug: '2025-12-hong-kong-forum-26',
     title: '26º Hong Kong Forum (HKLABA · Federation)',
@@ -120,12 +120,11 @@ export const EVENTS: EventItem[] = [
       { name: 'HKTDC', logo: '/sponsors/hktdc.png', role: 'Patrocina' },
     ],
     membersOnly: true,
-    ended: true,
     description:
       'Foro exclusivo para socios corporativos. Conferencias magistrales, paneles, networking y visitas estratégicas.',
   },
 
-  // 4) 07 Nov 2025 · Seminario (FINALIZADO → marcado)
+  // 4) 07 Nov 2025 · Seminario (FINALIZADO)
   {
     slug: '2025-11-seminario-oportunidades-desafios-asia',
     title:
@@ -157,7 +156,7 @@ export const EVENTS: EventItem[] = [
     ended: true,
   },
 
-  // 5) 21 Oct 2025 · Mesa de Trabajo (FINALIZADO → marcado)
+  // 5) 21 Oct 2025 · Mesa de Trabajo (FINALIZADO)
   {
     slug: '2025-10-mesa-logistica-comercio-asia',
     title:
