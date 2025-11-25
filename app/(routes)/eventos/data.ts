@@ -1,28 +1,37 @@
 // app/(routes)/eventos/data.ts
 
-export type SponsorRole = 'Produce' | 'Organiza' | 'Patrocina' | 'Auspicia';
+export type SponsorRole = 'Produce' | 'Organiza' | 'Patrocina' | 'Auspicia' | 'Coorganiza';
 
 export type Sponsor = {
   name: string;               // ruta en /public/sponsors/*
   logo: string;
-  role?: SponsorRole;         // Produce | Organiza | Patrocina | Auspicia (opcional)
+  role?: SponsorRole;         // Produce | Organiza | Patrocina | Auspicia | Coorganiza
 };
+
+export type EventMode =
+  | 'Webinar'
+  | 'Seminario'
+  | 'Rueda de Negocios'
+  | 'Misión'
+  | 'Foro'
+  | 'Mesa de Trabajo'
+  | 'Desayuno'; // ← agregado
 
 export type EventItem = {
   slug: string;
   title: string;
-  date: string;               // Ej: "07 Oct 2025" o rango "02–03 Dic 2025" (mostrar)
-  time?: string;              // Ej: "17:30–18:30 (CLST)" o "Programa de 2 días"
-  mode: 'Webinar' | 'Seminario' | 'Rueda de Negocios' | 'Misión' | 'Foro' | 'Mesa de Trabajo';
-  location: string;           // "Online (Zoom)" o dirección
-  poster: string;             // ruta en /public/events/posters/*
-  summary: string;            // breve, 1–2 líneas
-  guests: string[];           // Entidades invitadas / panelistas
-  sponsors?: Sponsor[];       // Logos con rol opcional
-  membersOnly?: boolean;      // true si es exclusivo socios
+  date: string;
+  time?: string;
+  mode: EventMode;
+  location: string;
+  poster: string;
+  summary: string;
+  guests: string[];
+  sponsors?: Sponsor[];
+  membersOnly?: boolean;
   agenda?: { time: string; topic: string; speaker?: string }[];
-  description?: string;       // texto más largo (opcional) para páginas de detalle
-  ended?: boolean;            // true si el evento ya finalizó
+  description?: string;
+  ended?: boolean;
 };
 
 export const EVENTS: EventItem[] = [
@@ -83,7 +92,6 @@ export const EVENTS: EventItem[] = [
       { time: '11:15', topic: 'Tendencias y proyección futura', speaker: 'APCC' },
       { time: '11:45', topic: 'Q&A y networking' },
     ],
-    // sin "ended": inscripciones abiertas
   },
 
   // 3) 07 Nov · Seminario
@@ -127,7 +135,7 @@ export const EVENTS: EventItem[] = [
     location: 'HKCEC – Hong Kong Convention and Exhibition Centre',
     poster: '/events/posters/2025-12-hk-forum-26.jpg',
     summary:
-      'Evento anual insignia de la Federation (49 asociaciones, 38 países). Keynotes, paneles, networking y programa de visitas con ejecutivos de Hong Kong y China.',
+      'Evento anual insignia de la Federation (49 asociaciones, 38 países). Keynotes, paneles, networking y programa de visitas.',
     guests: [
       'HKTDC',
       'Federation of HK Business Associations Worldwide',
@@ -140,10 +148,44 @@ export const EVENTS: EventItem[] = [
     ],
     membersOnly: true,
     description:
-      'Foro exclusivo para socios corporativos. Incluye conferencias magistrales, paneles de discusión, sesiones de networking con ejecutivos internacionales y un programa de visitas para conocer los últimos desarrollos en infraestructura y negocios en Hong Kong.',
+      'Foro exclusivo para socios corporativos. Conferencias magistrales, paneles, networking y visitas estratégicas.',
   },
 
-  // 5) 12–15 Ene 2026 · Misión Comercial
+  // 5) 10 Dic · Desayuno de Negocios (NUEVO)
+  {
+    slug: '2025-12-desayuno-negocios-turismo-huawei',
+    title: 'Reunión Desayuno de Negocios Sector Turismo Empresarial',
+    date: '10 Dic 2025',
+    time: '09:30',
+    mode: 'Desayuno',
+    location: 'Merced 230, Cámara Nacional de Comercio',
+    poster: '/events/posters/2025-12-desayuno-negocios-turismo.jpg',
+    summary:
+      'Desayuno junto a Huawei para explorar oportunidades de negocios entre China y América Latina y fortalecer lazos comerciales.',
+    guests: [
+      'Sr. Álvaro Echeverría — APCC / HKTDC',
+      'Javier Arellano — B2B2C Manager Cono Sur, Huawei',
+    ],
+    sponsors: [
+      { name: 'APCC', logo: '/sponsors/apcc.png', role: 'Organiza' },
+      { name: 'Huawei', logo: '/sponsors/huawei.png', role: 'Organiza' },
+      { name: 'HKLABA', logo: '/sponsors/hklaba.png', role: 'Coorganiza' },
+      { name: 'HKTDC', logo: '/sponsors/hktdc.png', role: 'Patrocina' },
+      { name: 'CNC', logo: '/sponsors/cnc.png', role: 'Patrocina' },
+    ],
+    agenda: [
+      { time: '09:30', topic: 'Acreditación y bienvenida' },
+      { time: '09:40', topic: 'Panorama China–LatAm para turismo empresarial', speaker: 'Huawei' },
+      { time: '10:00', topic: 'Estrategias digitales para empresas del rubro' },
+      { time: '10:20', topic: 'Casos APCC y oportunidades 2025–2026', speaker: 'APCC' },
+      { time: '10:40', topic: 'Networking y café' },
+    ],
+    membersOnly: false,
+    description:
+      'Encuentro junto a Huawei para explorar nuevas oportunidades comerciales entre China y América Latina y fortalecer lazos globales.',
+  },
+
+  // 6) 12–15 Ene 2026 · Misión Comercial
   {
     slug: '2026-01-mision-baby-stationery-toys',
     title:
@@ -153,7 +195,7 @@ export const EVENTS: EventItem[] = [
     location: 'Presencial',
     poster: '/events/posters/2026-01-mision-baby-stationery-toys.jpg',
     summary:
-      'Reúne a empresas del sector infantil, escolar y de entretenimiento para conectar con fabricantes, distribuidores y marcas internacionales. Oportunidad clave para explorar tendencias, generar alianzas y ampliar redes en mercados globales.',
+      'Reúne a empresas del sector infantil, escolar y de entretenimiento para conectar con fabricantes, distribuidores y marcas.',
     guests: ['HKTDC', 'APCC', 'HKLABA'],
     sponsors: [
       { name: 'HKTDC', logo: '/sponsors/hktdc.png', role: 'Organiza' },
@@ -164,9 +206,9 @@ export const EVENTS: EventItem[] = [
       { name: 'Huawei', logo: '/sponsors/huawei.png', role: 'Patrocina' },
     ],
     description:
-      'Misión comercial presencial orientada a empresas interesadas en productos para bebés, papelería, útiles escolares, juguetes y juegos. Incluye visitas a ferias y reuniones B2B.',
+      'Misión comercial para empresas interesadas en productos para bebés, papelería, útiles escolares, juguetes y juegos. Incluye visitas a ferias y reuniones B2B.',
   },
-]; // ← IMPORTANTE: cerrar el arreglo
+];
 
 export function getEventBySlug(slug: string) {
   return EVENTS.find((e) => e.slug === slug);
