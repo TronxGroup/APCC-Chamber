@@ -63,40 +63,40 @@ export const EVENTS: EventItem[] = [
       'Misión comercial para empresas interesadas en productos para bebés, papelería, útiles escolares, juguetes y juegos. Incluye visitas a ferias y reuniones B2B.',
   },
 
-  // 2) 10 Dic 2025 · Desayuno (REALIZADO · FINALIZADO)
-  {
-    slug: '2025-12-desayuno-negocios-turismo-huawei',
-    title: 'Reunión Desayuno de Negocios Sector Turismo Empresarial',
-    date: '10 Dic 2025',
-    time: '09:30',
-    mode: 'Desayuno',
-    location: 'Merced 230, Cámara Nacional de Comercio',
-    poster: '/events/posters/2025-12-desayuno-negocios-turismo.jpg',
-    summary:
-      'Desayuno junto a Huawei para explorar oportunidades de negocios entre China y América Latina y fortalecer lazos comerciales.',
-    guests: [
-      'Sr. Álvaro Echeverría — APCC / HKTDC',
-      'Javier Arellano — B2B2C Manager Cono Sur, Huawei',
-    ],
-    sponsors: [
-      { name: 'APCC', logo: '/sponsors/apcc.png', role: 'Organiza' },
-      { name: 'Huawei', logo: '/sponsors/huawei.png', role: 'Organiza' },
-      { name: 'HKLABA', logo: '/sponsors/hklaba.png', role: 'Coorganiza' },
-      { name: 'HKTDC', logo: '/sponsors/hktdc.png', role: 'Patrocina' },
-      { name: 'CNC', logo: '/sponsors/cnc.png', role: 'Patrocina' },
-    ],
-    agenda: [
-      { time: '09:30', topic: 'Acreditación y bienvenida' },
-      { time: '09:40', topic: 'Panorama China–LatAm para turismo empresarial', speaker: 'Huawei' },
-      { time: '10:00', topic: 'Estrategias digitales para empresas del rubro' },
-      { time: '10:20', topic: 'Casos APCC y oportunidades 2025–2026', speaker: 'APCC' },
-      { time: '10:40', topic: 'Networking y café' },
-    ],
-    membersOnly: false,
-    ended: true,
-    description:
-      'Encuentro junto a Huawei para explorar nuevas oportunidades comerciales entre China y América Latina y fortalecer lazos globales.',
-  },
+  // 2) 10 Dic 2025 · Desayuno (PRÓXIMO · INSCRIPCIONES ABIERTAS)
+{
+  slug: '2025-12-desayuno-negocios-turismo-huawei',
+  title: 'Reunión Desayuno de Negocios Sector Turismo Empresarial',
+  date: '10 Dic 2025',
+  time: '09:30',
+  mode: 'Desayuno',
+  location: 'Merced 230, Cámara Nacional de Comercio',
+  poster: '/events/posters/2025-12-desayuno-negocios-turismo.jpg',
+  summary:
+    'Desayuno junto a Huawei para explorar oportunidades de negocios entre China y América Latina y fortalecer lazos comerciales.',
+  guests: [
+    'Sr. Álvaro Echeverría — APCC / HKTDC',
+    'Javier Arellano — B2B2C Manager Cono Sur, Huawei',
+  ],
+  sponsors: [
+    { name: 'APCC', logo: '/sponsors/apcc.png', role: 'Organiza' },
+    { name: 'Huawei', logo: '/sponsors/huawei.png', role: 'Organiza' },
+    { name: 'HKLABA', logo: '/sponsors/hklaba.png', role: 'Coorganiza' },
+    { name: 'HKTDC', logo: '/sponsors/hktdc.png', role: 'Patrocina' },
+    { name: 'CNC', logo: '/sponsors/cnc.png', role: 'Patrocina' },
+  ],
+  agenda: [
+    { time: '09:30', topic: 'Acreditación y bienvenida' },
+    { time: '09:40', topic: 'Panorama China–LatAm para turismo empresarial', speaker: 'Huawei' },
+    { time: '10:00', topic: 'Estrategias digitales para empresas del rubro' },
+    { time: '10:20', topic: 'Casos APCC y oportunidades 2025–2026', speaker: 'APCC' },
+    { time: '10:40', topic: 'Networking y café' },
+  ],
+  membersOnly: false,
+  // ❌ NO ended: true → se mantiene activo
+  description:
+    'Encuentro junto a Huawei para explorar nuevas oportunidades comerciales entre China y América Latina y fortalecer lazos globales.',
+},
 
   // 3) 02–03 Dic 2025 · Foro (SOCIOS · INSCRIPCIONES ABIERTAS)
   {
