@@ -32,6 +32,7 @@ export type EventItem = {
   agenda?: { time: string; topic: string; speaker?: string }[];
   description?: string;
   ended?: boolean;
+  registrationClosed?: boolean; // 👈 NUEVO
 };
 
 // ------------------------------------------------------------
@@ -63,8 +64,7 @@ export const EVENTS: EventItem[] = [
       'Misión comercial para empresas interesadas en productos para bebés, papelería, útiles escolares, juguetes y juegos. Incluye visitas a ferias y reuniones B2B.',
   },
 
-  // 2) 10 Dic 2025 · Desayuno (PRÓXIMO · INSCRIPCIONES ABIERTAS)
-{
+  {
   slug: '2025-12-desayuno-negocios-turismo-huawei',
   title: 'Reunión Desayuno de Negocios Sector Turismo Empresarial',
   date: '10 Dic 2025',
@@ -93,7 +93,8 @@ export const EVENTS: EventItem[] = [
     { time: '10:40', topic: 'Networking y café' },
   ],
   membersOnly: false,
-  // ❌ NO ended: true → se mantiene activo
+  registrationClosed: true, // 👈 CUPOS COMPLETOS
+  // ❌ NO ended: true → se mantiene como evento próximo
   description:
     'Encuentro junto a Huawei para explorar nuevas oportunidades comerciales entre China y América Latina y fortalecer lazos globales.',
 },
